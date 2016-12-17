@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>QT:QML与C++交互 | 果冻の随笔</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="图片作者为:Bison仓鼠">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QT:QML与C++交互">
+<meta property="og:url" content="http://yoursite.com/2016/12/05/QML与C++交互/index.html">
+<meta property="og:site_name" content="果冻の随笔">
+<meta property="og:description" content="图片作者为:Bison仓鼠">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/ad4b340bjw1fajr23avkpj21hc0u0n8y.jpg">
+<meta property="og:updated_time" content="2016-12-08T14:15:26.720Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="QT:QML与C++交互">
+<meta name="twitter:description" content="图片作者为:Bison仓鼠">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/ad4b340bjw1fajr23avkpj21hc0u0n8y.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://ww2.sinaimg.cn/small/ad4b340bjw1faga3tvdmej20cs0csaaq.jpg">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container" v-bind:class="{ show: isCtnShow }">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" v-bind:class="{ show: isShow }">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://ww4.sinaimg.cn/small/ad4b340bjw1fag5e338swj20hs0hsmz3.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">冰果冻</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">未识乾坤大,犹怜草木青</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" v-on:click="openSlider($event, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" v-on:click="openSlider($event, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" v-on:click="openSlider($event, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/fydui" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/bing-guo-dong-17/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" v-bind:class="{ show: isShow, hide: isShow === false }">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">冰果冻</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://ww4.sinaimg.cn/small/ad4b340bjw1fag5e338swj20hs0hsmz3.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">冰果冻</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">未识乾坤大,犹怜草木青</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/fydui" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/bing-guo-dong-17/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-QML与C++交互" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      QT:QML与C++交互
+    </h1>
+  
+
+        <a href="/2016/12/05/QML与C++交互/" class="archive-article-date">
+  	<time datetime="2016-12-05T14:38:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-05</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://ww2.sinaimg.cn/large/ad4b340bjw1fajr23avkpj21hc0u0n8y.jpg" alt="小姨子!"><br><em><a href="http://www.pixiv.net/whitecube/user/333556" target="_blank" rel="external">图片作者为:Bison仓鼠</a></em><br><a id="more"></a><br>终于搞定了gayhub的博客,以后就在这里写一些自己想写的东西好了 ╰(<em>´︶`</em>)╯ 前几天用QT的QML与C++交互,基于QMediaPlayer类撸了一个baka音乐播放器</p>
+<p>因为是第一次用QML撸 再加上我幼儿园水平的代码 写的一团糟..代码请用鼠标♂插 <a href="https://github.com/Fydui/JellyPlayer" target="_blank" rel="external">这里</a> 这个坑爹的QML与C++交互折腾了我好久  (╬▔▽▔)凸 <em>以我这辣鸡播放器为例</em><br>(大神请绕道orz)</p>
+<h3 id="那么问题来了"><a href="#那么问题来了" class="headerlink" title="那么问题来了"></a>那么问题来了</h3><h2 id="如何使用C艹来控制QML"><a href="#如何使用C艹来控制QML" class="headerlink" title="如何使用C艹来控制QML?"></a>如何使用C艹来控制QML?</h2><p>假设我们的qml是酱紫写的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">Rectangle &#123;</div><div class="line">        id: head</div><div class="line">        y: 0</div><div class="line">        width: parent.width</div><div class="line">        height: 40</div><div class="line">        color: <span class="string">"#222225"</span></div><div class="line">        opacity: 0.95</div><div class="line">        Layout.maximumHeight: 45</div><div class="line">        Layout.fillWidth: <span class="literal">true</span></div><div class="line">        Layout.fillHeight: <span class="literal">false</span></div><div class="line">        Text &#123;</div><div class="line">            id: musicteitle</div><div class="line">            x:5</div><div class="line">            y:5</div><div class="line">            width: parent.width</div><div class="line">            height: 30</div><div class="line">            color: <span class="string">"#C8C8C8"</span></div><div class="line">            font.family: <span class="string">"microsoft yahei"</span></div><div class="line">            font.pixelSize: 23</div><div class="line">            text:<span class="string">"正在播放: "</span> + myTITLE</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>让我们用这段代码来显示正在播放的某音乐的名字,细心的你可能发现了 你写这辣鸡玩意前面的我都能看懂 那个myTITLE是什么鬼?<br>这里让我们隆重介绍一下<a href="http://doc.qt.io/qt-5/qqmlcontext.html" target="_blank" rel="external">QQmlContext</a>这个神奇的类 :</p>
+<blockquote>
+<p>“QQmlContext类定义了一个QML引擎上下文引擎上下文允许将数据暴露给由QML引擎实例化的QML组件每个QQmlContext包含一组属性，与其QObject属性不同，它允许数据通过名称显式绑定到上下文。上下文属性通过调用QQmlContext :: setContextProperty（）来定义和更新” 　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　–power for 谷歌翻译</p>
+</blockquote>
+<p>参照官网 于是我们可以酱紫来控制音乐的名字:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">QQmlApplicationEngine* view = new QQmlApplicationEngine;</div><div class="line">QQmlContext* title = view-&gt;rootContext();</div><div class="line">title-&gt;<span class="built_in">set</span>ContextProperty(<span class="string">"myTITLE"</span>,QVariant(NowMusicName));</div></pre></td></tr></table></figure></p>
+<p>通过修改NowMusicName的值就可修改myTITLE的值 这俩东西是绑定的于是我们就可以通过C++来修改NowMusicName 从而修改QML中的myTITLE 进而达到显示出当前音乐名字的目的</p>
+<p>那么 view是何方神圣? 官方文档: <a href="http://doc.qt.io/qt-5/qqmlapplicationengine.html" target="_blank" rel="external">QQmlApplicationEngine</a></p>
+<blockquote>
+<p>QQmlApplicationEngine提供了从单个QML文件加载应用程序的方便方法。这个类结合了QQmlEngine和QQmlComponent来提供一个方便的方式来加载单个QML文件。它还向QML提供了一些中央应用程序功能，C++/QML混合应用程序通常会从C++控制<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　–power for 谷歌翻译</p>
+</blockquote>
+<p><br></p>
+<h3 id="果冻-能不能给力点啊-눈-눈-你说的这么水-没人会看的"><a href="#果冻-能不能给力点啊-눈-눈-你说的这么水-没人会看的" class="headerlink" title="果冻,能不能给力点啊?(눈_눈) 你说的这么水 没人会看的"></a>果冻,能不能给力点啊?(눈_눈) 你说的这么水 没人会看的</h3><p>好吧ಥ_ಥ 既然能从用C艹来艹QML 那自然也能用QML来艹C艹了<br><br></p>
+<h2 id="如何用QML来艹C艹"><a href="#如何用QML来艹C艹" class="headerlink" title="如何用QML来艹C艹?"></a>如何用QML来艹C艹?</h2><p>假设我们现在有个音乐类Music 我们想通过点击某个按钮来调用Music类的暂停函数 那么如何实现呢?<br>这个就相对的比较简单了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//main.cpp如下</div><div class="line"></div><div class="line">Music A;</div><div class="line">QQmlApplicationEngine* view = new QQmlApplicationEngine;</div><div class="line">QQmlContext* context  = view-&gt;rootContext();</div><div class="line">context-&gt;setContextProperty(&quot;myPlay&quot;,A); //先创建一个关于Music类的一个上下文</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">//fun.qml如下</div><div class="line"></div><div class="line">MouseArea &#123;　　　　　　　　　　　　　　//设置鼠标点击区域</div><div class="line">           id: sta_pau</div><div class="line">           x: 120</div><div class="line">           y: 8</div><div class="line">           width: 45</div><div class="line">           height: 45</div><div class="line">           Layout.maximumHeight: 40</div><div class="line">           Layout.maximumWidth: 70</div><div class="line">           Layout.fillHeight: <span class="literal">true</span></div><div class="line">           Layout.fillWidth: <span class="literal">true</span></div><div class="line">           onClicked: &#123;</div><div class="line">               myPlay.pausePlay();</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       Image &#123;　　　　　　　　//把图片放到鼠标点击区域上去　这就是个按钮了 不要在意用没用button那个细节233</div><div class="line">           id: sta_pau_bg</div><div class="line">           x: 120</div><div class="line">           y: 8</div><div class="line">           width: 45</div><div class="line">           height: 45</div><div class="line">           <span class="built_in">source</span>: <span class="string">"///img/我是一个萌萌的按钮图片.png"</span></div><div class="line">       &#125;</div></pre></td></tr></table></figure>
+<p>这样 一旦我们点击鼠标区域 就会触发与myPlay相之绑定的Music类对象A 从而调用A的暂停播放函数.<br><br></p>
+<h3 id="果冻-能不能再给力点啊-눈-눈-你说的这么水-等着挨喷吧"><a href="#果冻-能不能再给力点啊-눈-눈-你说的这么水-等着挨喷吧" class="headerlink" title="果冻,能不能再给力点啊?(눈_눈) 你说的这么水 等着挨喷吧"></a>果冻,能不能再给力点啊?(눈_눈) 你说的这么水 等着挨喷吧</h3><p> o(<em>////▽////</em>)q 既然你诚心诚意的发问了~<br>那么,现在让我们结合起用C艹来艹QML与用QML来艹C艹,假设我们要撸一个音乐播放器的进度条.<br>C艹负责处理歌曲总时长,当前播放进度,QML负责用花哨の特♂技显示出来这些.</p>
+<p>机智的你一定想到了,这还不简单,QML中使用一个Text控件用于显示,C艹则用QQmlContext建立上下文把总时长与标记绑定,当总时长改变,标记的值也会随之改变,显示出来的<strong>总时长也会随之改变</strong>.<br><br> 而当前播放进度则使用QML的进度条显示<a href="http://doc.qt.io/qt-5/qml-qtquick-controls-slider.html" target="_blank" rel="external">Slider</a> 控件处理.Slider的value就是当前播放的进度,通过点击事件onPressedChanged来处理进度条的拖动~<br><br> 为了更精细的显示出当前播放进度,我们还需要一个用于显示当前播放秒数的Text~同理用C艹获得当前播放秒数,绑定上下文就成.<br><em>这里只截出一部分 详情还劳烦各位去窝项目上的main.qml与music.cpp上<a href="https://github.com/Fydui/JellyPlayer" target="_blank" rel="external">瞅瞅</a></em></p>
+<h2 id="鬼畜级代码奉上-｡・-ω´･"><a href="#鬼畜级代码奉上-｡・-ω´･" class="headerlink" title="鬼畜级代码奉上(｡・`ω´･)"></a>鬼畜级代码奉上(｡・`ω´･)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">/*QML*/</div><div class="line"></div><div class="line"> RowLayout &#123;</div><div class="line">                    id: progress</div><div class="line">                    x: 0</div><div class="line">                    y: 20</div><div class="line">                    width: 580</div><div class="line">                    height: 60</div><div class="line">                    spacing: 5</div><div class="line">                    Layout.maximumWidth: 580</div><div class="line"></div><div class="line">                    Text &#123;               /*用于精确显示当前播放秒数*/</div><div class="line">                        id: s_time</div><div class="line">                        y: 0</div><div class="line">                        width: 40</div><div class="line">                        height: 20</div><div class="line">                        color: <span class="string">"#C8C8C8"</span>;</div><div class="line">                        text: mySTIME     /*秒数的上下文*/</div><div class="line">                        font.pixelSize: 18</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    Slider &#123;</div><div class="line">                        id: bar</div><div class="line">                        x: 50</div><div class="line">                        width: 450</div><div class="line">                        height: 20</div><div class="line">                        Layout.maximumWidth: 550</div><div class="line">                        Layout.maximumHeight: 20</div><div class="line">                        Layout.fillWidth: <span class="literal">true</span></div><div class="line">                        maximumValue:myPlay.getEndtime();/*使用与Music类对象A绑定的上下文来获得当前音乐的总时长*/</div><div class="line">                        value: <span class="built_in">set</span>NOW   /*用当前播放的值来设置进度条的当前进度*/</div><div class="line">                        onPressedChanged:  &#123;      </div><div class="line">                                        /*点击事件:当进度条拖动时改变音乐进度*/</div><div class="line">                            myPlay.setNowMusicPos(value);</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    Text &#123;</div><div class="line">                        id: e_time</div><div class="line">                        x: 515</div><div class="line">                        y: 0</div><div class="line">                        width: 40</div><div class="line">                        height: 20</div><div class="line">                        color: <span class="string">"#C8C8C8"</span></div><div class="line">                        text: myETIME /*总时长的上下文*/</div><div class="line">                        font.pixelSize: 18</div><div class="line">                    &#125;</div><div class="line">                &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">/*C艹*/</div><div class="line"></div><div class="line">                QObject::connect(now, &amp;QMediaPlayer::positionChanged, [this](qint64 position)&#123;</div><div class="line">                    <span class="keyword">if</span>(nowMusic-&gt;duration() != 0)                 /*QMediaPlayer* nowMusic */</div><div class="line">                        this-&gt;<span class="built_in">set</span>Endtime(this-&gt;now-&gt;duration());  //获取当前音乐的总时长</div><div class="line"></div><div class="line">                    settime(position);                      /*Music类成员,用于获得当前播放的位置(就是当前播放到哪了 单位:毫秒)*/</div><div class="line">                    QQmlContext* s_time =myView-&gt;rootContext();       //当前播放时长的上下文</div><div class="line">                    s_time-&gt;<span class="built_in">set</span>ContextProperty(<span class="string">"mySTIME"</span>,QVariant(timeformat(position)));</div><div class="line"></div><div class="line">                    QQmlContext* now_progress = myView-&gt;rootContext();//进度条值的上下文</div><div class="line">                    now_progress-&gt;<span class="built_in">set</span>ContextProperty(<span class="string">"setNOW"</span>,QVariant(position));</div><div class="line"></div><div class="line">                    QQmlContext* e_time  = myView-&gt;rootContext();     //总时长的上下文</div><div class="line">                    e_time-&gt;<span class="built_in">set</span>ContextProperty(<span class="string">"myETIME"</span>,QVariant(timeformat(this-&gt;endtime)));</div><div class="line">                &#125;);</div></pre></td></tr></table></figure>
+<p>在这里我们使用了一个<a href="http://doc.qt.io/qt-5/qmediaplayer.html" target="_blank" rel="external">QMediaPlayer</a>类的一个<a href="http://doc.qt.io/qt-5/qmediaplayer.html#positionChanged" target="_blank" rel="external">信号</a>,每当音乐播放进度改变时都会发射该信号从而调用与之对应的槽(在这段代码里槽为一个lambda).需要注意的是这个信号发射粒度(周期)为1s,据说可以修改发射粒度,找了半天无果,如果你知道怎么改,请务必联系我~阿里嘎多~<br><br>每当音乐播放1s,positionchanged信号被发射,C++代码刷新各项数据,通过上下文引擎把数据暴露给QML.当进度条拖动的时候,QML的点击事件将触发改变音乐进度的函数来改变播放进度.</p>
+<h2 id="大概就酱"><a href="#大概就酱" class="headerlink" title="　　　　　　　　　　　　　　　　　　　大概就酱"></a>　　　　　　　　　　　　　　　　　　　大概就酱</h2><h2 id="谢谢捧场-谢谢-欢迎讨论-欢迎纠错-逃"><a href="#谢谢捧场-谢谢-欢迎讨论-欢迎纠错-逃" class="headerlink" title="　　　　　　　　　　　　谢谢捧场 谢谢~ 欢迎讨论~欢迎纠错(逃"></a>　　　　　　　　　　　　谢谢捧场 谢谢~ 欢迎讨论~欢迎纠错(逃</h2>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp/">Cpp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QML/">QML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/">Qt</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/05/QML与C++交互/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/07/C++笔记-类和动态内存分配/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          C++笔记-类和动态内存分配
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="QML与C++交互" data-title="QT:QML与C++交互" data-url="http://yoursite.com/2016/12/05/QML与C++交互/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fydui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 冰果冻
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col" v-bind:class="{ show: isShow, hide: isShow === false }" v-on:click="stop($event)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" v-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" v-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" v-show="search===''"></i>
+          <i class="icon-close icon" v-show="search!==''" v-on:click="clearChose($event)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" v-on:click="toggleTag($event)" v-bind:checked="showTags">
+          </label>
+          <ul class="article-tag-list" v-bind:class="{ show: showTags }">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">Cpp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">Qt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">QML</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p v-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" v-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" v-for="item in items" v-show="!item.isHide">
+            <a v-bind:href="item.path|urlformat" class="search-title"><i class="icon-quo-left icon"></i>{{ item.title }}</a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span>{{ item.date|dateformat }}</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span v-for="tag in item.tags" v-on:click="choseTag($event, tag.name)">#{{ tag.name }}</span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" v-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://9bie.org" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>⑨BIE同志の博客</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://milktea.info/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>奶茶同学の博客</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.toowu.org/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>式哥の博客</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://imguoguo.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>果果同学の博客</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" v-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">未识乾坤大,犹怜草木青.</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

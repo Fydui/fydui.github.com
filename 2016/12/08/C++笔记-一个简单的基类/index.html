@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>C++笔记-一个简单的基类 | 果冻の随笔</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="C++笔记-一个简单的基类">
+<meta property="og:url" content="http://yoursite.com/2016/12/08/C++笔记-一个简单的基类/index.html">
+<meta property="og:site_name" content="果冻の随笔">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/ad4b340bjw1f1u6477df5j206o06ftb2.jpg">
+<meta property="og:updated_time" content="2016-12-08T14:15:22.257Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++笔记-一个简单的基类">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/mw690/ad4b340bjw1f1u6477df5j206o06ftb2.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://ww2.sinaimg.cn/small/ad4b340bjw1faga3tvdmej20cs0csaaq.jpg">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container" v-bind:class="{ show: isCtnShow }">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" v-bind:class="{ show: isShow }">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://ww4.sinaimg.cn/small/ad4b340bjw1fag5e338swj20hs0hsmz3.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">冰果冻</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">未识乾坤大,犹怜草木青</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" v-on:click="openSlider($event, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" v-on:click="openSlider($event, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" v-on:click="openSlider($event, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/fydui" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/bing-guo-dong-17/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" v-bind:class="{ show: isShow, hide: isShow === false }">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">冰果冻</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://ww4.sinaimg.cn/small/ad4b340bjw1fag5e338swj20hs0hsmz3.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">冰果冻</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">未识乾坤大,犹怜草木青</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/fydui" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/bing-guo-dong-17/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-C++笔记-一个简单的基类" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++笔记-一个简单的基类
+    </h1>
+  
+
+        <a href="/2016/12/08/C++笔记-一个简单的基类/" class="archive-article-date">
+  	<time datetime="2016-12-08T13:58:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-08</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://ww1.sinaimg.cn/mw690/ad4b340bjw1f1u6477df5j206o06ftb2.jpg" alt="&quot;沉迷C++&quot;"><br><a id="more"></a></p>
+<p><strong>从一个类派生出另一个类,原始类被称为基类,继承类被称为派生类</strong><br>例:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class player&#123;</div><div class="line">    public:</div><div class="line">        player(const string &amp; na,bool se = 1);</div><div class="line">        void Name() const&#123;cout &lt;&lt; name &lt;&lt; endl;&#125;</div><div class="line">        bool sex &#123;<span class="built_in">return</span> sex;&#125;</div><div class="line">    privat:</div><div class="line">        string name;</div><div class="line">        bool sex;</div><div class="line">&#125;</div><div class="line">    </div><div class="line">class Ship : public player //继承了player类 公有派生</div><div class="line">&#123;</div><div class="line">    public://派生类需要自己的构造函数并且必须使用基类的构造函数</div><div class="line">        Ship(bool mw = 0,int ag, const string &amp; na, bool se = 1);</div><div class="line">        Ship(bool mw = 0,int ag,player &amp; p);</div><div class="line">        int <span class="function"><span class="title">ShowAge</span></span>() &#123;cout &lt;&lt; age; <span class="built_in">return</span> age;&#125;</div><div class="line">    private:</div><div class="line">        bool myWife;</div><div class="line">        int age;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><br>冒号说明了Ship的基类是player,public表示了这个基类是公有基类,这被成为公有派生.使用公有基类,基类的公有成员将成为派生类的公有成员,基类的私有成员也将成为派生类的一部分但是不能直接访问,需要通过继承的基类的公有方法来间接访问.<br><br>创建派生类对象的时候,首先创造基类对象,C艹使用成员列表初始化完成该工作:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//在此声明成员列表初始化只能用于构造函数</div><div class="line">    Ship::Ship(bool mw, int ag,const string &amp; na,bool se) : player(na,se)&#123;</div><div class="line">        mw = 1;</div><div class="line">        ag = 18;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    Ship::Ship(bool mw,int ag,player &amp; p) : player(p)&#123;</div><div class="line">    mw = 0;</div><div class="line">    ag = 14;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>在第二个构造函数中 由于基类类型为 player &amp; ,因此将会调用基类的复制构造函数,由于基类没有该函数,则编译器将会自动生成一个~<br><em>基类对象首先被创建.派生类构造函数应通过成员初始化列表将基类信息传递给基类构造函数</em><br><br></p>
+<h2 id="派生类和基类之间的特殊关系"><a href="#派生类和基类之间的特殊关系" class="headerlink" title="派生类和基类之间的特殊关系"></a>派生类和基类之间的特殊关系</h2><p>基类指针或引用可以在不进行显式类型转换的情况下,指向或引用派生类对象或引用.然而<strong>基类指针和引用只能用于调用基类方法</strong>.所以不能用它们来调用派生类方法,如果将基类对象和地址赋值给派生类引用和指针.因为派生类引用可以为基类对象调用派生类方法,但是基类没有派生类的成员所以这么做是没意义的.<br>可以这么写:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Ship sp1(1,17,&quot;Lexington&quot;,0);</div><div class="line">player *a = &amp;sp1; //OK</div><div class="line">player &amp;b = sp1;  //OK</div><div class="line">a.Name();</div><div class="line">b-&gt;Name();</div><div class="line"></div><div class="line">player sp2(&quot;Saratoga&quot;,0);</div><div class="line">Ship *c = &amp;sp2; //不能这么写</div><div class="line">Ship &amp;d = sp2;  //也不能这么写</div></pre></td></tr></table></figure></p>
+<p><br>但是如果基类引用和指针可以指向派生类对象呢?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">void Show(const player &amp; p)&#123; //OK</div><div class="line">    p.Name();</div><div class="line">&#125;</div><div class="line"></div><div class="line">player temp1(&quot;LEX&quot;,0);</div><div class="line">Ship temp2(1,17&quot;SAG&quot;,0);</div><div class="line">Show(temp1); //OK</div><div class="line">Show(temp2); //OK</div></pre></td></tr></table></figure></p>
+<p>函数Show的形参为一个基类引用,他可以指向基类对象或者派生类对象,并且该函数使用了基类的一个方法,所以Show可以使用player参数或者Ship参数.</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp/">Cpp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/08/C++笔记-一个简单的基类/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/11/C++笔记-静态联编和动态联编/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          C++笔记-静态联编和动态联编
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/07/C++笔记-多态公有继承/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-多态公有继承</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="C++笔记-一个简单的基类" data-title="C++笔记-一个简单的基类" data-url="http://yoursite.com/2016/12/08/C++笔记-一个简单的基类/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fydui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 冰果冻
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col" v-bind:class="{ show: isShow, hide: isShow === false }" v-on:click="stop($event)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" v-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" v-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" v-show="search===''"></i>
+          <i class="icon-close icon" v-show="search!==''" v-on:click="clearChose($event)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" v-on:click="toggleTag($event)" v-bind:checked="showTags">
+          </label>
+          <ul class="article-tag-list" v-bind:class="{ show: showTags }">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">Cpp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">Qt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">QML</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p v-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" v-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" v-for="item in items" v-show="!item.isHide">
+            <a v-bind:href="item.path|urlformat" class="search-title"><i class="icon-quo-left icon"></i>{{ item.title }}</a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span>{{ item.date|dateformat }}</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span v-for="tag in item.tags" v-on:click="choseTag($event, tag.name)">#{{ tag.name }}</span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" v-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://9bie.org" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>⑨BIE同志の博客</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://milktea.info/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>奶茶同学の博客</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.toowu.org/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>式哥の博客</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://imguoguo.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>果果同学の博客</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" v-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">未识乾坤大,犹怜草木青.</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
