@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/21/C++笔记-类设计总结/index.html">
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1f1or9nsniej201k01g3ya.jpg">
-<meta property="og:updated_time" content="2016-12-22T15:08:59.767Z">
+<meta property="og:updated_time" content="2016-12-21T15:13:46.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类设计总结">
 <meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1f1or9nsniej201k01g3ya.jpg">
@@ -168,6 +168,20 @@
 <h3 id="按值传递对象与传递引用"><a href="#按值传递对象与传递引用" class="headerlink" title="按值传递对象与传递引用"></a><strong>按值传递对象与传递引用</strong></h3><p>通常在编写以对象作为参数的函数时,应该按引用,不应该使用按值传递参数,一是为了效率,二是因为在继承使用虚函数时,基类使用引用参数的函数可以接受派生类.</p>
 <h3 id="返回对象与返回引用"><a href="#返回对象与返回引用" class="headerlink" title="返回对象与返回引用"></a><strong>返回对象与返回引用</strong></h3><p>如果函数返回的是通过引用或指针传递给他的对象,则应该按引用返回对象.返回引用可以节约内存和时间,与按引用传递相似,调用与被调用函数使用同一个对象进行操作.但不总是可以返回引用,比如函数不能返回一个在函数中创建的临时变量的引用,因为当函数结束时临时变量将会消失,这时候应该返回对象.</p>
 <h3 id="const"><a href="#const" class="headerlink" title="const"></a><strong>const</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">classname::classname(const char * s) //确保方法不修改参数</div><div class="line">classname::show() const; </div><div class="line">//确保方法不修改调用他的对象,这里的const表示const classname * this,this指向调用的对象</div><div class="line"></div><div class="line">const classname&amp; classname::fun(const classname &amp; cn) const&#123;</div><div class="line">    if(s.total &gt; total) return s;</div><div class="line">    else return *this;</div><div class="line">&#125;;</div><div class="line">//该方法返回cn/this的引用,但因为cn/this是const,所以方法不能对cn/this进行修改,这意味着返回类型也必须为const</div></pre></td></tr></table></figure>
+<h2 id="共有继承要考虑的因素"><a href="#共有继承要考虑的因素" class="headerlink" title="共有继承要考虑的因素:"></a>共有继承要考虑的因素:</h2><h3 id="is-a关系"><a href="#is-a关系" class="headerlink" title="is-a关系"></a><strong>is-a关系</strong></h3><p>is-a为”是一个”的意思,如果派生类不是某种特殊的基类则不要使用,比如从大脑类派生出程序员类.is-a关系的标志之一是:无需进行显示转换即可将积累指针或引用指向或引用派生类对象(向上强制类型转换).反之是可能出现错误的.</p>
+<h3 id="赋值运算符-1"><a href="#赋值运算符-1" class="headerlink" title="赋值运算符"></a><strong>赋值运算符</strong></h3><p>将派生类赋值给基类对象:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class ZheXue &#123;...&#125;//基类-哲♂学</div><div class="line">class GaoBiLi : public ZheXue&#123;...&#125;//派生类-搞♂比♂利</div><div class="line"></div><div class="line">ZheXue bili;</div><div class="line">GaoBiLi  fuc;</div><div class="line">bili = fuc;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bili = fuc;</div></pre></td></tr></table></figure>
+<p>这将转化为: <em>bili.operator=(fuc)</em>他将调用 <em>ZheXue::operator=(const ZheXue &amp;);</em></p>
+<p>那如果将基类赋值给派生类对象呢:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fuc = bili;</div></pre></td></tr></table></figure></p>
+<p>这将转化为<em>fuc.operator=(bili)</em> ; 他将调用<em> GaoBiLi::operator=(const GaoBiLi &amp;);</em><br>然而,派生类引用不能自动引用基类对象.除非我们定义转换构造函数:<em>GaoBiLi(const ZheXue &amp;) </em>;<br>转换构造函数可以有一个类型为基类的参数和其他参数,但其他参数必须有默认值:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GaoBiLi(const ZheXue &amp; zx,string &amp; na = &quot;比♂利♂王&quot;,string &amp; ty = &quot;森之♂妖精&quot;);</div></pre></td></tr></table></figure>
+<p>这样转换构造函数会根据bili来创建一个临时对象,然后把它作为赋值运算符的参数.<br><strong>然而</strong>还可以直接写个参数为ZheXue的赋值运算符函数….:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GaoBiLi::operator=(const ZheXue &amp;)&#123;......&#125;;</div></pre></td></tr></table></figure>
+<h3 id="私有成员与保护成员"><a href="#私有成员与保护成员" class="headerlink" title="私有成员与保护成员"></a><strong>私有成员与保护成员</strong></h3><p>对于外界来说,只能用共有成员来访问二者,对于派生类来说,可以直接访问基类的保护成员,而私有成员仍要通过基类的成员函数来访问.</p>
+<h3 id="虚方法"><a href="#虚方法" class="headerlink" title="虚方法"></a><strong>虚方法</strong></h3><p>如果要在派生类中重定义基类的方法则应该使用virtual.</p>
+<h3 id="析构函数-1"><a href="#析构函数-1" class="headerlink" title="析构函数"></a><strong>析构函数</strong></h3><p>基类的析构函数应当是虚的.这样在使用指针或者引用删除派生对象时,程序会先调用派生类的析构函数然后调用基类的,而不会只调用基类的析构函数</p>
+<h3 id="友元函数"><a href="#友元函数" class="headerlink" title="友元函数"></a><strong>友元函数</strong></h3><p>友元函数并非类成员因此不能继承,如果希望派生类函数能使用基类的友元函数,可以使派生类指针或引用强制转换为基类的指针或引用,然后使用转换后的指针或引用来调用友元函数.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ostream &amp; GaoBiLi::operator&lt;&lt;(ostream &amp; os, GaoBiLi &amp; gbl)</div><div class="line">&#123;</div><div class="line">    os &lt;&lt; (const ZheXue &amp;)gbl;</div><div class="line">    os &lt;&lt; &quot;name:&quot; &lt;&lt; gbl.name &lt;&lt; endl;</div><div class="line">    return os;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
 
       
