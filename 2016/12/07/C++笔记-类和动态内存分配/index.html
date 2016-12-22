@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/07/C++笔记-类和动态内存分配/index.html">
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1f1or9ng790j206a04bt8q.jpg">
-<meta property="og:updated_time" content="2016-12-07T15:43:34.767Z">
+<meta property="og:updated_time" content="2016-12-22T13:45:30.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-类和动态内存分配">
 <meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1f1or9ng790j206a04bt8q.jpg">
@@ -156,7 +156,7 @@
       
         <p><img src="http://ww3.sinaimg.cn/mw690/ad4b340bjw1f1or9ng790j206a04bt8q.jpg" alt="岂不美哉?"><br><a id="more"></a></p>
 <p>对于类中的非静态const数据成员,必须在执行到构造函数体前,级创建对象时进行初始化.他叫做成员列表初始化:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">class FUN&#123;</div><div class="line">    public:</div><div class="line">    struct Node&#123;Item item;struct Node* next;&#125;</div><div class="line">    Node* fornt;</div><div class="line">    Node* rear;</div><div class="line">    int items;</div><div class="line">    const int qsize;</div><div class="line">&#125;</div><div class="line"></div><div class="line">FUN::FUN(int qs) : qsize(qs)</div><div class="line">&#123;</div><div class="line">    front = rear = nullptr;</div><div class="line">    items = 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//然而这种方法不局限于常量 所以也可以这么写</div><div class="line">FUN::FUN(int qs):</div><div class="line">qsize(qs),rear(nullptr),front(nullptr),items(0)&#123;...&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>注意只有构造函数才可以使用这种方法</strong>,<strong>另外对于被引用的类成员也必须这么写:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class A&#123;...&#125;</div><div class="line">class B&#123;</div><div class="line">private:</div><div class="line">    A &amp; hello;</div><div class="line">&#125;</div><div class="line">B::B(A &amp; h) : hello(h)&#123;....&#125;</div></pre></td></tr></table></figure></p>
+<p><strong> 注意只有构造函数才可以使用这种方法,另外对于被引用的类成员也必须这么写: </strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class A&#123;...&#125;;</div><div class="line">class B&#123;</div><div class="line">private:</div><div class="line">    A &amp; hello;</div><div class="line">&#125;</div><div class="line">B::B(A &amp; h) : hello(h)&#123;....&#125;</div></pre></td></tr></table></figure></p>
 <p><br></p>
 <h2 id="关于C-11的内存初始化"><a href="#关于C-11的内存初始化" class="headerlink" title="关于C++11的内存初始化"></a>关于C++11的内存初始化</h2><p>直接这么写就行(那我们为啥要用第一种方法啊魂淡(｡•ˇ‸ˇ•｡)):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">class Classy&#123;</div><div class="line">    int meml = 10;</div><div class="line">    const int mem2 = 20;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
@@ -267,7 +267,7 @@
     </a>
   
   
-    <a href="/2016/12/05/QML与C++交互/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/12/05/QT-QML与C++交互/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">QT:QML与C++交互</div>
       <i class="icon-circle-right"></i>
     </a>

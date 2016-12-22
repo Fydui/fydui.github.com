@@ -6,21 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | 果冻の随笔</title>
+  <title>类设计总结 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/12/18/hello-world/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="类设计总结">
+<meta property="og:url" content="http://yoursite.com/2016/12/21/C++笔记-类设计总结/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-12-18T14:38:13.393Z">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1f1or9nsniej201k01g3ya.jpg">
+<meta property="og:updated_time" content="2016-12-22T15:08:59.767Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="类设计总结">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1f1or9nsniej201k01g3ya.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -140,34 +136,38 @@ Quick">
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C++笔记-类设计总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      类设计总结
     </h1>
   
 
-        <a href="/2016/12/18/hello-world/" class="archive-article-date">
-  	<time datetime="2016-12-18T14:38:01.191Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-18</time>
+        <a href="/2016/12/21/C++笔记-类设计总结/" class="archive-article-date">
+  	<time datetime="2016-12-21T14:57:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-21</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+        <p><img src="http://ww3.sinaimg.cn/mw690/ad4b340bjw1f1or9nsniej201k01g3ya.jpg" alt="真是太二了"><br><a id="more"></a></p>
+<h3 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数:"></a><strong>默认构造函数</strong>:</h3><p>默认构造函数要么没有参数,要么所有参数都有默认值.在派生类构造函数初始化列表中记得显示调用基类构造函数,否则编译器将会使用基类的默认构造函数,这可能会出现错误.</p>
+<h3 id="复制构造函数"><a href="#复制构造函数" class="headerlink" title="复制构造函数:"></a><strong>复制构造函数</strong>:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classname(const classname &amp;)</div></pre></td></tr></table></figure>
+<p>在按值传递,安置返回对象,编译器生产临时对象,将新对象初始化为一个同类对象的时候,将调用复制构造函数.</p>
+<h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符:"></a><strong>赋值运算符</strong>:</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classname &amp; operator=(const classname &amp;)</div></pre></td></tr></table></figure>
+<p>用于处理同类对象间的赋值,如果希望处理string类与classname类的赋值可以写成:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classname &amp; operator=(const string &amp;)</div></pre></td></tr></table></figure></p>
+<h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数:"></a><strong>析构函数</strong>:</h3><p>当对象过期时,析构函数负责清理工作(如释放内存),对于基类应该提供一个虚析构函数,即使他不需要.</p>
+<h3 id="转换构造函数"><a href="#转换构造函数" class="headerlink" title="转换构造函数:"></a><strong>转换构造函数</strong>:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classname(const schar *)</div></pre></td></tr></table></figure>
+<p>使用一个参数的构造函数他定义了从参数类型到类类型的转换(话说这个中文名跟转换函数就差了两个字,但不一样容易弄混).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Star(const char*);</div><div class="line">Star a = Star(&quot;233&quot;);</div><div class="line">a = &quot;233&quot;;</div></pre></td></tr></table></figure>
+<p>第二/三句话将会调用<strong>Star::operator(const Star &amp;)</strong>并使用<strong>Star(const char*)</strong>生成一个对象,该对象将作用于赋值运算符函数的参数.<br><em>使用转换构造函数时候时建议使用explicit禁止隐式转换</em></p>
+<h3 id="按值传递对象与传递引用"><a href="#按值传递对象与传递引用" class="headerlink" title="按值传递对象与传递引用"></a><strong>按值传递对象与传递引用</strong></h3><p>通常在编写以对象作为参数的函数时,应该按引用,不应该使用按值传递参数,一是为了效率,二是因为在继承使用虚函数时,基类使用引用参数的函数可以接受派生类.</p>
+<h3 id="返回对象与返回引用"><a href="#返回对象与返回引用" class="headerlink" title="返回对象与返回引用"></a><strong>返回对象与返回引用</strong></h3><p>如果函数返回的是通过引用或指针传递给他的对象,则应该按引用返回对象.返回引用可以节约内存和时间,与按引用传递相似,调用与被调用函数使用同一个对象进行操作.但不总是可以返回引用,比如函数不能返回一个在函数中创建的临时变量的引用,因为当函数结束时临时变量将会消失,这时候应该返回对象.</p>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a><strong>const</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">classname::classname(const char * s) //确保方法不修改参数</div><div class="line">classname::show() const; </div><div class="line">//确保方法不修改调用他的对象,这里的const表示const classname * this,this指向调用的对象</div><div class="line"></div><div class="line">const classname&amp; classname::fun(const classname &amp; cn) const&#123;</div><div class="line">    if(s.total &gt; total) return s;</div><div class="line">    else return *this;</div><div class="line">&#125;;</div><div class="line">//该方法返回cn/this的引用,但因为cn/this是const,所以方法不能对cn/this进行修改,这意味着返回类型也必须为const</div></pre></td></tr></table></figure>
       
 
       
@@ -196,6 +196,11 @@ Quick">
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cpp/">Cpp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+	</div>
+
       
 
       
@@ -246,7 +251,7 @@ Quick">
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/18/hello-world/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/21/C++笔记-类设计总结/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -275,7 +280,7 @@ Quick">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="hello-world" data-title="Hello World" data-url="http://yoursite.com/2016/12/18/hello-world/"></div>
+	<div class="ds-thread" data-thread-key="C++笔记-类设计总结" data-title="类设计总结" data-url="http://yoursite.com/2016/12/21/C++笔记-类设计总结/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/15/C++笔记-继承和动态内存分配/index.html">
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1favap9k06jj201c01c3y9.jpg">
-<meta property="og:updated_time" content="2016-12-17T14:21:55.866Z">
+<meta property="og:updated_time" content="2016-12-22T14:06:37.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="继承和动态内存分配">
 <meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1favap9k06jj201c01c3y9.jpg">
@@ -159,16 +159,16 @@
 <p><em>那么是否要为ship类定义显示析构函数,复制构造函数,重载赋值运算符呢? 不需要.</em></p>
 <blockquote>
 <p><strong>析构函数:</strong> 对于ship类,我们没有对他进行任何特殊的操作,所以默认的析构函数是合适的</p>
-<p><strong>赋值构造函数:</strong><br>首先我们知道的是,默认赋值构造函数是执行成员复制,因为player使用了动态内存分配,所以,默认赋值构造函数不适用于player类,但对于ship类是适合的.当复制继承的组件获或者成员时,则使用他的复制构造函数.所以当ship的默认复制构造函数会使用player的默认复制构造函数来复制ship里的player对象.所以默认复制构造函数对于他们来说是合适的.</p>
+<p><strong>复制构造函数:</strong><br>首先我们知道的是,默认复制构造函数是执行成员复制,因为player使用了动态内存分配,所以,默认复制构造函数不适用于player类,但对于ship类是适合的.当复制继承的组件获或者成员时,则使用他的复制构造函数.所以当ship的默认复制构造函数会使用player的默认复制构造函数来复制ship里的player对象.所以默认复制构造函数对于他们来说是合适的.</p>
 <p><strong>赋值运算符:</strong> ship默认的赋值运算符也会使用player的赋值运算符来对player成员进行赋值,所以是合适的.</p>
 </blockquote>
 <h2 id="如果基类和派生类都使用动态内存分配"><a href="#如果基类和派生类都使用动态内存分配" class="headerlink" title="如果基类和派生类都使用动态内存分配"></a>如果基类和派生类都使用动态内存分配</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class ship : public player&#123;</div><div class="line">    private:</div><div class="line">        string * type;</div><div class="line">    public:</div><div class="line">        ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><em>在这种情况下必须显示定义派生类的显示析构函数,复制构造函数,重载赋值运算符.</em></p>
 <blockquote>
 <p><strong>析构函数:</strong> 派生类的析构函数先释放type所管理的内存,然后基类析构函数释放name所管理的内存.</p>
-<p><strong>复制构造函数:</strong><br>派生类的复制构造函数只能访问派生类的数据,所以他必须调用父类的复制构造函数.<figure class="highlight plain"><figcaption><span>ship & p) : player(p) ```, 因为player类因为复制构造函数有一个player&参数,而基类可以指向派生类型,因此player的复制构造函数将使用ship参数的player部分来构造新对象的player部分.</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt; **赋值运算符:** </div><div class="line">因为派生类采用动态内存分配,所以他需要一个显示赋值运算符.ship的赋值运算符只能直接访问ship类的数据,但他却要负责所继承的基类对象的赋值,这个时候可以显示调用基类的赋值运算符方法.然后在处理派生类的赋值.</div></pre></td></tr></table></figure></p>
+<p><strong>复制构造函数:</strong><br>派生类的复制构造函数只能访问派生类的数据,所以他必须调用父类的复制构造函数.ship::ship(const ship &amp; p) : player(p) , 因为player类因为复制构造函数有一个player&amp;参数,而基类可以指向派生类型,因此player的复制构造函数将使用ship参数的player部分来构造新对象的player部分.</p>
+<p><strong>赋值运算符:</strong><br>因为派生类采用动态内存分配,所以他需要一个显示赋值运算符.ship的赋值运算符只能直接访问ship类的数据,但他却要负责所继承的基类对象的赋值,这个时候可以显示调用基类的赋值运算符方法.然后在处理派生类的赋值.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ship &amp; ship::operator=(const player &amp; p)&#123;</div><div class="line">    if(this == p) return *this;</div><div class="line">    player::operator=(p);//显示调用基类赋值运算符</div><div class="line">    delete type;</div><div class="line">    type = new string;</div><div class="line">    type = p.type;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 </blockquote>
-<p>ship &amp; ship::operator=(const player &amp; p){<br>    if(this == p) return *this;<br>    player::operator=(p);//显示调用基类赋值运算符<br>    delete type;<br>    type = new string;<br>    type = p.type;<br>}<br>```</p>
 
       
 
@@ -266,6 +266,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2016/12/21/C++笔记-类设计总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          类设计总结
+        
+      </div>
+    </a>
   
   
     <a href="/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/" id="article-nav-older" class="article-nav-link-wrap">

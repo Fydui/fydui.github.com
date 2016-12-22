@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/index.html">
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1farqqoy7hxj20w00i0jsq.jpg">
-<meta property="og:updated_time" content="2016-12-15T14:49:52.814Z">
+<meta property="og:updated_time" content="2016-12-22T13:43:37.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-抽象基类(Abstract-Base-Class,ABC)">
 <meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1farqqoy7hxj20w00i0jsq.jpg">
@@ -159,8 +159,7 @@
 <h2 id="啥是抽象基类"><a href="#啥是抽象基类" class="headerlink" title="啥是抽象基类"></a>啥是抽象基类</h2><blockquote>
 <p>就是类里定义了纯虚函数的类………然而定义了纯虚函数就只能作为基类了.23333</p>
 </blockquote>
-<h2 id="纯虚函数"><a href="#纯虚函数" class="headerlink" title="纯虚函数"></a>纯虚函数</h2><p>纯虚函数:<figure class="highlight plain"><figcaption><span>返回类型 函数名(形参) =0;```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在虚函数声明后面加个```=0```就是纯虚函数了,当类声明中包含纯虚函数的时候,则不能创建该类对象.所以包含纯虚函数的类只能作为基类,在原型中使用```=0```指出类是一个抽象基类,在类中可以不定义该函数.</div></pre></td></tr></table></figure></p>
-<p>class player{<br>    private:<br>        int age;<br>        string name;<br>    pbulic:<br>        …<br>        virtual void show() = 0;<br>}<br>```</p>
+<h2 id="纯虚函数"><a href="#纯虚函数" class="headerlink" title="纯虚函数"></a>纯虚函数</h2><p>纯虚函数:virtual 返回类型 函数名(形参) =0;<br>在虚函数声明后面加个 =0 就是纯虚函数了,当类声明中包含纯虚函数的时候,则不能创建该类对象.所以包含纯虚函数的类只能作为基类,在原型中使用 =0 指出类是一个抽象基类,在类中可以不定义该函数.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class player&#123;</div><div class="line">    private:</div><div class="line">        int age;</div><div class="line">        string name;</div><div class="line">    pbulic:</div><div class="line">        ...</div><div class="line">        virtual void show() = 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="总之"><a href="#总之" class="headerlink" title="总之:"></a>总之:</h3><blockquote>
 <p>ABC描述的是至少使用一个纯虚函数的接口,从ABC派生出的类将根据派生类的具体特征使用常规虚函数来实现这种接口.</p>
 </blockquote>
