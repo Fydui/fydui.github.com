@@ -135,18 +135,76 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-包含类对象的成员" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C++笔记-私有继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/23/包含类对象的成员/">包含类对象的成员</a>
+      <a class="article-title" href="/2016/12/24/C++笔记-私有继承/">私有继承</a>
     </h1>
   
 
-        <a href="/2016/12/23/包含类对象的成员/" class="archive-article-date">
+        <a href="/2016/12/24/C++笔记-私有继承/" class="archive-article-date">
+  	<time datetime="2016-12-23T16:17:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-24</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<p>使用私有继承,基类的共有成员以及保护成员都将成为派生类的私有成员派生类不继承基类的接口,但能在派生类的成员函数中使用它们,私有继承特征与包含相同:不继承接口,继承实现.所以它可以用来实现has-a关系.</p>
+<p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class player : private string,private valarray&lt;double&gt;</div><div class="line">//使用多个基类:多重继承</div><div class="line">&#123;</div><div class="line">    public:</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在这里新版本的构造函数将使用初始化成员列表,使用类名而不是使用成员名来标识构造函数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">player::player(const char* str,const double* p,int i) : </div><div class="line">                string(str),valarray&lt;double&gt;(p,i)&#123; &#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/24/C++笔记-私有继承/#more">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-C++笔记-包含类对象的成员" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/C++笔记-包含类对象的成员/">包含类对象的成员</a>
+    </h1>
+  
+
+        <a href="/2016/12/23/C++笔记-包含类对象的成员/" class="archive-article-date">
   	<time datetime="2016-12-23T14:19:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-23</time>
 </a>
       </header>
@@ -177,7 +235,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/23/包含类对象的成员/#more">展开全文 >></a>
+          <a class="article-more-a" href="/2016/12/23/C++笔记-包含类对象的成员/#more">展开全文 >></a>
         </p>
       
 
@@ -610,60 +668,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/12/07/C++笔记-类和动态内存分配/#more">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-QT-QML与C++交互" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/05/QT-QML与C++交互/">QT:QML与C++交互</a>
-    </h1>
-  
-
-        <a href="/2016/12/05/QT-QML与C++交互/" class="archive-article-date">
-  	<time datetime="2016-12-05T14:38:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-05</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ww2.sinaimg.cn/large/ad4b340bjw1fajr23avkpj21hc0u0n8y.jpg" alt="小姨子!"><br><em><a href="http://www.pixiv.net/whitecube/user/333556">图片作者为:Bison仓鼠</a></em><br>
-        <a class="article-more-a"  href="/2016/12/05/QT-QML与C++交互/#more">more >></a>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QML/">QML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/">Qt</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/05/QT-QML与C++交互/#more">展开全文 >></a>
         </p>
       
 
