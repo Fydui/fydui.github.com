@@ -6,17 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++笔记-类设计总结 | 果冻の随笔</title>
+  <title>包含类对象的成员 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="C++笔记-类设计总结">
-<meta property="og:url" content="http://yoursite.com/2016/12/21/C++笔记-类设计总结/index.html">
+  <meta name="description" content="接口和实现
+使用公有继承时,类可以继承接口,可能还有实现(基类的纯虚函数提供接口,但不提供实现),获得接口是is-a的关系组成部分.而是用组合,类可以获得实现不继承接口是has-a的关系组成部分.
+
+错误的示范:1234567891011121314class player&amp;#123;private:    string name;    valarray&amp;lt;double&amp;gt; sourc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="包含类对象的成员">
+<meta property="og:url" content="http://yoursite.com/2016/12/23/包含类对象的成员/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1f1or9nsniej201k01g3ya.jpg">
-<meta property="og:updated_time" content="2016-12-23T14:20:57.123Z">
+<meta property="og:description" content="接口和实现
+使用公有继承时,类可以继承接口,可能还有实现(基类的纯虚函数提供接口,但不提供实现),获得接口是is-a的关系组成部分.而是用组合,类可以获得实现不继承接口是has-a的关系组成部分.
+
+错误的示范:1234567891011121314class player&amp;#123;private:    string name;    valarray&amp;lt;double&amp;gt; sourc">
+<meta property="og:updated_time" content="2016-12-23T14:23:07.548Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++笔记-类设计总结">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1f1or9nsniej201k01g3ya.jpg">
+<meta name="twitter:title" content="包含类对象的成员">
+<meta name="twitter:description" content="接口和实现
+使用公有继承时,类可以继承接口,可能还有实现(基类的纯虚函数提供接口,但不提供实现),获得接口是is-a的关系组成部分.而是用组合,类可以获得实现不继承接口是has-a的关系组成部分.
+
+错误的示范:1234567891011121314class player&amp;#123;private:    string name;    valarray&amp;lt;double&amp;gt; sourc">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -136,54 +146,32 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++笔记-类设计总结" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-包含类对象的成员" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++笔记-类设计总结
+      包含类对象的成员
     </h1>
   
 
-        <a href="/2016/12/21/C++笔记-类设计总结/" class="archive-article-date">
-  	<time datetime="2016-12-21T14:57:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-21</time>
+        <a href="/2016/12/23/包含类对象的成员/" class="archive-article-date">
+  	<time datetime="2016-12-23T14:19:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-23</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ww3.sinaimg.cn/mw690/ad4b340bjw1f1or9nsniej201k01g3ya.jpg" alt="真是太二了"></p>
-<a id="more"></a>
-<h3 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数:"></a><strong>默认构造函数</strong>:</h3><p>默认构造函数要么没有参数,要么所有参数都有默认值.在派生类构造函数初始化列表中记得显示调用基类构造函数,否则编译器将会使用基类的默认构造函数,这可能会出现错误.</p>
-<h3 id="复制构造函数"><a href="#复制构造函数" class="headerlink" title="复制构造函数:"></a><strong>复制构造函数</strong>:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classname(const classname &amp;)</div></pre></td></tr></table></figure>
-<p>在按值传递,安置返回对象,编译器生产临时对象,将新对象初始化为一个同类对象的时候,将调用复制构造函数.</p>
-<h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符:"></a><strong>赋值运算符</strong>:</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classname &amp; operator=(const classname &amp;)</div></pre></td></tr></table></figure>
-<p>用于处理同类对象间的赋值,如果希望处理string类与classname类的赋值可以写成:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classname &amp; operator=(const string &amp;)</div></pre></td></tr></table></figure></p>
-<h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数:"></a><strong>析构函数</strong>:</h3><p>当对象过期时,析构函数负责清理工作(如释放内存),对于基类应该提供一个虚析构函数,即使他不需要.</p>
-<h3 id="转换构造函数"><a href="#转换构造函数" class="headerlink" title="转换构造函数:"></a><strong>转换构造函数</strong>:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classname(const schar *)</div></pre></td></tr></table></figure>
-<p>使用一个参数的构造函数他定义了从参数类型到类类型的转换(话说这个中文名跟转换函数就差了两个字,但不一样容易弄混).</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Star(const char*);</div><div class="line">Star a = Star(&quot;233&quot;);</div><div class="line">a = &quot;233&quot;;</div></pre></td></tr></table></figure>
-<p>第二/三句话将会调用<em>Star::operator(const Star &amp;)</em>并使用<em>Star(const char</em>)<em>生成一个对象,该对象将作用于赋值运算符函数的参数.
-</em>使用转换构造函数时候时建议使用explicit禁止隐式转换*</p>
-<h3 id="按值传递对象与传递引用"><a href="#按值传递对象与传递引用" class="headerlink" title="按值传递对象与传递引用"></a><strong>按值传递对象与传递引用</strong></h3><p>通常在编写以对象作为参数的函数时,应该按引用,不应该使用按值传递参数,一是为了效率,二是因为在继承使用虚函数时,基类使用引用参数的函数可以接受派生类.</p>
-<h3 id="返回对象与返回引用"><a href="#返回对象与返回引用" class="headerlink" title="返回对象与返回引用"></a><strong>返回对象与返回引用</strong></h3><p>如果函数返回的是通过引用或指针传递给他的对象,则应该按引用返回对象.返回引用可以节约内存和时间,与按引用传递相似,调用与被调用函数使用同一个对象进行操作.但不总是可以返回引用,比如函数不能返回一个在函数中创建的临时变量的引用,因为当函数结束时临时变量将会消失,这时候应该返回对象.</p>
-<h3 id="const"><a href="#const" class="headerlink" title="const"></a><strong>const</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">classname::classname(const char * s) //确保方法不修改参数</div><div class="line">classname::show() const; </div><div class="line">//确保方法不修改调用他的对象,这里的const表示const classname * this,this指向调用的对象</div><div class="line"></div><div class="line">const classname&amp; classname::fun(const classname &amp; cn) const&#123;</div><div class="line">    if(s.total &gt; total) return s;</div><div class="line">    else return *this;</div><div class="line">&#125;;</div><div class="line">//该方法返回cn/this的引用,但因为cn/this是const,所以方法不能对cn/this进行修改,这意味着返回类型也必须为const</div></pre></td></tr></table></figure>
-<h2 id="共有继承要考虑的因素"><a href="#共有继承要考虑的因素" class="headerlink" title="共有继承要考虑的因素:"></a>共有继承要考虑的因素:</h2><h3 id="is-a关系"><a href="#is-a关系" class="headerlink" title="is-a关系"></a><strong>is-a关系</strong></h3><p>is-a为”是一个”的意思,如果派生类不是某种特殊的基类则不要使用,比如从大脑类派生出程序员类.is-a关系的标志之一是:无需进行显示转换即可将积累指针或引用指向或引用派生类对象(向上强制类型转换).反之是可能出现错误的.</p>
-<h3 id="赋值运算符-1"><a href="#赋值运算符-1" class="headerlink" title="赋值运算符"></a><strong>赋值运算符</strong></h3><p>将派生类赋值给基类对象:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class ZheXue &#123;...&#125;//基类-哲♂学</div><div class="line">class GaoBiLi : public ZheXue&#123;...&#125;//派生类-搞♂比♂利</div><div class="line"></div><div class="line">ZheXue bili;</div><div class="line">GaoBiLi  fuc;</div><div class="line">bili = fuc;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bili = fuc;</div></pre></td></tr></table></figure>
-<p>这将转化为: <em>bili.operator=(fuc)</em>他将调用 <em>ZheXue::operator=(const ZheXue &amp;);</em></p>
-<p>那如果将基类赋值给派生类对象呢:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fuc = bili;</div></pre></td></tr></table></figure></p>
-<p>这将转化为<em>fuc.operator=(bili)</em> ; 他将调用<em> GaoBiLi::operator=(const GaoBiLi &amp;);</em><br>然而,派生类引用不能自动引用基类对象.除非我们定义转换构造函数:<em>GaoBiLi(const ZheXue &amp;) </em>;<br>转换构造函数可以有一个类型为基类的参数和其他参数,但其他参数必须有默认值:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GaoBiLi(const ZheXue &amp; zx,string &amp; na = &quot;比♂利♂王&quot;,string &amp; ty = &quot;森之♂妖精&quot;);</div></pre></td></tr></table></figure>
-<p>这样转换构造函数会根据bili来创建一个临时对象,然后把它作为赋值运算符的参数.<br><strong>然而</strong>还可以直接写个参数为ZheXue的赋值运算符函数….:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GaoBiLi::operator=(const ZheXue &amp;)&#123;......&#125;;</div></pre></td></tr></table></figure>
-<h3 id="私有成员与保护成员"><a href="#私有成员与保护成员" class="headerlink" title="私有成员与保护成员"></a><strong>私有成员与保护成员</strong></h3><p>对于外界来说,只能用共有成员来访问二者,对于派生类来说,可以直接访问基类的保护成员,而私有成员仍要通过基类的成员函数来访问.</p>
-<h3 id="虚方法"><a href="#虚方法" class="headerlink" title="虚方法"></a><strong>虚方法</strong></h3><p>如果要在派生类中重定义基类的方法则应该使用virtual.</p>
-<h3 id="析构函数-1"><a href="#析构函数-1" class="headerlink" title="析构函数"></a><strong>析构函数</strong></h3><p>基类的析构函数应当是虚的.这样在使用指针或者引用删除派生对象时,程序会先调用派生类的析构函数然后调用基类的,而不会只调用基类的析构函数</p>
-<h3 id="友元函数"><a href="#友元函数" class="headerlink" title="友元函数"></a><strong>友元函数</strong></h3><p>友元函数并非类成员因此不能继承,如果希望派生类函数能使用基类的友元函数,可以使派生类指针或引用强制转换为基类的指针或引用,然后使用转换后的指针或引用来调用友元函数.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ostream &amp; GaoBiLi::operator&lt;&lt;(ostream &amp; os, GaoBiLi &amp; gbl)</div><div class="line">&#123;</div><div class="line">    os &lt;&lt; (const ZheXue &amp;)gbl;</div><div class="line">    os &lt;&lt; &quot;name:&quot; &lt;&lt; gbl.name &lt;&lt; endl;</div><div class="line">    return os;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <a id="more"></a>
+<h2 id="接口和实现"><a href="#接口和实现" class="headerlink" title="接口和实现"></a>接口和实现</h2><blockquote>
+<p>使用公有继承时,类可以继承接口,可能还有实现(基类的纯虚函数提供接口,但不提供实现),获得接口是is-a的关系组成部分.而是用组合,类可以获得实现不继承接口是has-a的关系组成部分.</p>
+</blockquote>
+<h3 id="错误的示范"><a href="#错误的示范" class="headerlink" title="错误的示范:"></a>错误的示范:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class player</div><div class="line">&#123;</div><div class="line">private:</div><div class="line">    string name;</div><div class="line">    valarray&lt;double&gt; source;</div><div class="line">    ostream &amp; arr_out(ostream &amp; os) const;</div><div class="line">public:</div><div class="line">    player():name(&quot;NULL&quot;),source()&#123;&#125;</div><div class="line">    explicit player(const string &amp; s) :name(s),source()&#123;&#125;</div><div class="line">    explicit player(int n)</div><div class="line">        :name(&quot;NULL&quot;),source(n)&#123;&#125;</div><div class="line">    player(const string&amp; na, int n)</div><div class="line">        :name(na),source(n)&#123;&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">player mylove(&quot;YSY&quot;,10);</div><div class="line">mylove = 5; //喵喵喵??重置ArrayD为五个空值的元素?</div></pre></td></tr></table></figure>
+<p><em>mylove = 5;</em>这里应该是:<em>mylove[5] = 5</em>才对.如果没有写<em>explicit</em>,编译器将调用转换构造函数<em>player(5)</em>,<em>name</em> 的默认值将是<em>NULL</em>,并且编译器将会生成一个临时对象,并用临时对象替换mylove原有的值,这并不是我们想要的.如果加了<em>explicit</em>,编译器会报错这对我们debug很有利.毕竟在编译期出错优于在运行期出错.</p>
+
       
 
       
@@ -267,7 +255,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/21/C++笔记-类设计总结/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/23/包含类对象的成员/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -281,18 +269,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/12/23/包含类对象的成员/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          包含类对象的成员
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/15/C++笔记-继承和动态内存分配/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">继承和动态内存分配</div>
+    <a href="/2016/12/21/C++笔记-类设计总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-类设计总结</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -305,7 +284,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C++笔记-类设计总结" data-title="C++笔记-类设计总结" data-url="http://yoursite.com/2016/12/21/C++笔记-类设计总结/"></div>
+	<div class="ds-thread" data-thread-key="包含类对象的成员" data-title="包含类对象的成员" data-url="http://yoursite.com/2016/12/23/包含类对象的成员/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
