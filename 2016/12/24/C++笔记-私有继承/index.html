@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/24/C++笔记-私有继承/index.html">
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:image" content="http://ww1.sinaimg.cn/small/ad4b340bjw8enanqlij6mj20u00u0tba.jpg">
-<meta property="og:updated_time" content="2016-12-27T15:26:44.553Z">
+<meta property="og:updated_time" content="2016-12-28T12:37:02.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="私有继承">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/small/ad4b340bjw8enanqlij6mj20u00u0tba.jpg">
@@ -159,6 +159,8 @@
 <p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class player : private string,private valarray&lt;double&gt;</div><div class="line">//使用多个基类:多重继承</div><div class="line">&#123;</div><div class="line">    public:</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>在这里新版本的构造函数将使用初始化成员列表,使用类名而不是使用成员名来标识构造函数:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">player::player(const char* str,const double* p,int i) : </div><div class="line">                string(str),valarray&lt;double&gt;(p,i)&#123; &#125;</div></pre></td></tr></table></figure>
+<h3 id="保护继承"><a href="#保护继承" class="headerlink" title="保护继承"></a>保护继承</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class player : protected string,protected valarray&lt;double&gt;&#123;...&#125;</div></pre></td></tr></table></figure>
+<p>保护继承时,基类的公有成员和保护成员都将成为派生类的保护成员.使用私有继承时,第三代类将不能使用基类的接口,这是因为基类的公有方法在派生类中将变成私有方法.使用保护继承时,基类的公有方法将在二代类中变成受保护的,所以第三代类可以使用它们.</p>
 <h3 id="使用using重定义访问权限"><a href="#使用using重定义访问权限" class="headerlink" title="使用using重定义访问权限"></a>使用using重定义访问权限</h3><p>使用保护派生或者私有派生时,基类的公有继承将成为保护或者私有成员,如果想让基类方法在类外使用可以定义一个使用该基类方法的派生类方法.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//派生类player希望使用基类valarray类的sum方法</div><div class="line">double player::sum() const &#123;</div><div class="line">    return valarry&lt;double&gt;::sum();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>或者可以使用using声明:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class player : private valarray&lt;double&gt;</div><div class="line">&#123;</div><div class="line">    public:</div><div class="line">        using valarray&lt;double&gt;::min;</div><div class="line">        using valarray&lt;double&gt;::max;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>他们就像player类的共有方法一样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cout &lt;&lt; &quot;high score:&quot; &lt;&lt; a[i].max &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
