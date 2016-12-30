@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++笔记-私有继承 | 果冻の随笔</title>
+  <title>C++笔记-多重继承 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="article">
-<meta property="og:title" content="C++笔记-私有继承">
-<meta property="og:url" content="http://yoursite.com/2016/12/24/C++笔记-私有继承/index.html">
+<meta property="og:title" content="C++笔记-多重继承">
+<meta property="og:url" content="http://yoursite.com/2016/12/30/C++笔记-多重继承/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:image" content="http://ww1.sinaimg.cn/small/ad4b340bjw8enanqlij6mj20u00u0tba.jpg">
-<meta property="og:updated_time" content="2016-12-30T11:43:47.143Z">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/006xE2kGjw1f8aehpwmn2j30zk0k0tbj.jpg">
+<meta property="og:updated_time" content="2016-12-30T11:43:52.048Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++笔记-私有继承">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/small/ad4b340bjw8enanqlij6mj20u00u0tba.jpg">
+<meta name="twitter:title" content="C++笔记-多重继承">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/006xE2kGjw1f8aehpwmn2j30zk0k0tbj.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -136,36 +136,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++笔记-私有继承" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C++笔记-多重继承" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++笔记-私有继承
+      C++笔记-多重继承
     </h1>
   
 
-        <a href="/2016/12/24/C++笔记-私有继承/" class="archive-article-date">
-  	<time datetime="2016-12-23T16:17:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-24</time>
+        <a href="/2016/12/30/C++笔记-多重继承/" class="archive-article-date">
+  	<time datetime="2016-12-30T11:31:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-30</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ww1.sinaimg.cn/small/ad4b340bjw8enanqlij6mj20u00u0tba.jpg" alt="然而沼跃鱼早已看穿了一切"><br><a id="more"></a></p>
-<p>使用私有继承,基类的共有成员以及保护成员都将成为派生类的私有成员派生类不继承基类的接口,但能在派生类的成员函数中使用它们,私有继承特征与包含相同:不继承接口,继承实现.所以它可以用来实现has-a关系.</p>
-<p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class player : private string,private valarray&lt;double&gt;</div><div class="line">//使用多个基类:多重继承</div><div class="line">&#123;</div><div class="line">    public:</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在这里新版本的构造函数将使用初始化成员列表,使用类名而不是使用成员名来标识构造函数:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">player::player(const char* str,const double* p,int i) : </div><div class="line">                string(str),valarray&lt;double&gt;(p,i)&#123; &#125;</div></pre></td></tr></table></figure>
-<h3 id="保护继承"><a href="#保护继承" class="headerlink" title="保护继承"></a>保护继承</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class player : protected string,protected valarray&lt;double&gt;&#123;...&#125;</div></pre></td></tr></table></figure>
-<p>保护继承时,基类的公有成员和保护成员都将成为派生类的保护成员.使用私有继承时,第三代类将不能使用基类的接口,这是因为基类的公有方法在派生类中将变成私有方法.使用保护继承时,基类的公有方法将在二代类中变成受保护的,所以第三代类可以使用它们.</p>
-<h3 id="使用using重定义访问权限"><a href="#使用using重定义访问权限" class="headerlink" title="使用using重定义访问权限"></a>使用using重定义访问权限</h3><p>使用保护派生或者私有派生时,基类的公有继承将成为保护或者私有成员,如果想让基类方法在类外使用可以定义一个使用该基类方法的派生类方法.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//派生类player希望使用基类valarray类的sum方法</div><div class="line">double player::sum() const &#123;</div><div class="line">    return valarry&lt;double&gt;::sum();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>或者可以使用using声明:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class player : private valarray&lt;double&gt;</div><div class="line">&#123;</div><div class="line">    public:</div><div class="line">        using valarray&lt;double&gt;::min;</div><div class="line">        using valarray&lt;double&gt;::max;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>他们就像player类的共有方法一样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cout &lt;&lt; &quot;high score:&quot; &lt;&lt; a[i].max &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
-<p>注意 using声明只使用成员名,没有特征标,圆括号,返回类型,例如要在player]类中使用valarray类的operator[]方法,只需包含:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">using::valarray::operator[];</div></pre></td></tr></table></figure></p>
-<p><em>通常使用包含来建立has-a关系;如果新类需要访问原有类的保护成员,或需要重新定义虚函数应使用私有继承</em></p>
+        <p><img src="http://ww3.sinaimg.cn/mw690/006xE2kGjw1f8aehpwmn2j30zk0k0tbj.jpg" alt="太太"></p>
+<a id="more"></a>
+<p>必须使用关键字来限定每一个基类,不然编译器会默认成私有派生:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class mylove : public string, valarray&lt;double&gt; //valarray为私有继承</div></pre></td></tr></table></figure></p>
+<hr>
+<p><em>其实你不用看这仨奇葩类的</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">class Worker</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    Worker() : name(&quot;NULL&quot;),id(0L)&#123;&#125;</div><div class="line">    Worker(const string &amp; s,long n) : name(s),id(n)&#123;&#125;</div><div class="line">    virtual ~Worker() = 0;</div><div class="line">    virtual void Set();</div><div class="line">    virtual void Show() const;</div><div class="line">private:</div><div class="line">    string name;</div><div class="line">    long id;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">class Waiter : public Worker</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    Waiter() : Worker(),panache(0)&#123;&#125;</div><div class="line">    Waiter(const string &amp; s, long n, int p = 0) :</div><div class="line">        Worker(s,n),panache(p)&#123;&#125;</div><div class="line">    Waiter(const Worker &amp; w, int p) : Worker(w),panache(p)&#123;&#125;</div><div class="line">    void Set();</div><div class="line">    void Show() const;</div><div class="line">private:</div><div class="line">    int panache;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">class Singer : public Worker</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    Singer() : Worker(),voice(other)&#123;&#125;</div><div class="line">    Singer(const string &amp; s, long n, int v = other) :</div><div class="line">        Worker(s,n),voice(v)&#123;&#125;</div><div class="line">    Singer(const Worker &amp; w, int v =other) : Worker(w),voice(v)&#123;&#125;</div><div class="line">    void Set();</div><div class="line">    void Show() const;</div><div class="line">protected:</div><div class="line">    enum&#123;other,alto,contralto,soprano,bass,baritone,tenor&#125;;</div><div class="line">    enum&#123;Vtypes = 7&#125;;</div><div class="line">private:</div><div class="line">    static char* pv[Vtypes];</div><div class="line">    int voice;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="Worker"><a href="#Worker" class="headerlink" title="Worker?"></a>Worker?</h2><p>从<em>Singer</em>和<em>Waiter</em>共有派生出<em>SingingWaiter</em>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class SingingWaiter : public Singing, public Waiter&#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p>但这将出现二义性,因为<em>Singing</em>和<em>Waiter</em>都继承了一个<em>Worker</em>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SingingWaiter sw;</div><div class="line">Worker* pw = sw;    //二义性,鬼知道这时候用哪个worker</div></pre></td></tr></table></figure></p>
+<p>so..应该使用类型转换来指定对象:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Worker* pw = (Singing*) &amp;sw;</div><div class="line">Worker* pw2 = (Waiter*) &amp;sw;</div><div class="line">//不过下面还有更简(ma)单(fan)的虚基类可以解决该问题</div></pre></td></tr></table></figure></p>
+<h2 id="虚基类"><a href="#虚基类" class="headerlink" title="虚基类"></a>虚基类</h2><p>虚基类使得从多个类(他们基类相同)派生出的对象只继承一个基类对象.例如:在类声明中使用关键字<em>virtual</em>,可以使<em>Worker</em>被作用<em>Singer</em>和<em>Waiter</em>的虚基类:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">class Singer : virtual public Worker&#123;...&#125;</div><div class="line">class Waiter : public virtual Worker&#123;...&#125; //这么写也行</div></pre></td></tr></table></figure></p>
+<p>然后 <em>SingingWaiter</em>可以定义为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class SingingWaiter : public Singer,public Waiter&#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p>现在SingingWaiter类只有一个Worker对象副本了,Singer和worker共享一个Worker对象,所以现在可以使用多态了.</p>
+<h3 id="新的构造函数规则"><a href="#新的构造函数规则" class="headerlink" title="新的构造函数规则"></a>新的构造函数规则</h3><p>使用虚基类时,构造函数需要使用一种新的方法,这是因为C++在基类是虚的时,禁止信息通过中间自动传递给基类,编译器在这时会使用基类的默认构造函数.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//通过中间类自动传递:</div><div class="line">class A&#123;</div><div class="line">    int a;</div><div class="line">    A(int n = 0) : a(n);</div><div class="line">&#125;</div><div class="line">class B :public A&#123;</div><div class="line">    int b;</div><div class="line">    B(int a = 0, int bm = 0) : A(a),b(bm);</div><div class="line">&#125;</div><div class="line">class C : public B&#123;</div><div class="line">    int c;</div><div class="line">    C(int a = 0, int b = 0, int cm = 0) : B(a,b),c(cm);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用虚基类时我们必须显示调用构造函数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">SingingWaiter(const Worker &amp; wk,int p = 0,int v = Singer::other)</div><div class="line">                :Worker(wk),Waiter(wk,p),Singer(wk,v)&#123;&#125;</div><div class="line">                //显示使用worker</div><div class="line">                </div><div class="line">SingingWaiter(const Worker &amp; wk, int p = 0, int v = Singer::other)</div><div class="line">                :Waiter(wk,p),Singer(wk,v)&#123;&#125;</div><div class="line">                //错误的示范,会调用Worker的默认构造函数</div></pre></td></tr></table></figure></p>
+<p><em>对于非虚基类,显示调用Worker(const Worker&amp;)是非法的</em></p>
+<h2 id="哪个方法"><a href="#哪个方法" class="headerlink" title="哪个方法?"></a>哪个方法?</h2><p>那么问题来了,我们打算在<em>SingingWaiter</em>中重定义<em>Show</em>方法,并用<em>SingingWaiter</em>对象调用继承的<em>Show</em>方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//所以我傻不愣登的写下了如下代码:</div><div class="line">SingingWaiter aha(&quot;喵喵&quot;,2017,1,soprano);</div><div class="line">aha.Show(); //二义性,Worker和Singer都有Show() 鬼知道这个是哪个?</div><div class="line"></div><div class="line">aha.Singer::Show(); //然而可以用作用域解析运算符来确定</div></pre></td></tr></table></figure></p>
+<p>最好是使用模块化:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">Woeker::Data() const &#123;</div><div class="line">    cout &lt;&lt; &quot;Name: &quot; &lt;&lt; name;</div><div class="line">    cout &lt;&lt; &quot;ID: &quot; &lt;&lt; id;</div><div class="line">&#125;</div><div class="line">Waiter::Data() const&#123;</div><div class="line">    cout &lt;&lt; &quot;panache: &quot; &lt;&lt; panache &lt;&lt; endl;</div><div class="line">&#125;</div><div class="line">Singer::Data() const&#123;</div><div class="line">    cout &lt;&lt; &quot;rating: &quot; &lt;&lt; pv[voice] &lt;&lt; endl;</div><div class="line">&#125;</div><div class="line">SingingWaiter::Data() const&#123;</div><div class="line">    Worker::Data();</div><div class="line">    Singer::Data();</div><div class="line">&#125;</div><div class="line">SingingWaiter::Show() const&#123;</div><div class="line">    Worker::Data();</div><div class="line">    Data();</div><div class="line">&#125;</div><div class="line">//就是.........有点麻烦...</div></pre></td></tr></table></figure></p>
 
       
 
@@ -250,7 +255,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/24/C++笔记-私有继承/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/30/C++笔记-多重继承/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -264,18 +269,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/12/27/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hello World!!
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/23/C++笔记-包含类对象的成员/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++笔记-包含类对象的成员</div>
+    <a href="/2016/12/27/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World!!</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -288,7 +284,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C++笔记-私有继承" data-title="C++笔记-私有继承" data-url="http://yoursite.com/2016/12/24/C++笔记-私有继承/"></div>
+	<div class="ds-thread" data-thread-key="C++笔记-多重继承" data-title="C++笔记-多重继承" data-url="http://yoursite.com/2016/12/30/C++笔记-多重继承/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
