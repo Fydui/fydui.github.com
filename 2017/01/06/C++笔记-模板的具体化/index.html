@@ -6,18 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++笔记-静态联编和动态联编 | 果冻の随笔</title>
+  <title>C++笔记-模板的具体化 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="article">
-<meta property="og:title" content="C++笔记-静态联编和动态联编">
-<meta property="og:url" content="http://yoursite.com/2016/12/11/C++笔记-静态联编和动态联编/index.html">
+<meta property="og:title" content="C++笔记-模板的具体化">
+<meta property="og:url" content="http://yoursite.com/2017/01/06/C++笔记-模板的具体化/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/ad4b340bjw1fakx9qm0u7j21b70tgtgd.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/ad4b340bjw1faqopcrm0pj21kw1tsdno.jpg">
-<meta property="og:updated_time" content="2016-12-30T11:43:49.544Z">
+<meta property="og:image" content="http://ww3.sinaimg.cn/small/ad4b340bjw1f1u646ivcuj206f06mjtp.jpg">
+<meta property="og:updated_time" content="2017-01-06T11:39:47.739Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++笔记-静态联编和动态联编">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/mw690/ad4b340bjw1fakx9qm0u7j21b70tgtgd.jpg">
+<meta name="twitter:title" content="C++笔记-模板的具体化">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/small/ad4b340bjw1f1u646ivcuj206f06mjtp.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -137,40 +136,40 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++笔记-静态联编和动态联编" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C++笔记-模板的具体化" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++笔记-静态联编和动态联编
+      C++笔记-模板的具体化
     </h1>
   
 
-        <a href="/2016/12/11/C++笔记-静态联编和动态联编/" class="archive-article-date">
-  	<time datetime="2016-12-11T15:38:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-11</time>
+        <a href="/2017/01/06/C++笔记-模板的具体化/" class="archive-article-date">
+  	<time datetime="2017-01-06T11:32:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-06</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ww1.sinaimg.cn/mw690/ad4b340bjw1fakx9qm0u7j21b70tgtgd.jpg" alt="&quot;喵喵喵?&quot;"><br><a id="more"></a><br>一些理解性概念</p>
-<h2 id="啥是联编"><a href="#啥是联编" class="headerlink" title="啥是联编"></a>啥是联编</h2><h3 id="将源代码中的程序调用解释为执行特定的函数代码块被称为函数名联编"><a href="#将源代码中的程序调用解释为执行特定的函数代码块被称为函数名联编" class="headerlink" title="将源代码中的程序调用解释为执行特定的函数代码块被称为函数名联编"></a>将源代码中的程序调用解释为执行特定的函数代码块被称为函数名联编</h3><p><br>在编译过程中的联编被称为静态联编<br><br>在程序运行时的联编被称为静态连编</p>
-<p>##指针和引用类型的兼容性<br>将派生类指针或引用转为基类指针或者引用被称为向上强制转换,如果是共有继承则不需要进行显式类型转换,任何对基类对象做的操作都适合派生类对象.<br><br>相反,将基类指针或者引用转换为派生类指针或者引用被称为向下强制转换,需要显示类型转换,但是派生类可以新增成员函数,由于基类没有这些函数,这使得使用新增成员函数的类成员函数不能作用于基类.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">class player&#123;</div><div class="line">    pubilc:</div><div class="line">        player(string &amp; na)&#123;name = na;&#125;</div><div class="line">        void showname()const &#123;cout &lt;&lt; name;&#125;</div><div class="line">        </div><div class="line">    private:</div><div class="line">        string name;</div><div class="line">&#125;</div><div class="line">class ship : pubilc player&#123;</div><div class="line">    public:</div><div class="line">        ...</div><div class="line">        void shouage(int age);</div><div class="line">        </div><div class="line">    private:</div><div class="line">        int age;</div><div class="line">&#125;</div><div class="line">player lex(&quot;lexington&quot;); </div><div class="line">ship * t =(ship*)&amp;lex; //将基类指针转化为派生类指针,必须显示类型转换,向下强制转换</div><div class="line"></div><div class="line">ship sar(&quot;saratoga&quot;);</div><div class="line">player* v = &amp;sar;       //将派生类指针转化为基类指针,向上强制转换</div><div class="line"></div><div class="line">t-&gt;showage(20); //不安全的操作 showage不是player的成员</div><div class="line">v-&gt;showname(); //安全的</div></pre></td></tr></table></figure></p>
-<p>现在我们有个虚方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">    void fr(player &amp; r) //r.sizhai();</div><div class="line">    void fp(player * p) //p-&gt;sizhai();</div><div class="line">    void fv(player v) //v.sizhai();</div><div class="line">    fun()&#123;</div><div class="line">        player p(&quot;LEX&quot;);</div><div class="line">        ship s(&quot;sar&quot;);</div><div class="line">        fr(p); // player::sizhai();</div><div class="line">        fr(s); // ship::sizhai();</div><div class="line">        fp(p); // player::sizhai();</div><div class="line">        fp(s); // ship::sizhai();</div><div class="line">        fv(p); // player::sizhai();</div><div class="line">        fv(s); // player::sizhai();</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>由于<strong>按值传递</strong>ship对象的player部分被传递给函数fv().但是引用和指针发生的向上强制转换分别为player对象和ship对象使用了不同的函数(virtual).隐式向上强制类型转换使得基类对象可以指向基类对象或派生类对象,因此需要动态联编.</p>
-<h2 id="虚函数和动态联编"><a href="#虚函数和动态联编" class="headerlink" title="虚函数和动态联编"></a>虚函数和动态联编</h2><h3 id="概念理解-虚函数工作原理"><a href="#概念理解-虚函数工作原理" class="headerlink" title="概念理解:虚函数工作原理"></a>概念理解:虚函数工作原理</h3><p>通常,编译器处理虚函数的原理是:给每个对象添加一个隐藏成员,这个隐藏成员保存了一个指向函数地址数组的指针.它被称为虚函数表,虚函数表保存了类对象的虚函数地址.<br>列如,基类对象包含一个指针,它指向基类中所有虚函数的地址表.派生类对象将指向一个独立地址表的指针,如果派生类里<strong>提供了虚函数的定义</strong>,那么这个独立的地址表将会保存新函数的地址,如果没提供,该表将使用原始版本的地址.如果派生类定义了新的虚函数,那么该函数的地址也会被添加到表中.</p>
-<p><em>注意:无论类中有多少个虚函数,都只在对象中添加一个地址成员,只是大小有所差别</em><br><img src="http://ww4.sinaimg.cn/mw690/ad4b340bjw1faqopcrm0pj21kw1tsdno.jpg" alt="图"></p>
-<h2 id="虚函数总结"><a href="#虚函数总结" class="headerlink" title="虚函数总结:"></a>虚函数总结:</h2><blockquote>
-<ol>
-<li>构造函数不能是虚函数;</li>
-<li>析构函数应该是虚函数(除非不作为基类);</li>
-<li>友元不能是虚函数,因为友元函数不是类成员;</li>
-<li>如果基类声明被重载,则应在派生类中重定义所有的基类重载版本;</li>
-<li>重定义不是重载,如果重定义继承的方法,应该确保与原型完全一致;<br><em>注意:如果原返回类型是指向基类的指针或者引用,可以改成指向派生类的指针和引用,这被成为返回类型协变</em></li>
-</ol>
-</blockquote>
+        <p><img src="http://ww3.sinaimg.cn/small/ad4b340bjw1f1u646ivcuj206f06mjtp.jpg" alt=""></p>
+<a id="more"></a>
+<h2 id="隐式实例化"><a href="#隐式实例化" class="headerlink" title="隐式实例化:"></a>隐式实例化:</h2><p>编译器在需要对象之前,不会生成类的隐式实例化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ArrayTp&lt;int,100&gt; * pt; //不生成实例</div><div class="line">pt = new ArrayTp&lt;int,100&gt;;//现在生成实例</div></pre></td></tr></table></figure></p>
+<h2 id="显式实例化"><a href="#显式实例化" class="headerlink" title="显式实例化:"></a>显式实例化:</h2><p>使用关键字template并指出所需类型来声明类的时候,编译器将生成类声明的显式实例化:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template class ArrayTp&lt;string,100&gt;;</div></pre></td></tr></table></figure></p>
+<p>在这种情况下,虽然没有创建类对象,编译器也将生成类,包括方法定义.</p>
+<h2 id="显式具体化"><a href="#显式具体化" class="headerlink" title="显式具体化:"></a>显式具体化:</h2><p>(显式具体化==特型)在需要特殊要求的时候对模板进行修改,使其行为不同,这时可以创建显式具体化.</p>
+<p>书上举的栗子:<br>假设现在定义一个表示排序后数组的类:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template &lt;typename T&gt; class SortedArray&#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p>假设模板使用<em>&gt;</em>运算符来对值进行比较,对于数字来说没毛病,对于类型T,只要定义了<em>T::operator&gt;()</em>,也没毛病,但是T如果是个<em>const char **的字符串就不行了,因为这需要使用</em>strcmp()<em>,而不是</em>&gt;*.<br>这种情况下可以提供一个现实模板具体化.<br>格式如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template &lt;&gt; class Classname &lt;specialized-type-name&gt;&#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p>当具体化模板和通用模板都与实例化请求匹配时,编译器将使用具体化模板.</p>
+<p>所以说要使用<em>const char</em> <em>类型的</em>SortedArray*模板可以这么写:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template &lt;&gt; class SortedArray&lt;const char *&gt; &#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p>这样在使用<em>const char **类型的</em>SortedArray*模板时将使用上述专用定义而不是用通用模板定义.</p>
+<h3 id="部分具体化"><a href="#部分具体化" class="headerlink" title="部分具体化:"></a>部分具体化:</h3><p>部分具体化可以给类型参数制定具体的类型:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">template &lt;class T1, class T2&gt; class Pair&#123;...&#125;;</div><div class="line">template &lt;class T1&gt; class Pari&lt;class T1,int&gt;&#123;...&#125;;</div></pre></td></tr></table></figure></p>
+<p><em>template</em>后面的是没有被具体化的类型参数.上述<em>T2</em>被具体化为<em>int</em>,但<em>T1</em>不变.</p>
+<p>部分具体化特型使得能够设置各种限制,例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//一般模板</div><div class="line">template&lt;typename T1,typename T2,typename T3&gt;class Trio&#123;...&#125;</div><div class="line"></div><div class="line">//对T3具体化的模板</div><div class="line">template&lt;typename T1,T2&gt; class Trio&lt;T1,T2,T3&gt;&#123;...&#125;</div><div class="line"></div><div class="line">//对T2,T3具体化的模板</div><div class="line">template&lt;typename T1&gt; class Trio&lt;T1,T2*,T3*&gt;&#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p><strong><em>template</em> 后面的是没有被具体化的类型参数</strong></p>
+<p>给出上述定义编译器将作出如下选择:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Trio&lt;int,double,string*&gt; T1; //使用一般模板</div><div class="line">Trio&lt;int,short&gt; T2; //使用对T3具体化的模板</div><div class="line">Trio&lt;string,string*,char*&gt;;//使用对T2,T3具体化的模板</div></pre></td></tr></table></figure></p>
 
       
 
@@ -255,7 +254,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/11/C++笔记-静态联编和动态联编/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/01/06/C++笔记-模板的具体化/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -269,18 +268,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++笔记-抽象基类(Abstract-Base-Class,ABC)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/08/C++笔记-一个简单的基类/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++笔记-一个简单的基类</div>
+    <a href="/2016/12/30/C++笔记-多重继承/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-多重继承</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -293,7 +283,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C++笔记-静态联编和动态联编" data-title="C++笔记-静态联编和动态联编" data-url="http://yoursite.com/2016/12/11/C++笔记-静态联编和动态联编/"></div>
+	<div class="ds-thread" data-thread-key="C++笔记-模板的具体化" data-title="C++笔记-模板的具体化" data-url="http://yoursite.com/2017/01/06/C++笔记-模板的具体化/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
