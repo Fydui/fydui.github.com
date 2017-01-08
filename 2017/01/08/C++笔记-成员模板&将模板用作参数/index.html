@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++笔记-模板的具体化 | 果冻の随笔</title>
+  <title>C++笔记-成员模板&amp;将模板用作于参数 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="article">
-<meta property="og:title" content="C++笔记-模板的具体化">
-<meta property="og:url" content="http://yoursite.com/2017/01/06/C++笔记-模板的具体化/index.html">
+<meta property="og:title" content="C++笔记-成员模板&将模板用作于参数">
+<meta property="og:url" content="http://yoursite.com/2017/01/08/C++笔记-成员模板&将模板用作参数/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:image" content="http://ww3.sinaimg.cn/small/ad4b340bjw1f1u646ivcuj206f06mjtp.jpg">
-<meta property="og:updated_time" content="2017-01-06T11:39:47.739Z">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/ad4b340bjw1f1u648mxkcj201o01hq2u.jpg">
+<meta property="og:updated_time" content="2017-01-08T15:49:51.831Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++笔记-模板的具体化">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/small/ad4b340bjw1f1u646ivcuj206f06mjtp.jpg">
+<meta name="twitter:title" content="C++笔记-成员模板&将模板用作于参数">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/mw690/ad4b340bjw1f1u648mxkcj201o01hq2u.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -136,40 +136,39 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++笔记-模板的具体化" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C++笔记-成员模板&amp;将模板用作参数" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++笔记-模板的具体化
+      C++笔记-成员模板&amp;将模板用作于参数
     </h1>
   
 
-        <a href="/2017/01/06/C++笔记-模板的具体化/" class="archive-article-date">
-  	<time datetime="2017-01-06T11:32:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-06</time>
+        <a href="/2017/01/08/C++笔记-成员模板&将模板用作参数/" class="archive-article-date">
+  	<time datetime="2017-01-08T15:43:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-08</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ww3.sinaimg.cn/small/ad4b340bjw1f1u646ivcuj206f06mjtp.jpg" alt=""></p>
-<a id="more"></a>
-<h2 id="隐式实例化"><a href="#隐式实例化" class="headerlink" title="隐式实例化:"></a>隐式实例化:</h2><p>编译器在需要对象之前,不会生成类的隐式实例化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ArrayTp&lt;int,100&gt; * pt; //不生成实例</div><div class="line">pt = new ArrayTp&lt;int,100&gt;;//现在生成实例</div></pre></td></tr></table></figure></p>
-<h2 id="显式实例化"><a href="#显式实例化" class="headerlink" title="显式实例化:"></a>显式实例化:</h2><p>使用关键字template并指出所需类型来声明类的时候,编译器将生成类声明的显式实例化:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template class ArrayTp&lt;string,100&gt;;</div></pre></td></tr></table></figure></p>
-<p>在这种情况下,虽然没有创建类对象,编译器也将生成类,包括方法定义.</p>
-<h2 id="显式具体化"><a href="#显式具体化" class="headerlink" title="显式具体化:"></a>显式具体化:</h2><p>(显式具体化==特型)在需要特殊要求的时候对模板进行修改,使其行为不同,这时可以创建显式具体化.</p>
-<p>书上举的栗子:<br>假设现在定义一个表示排序后数组的类:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template &lt;typename T&gt; class SortedArray&#123;...&#125;</div></pre></td></tr></table></figure></p>
-<p>假设模板使用<em>&gt;</em>运算符来对值进行比较,对于数字来说没毛病,对于类型T,只要定义了<em>T::operator&gt;()</em>,也没毛病,但是T如果是个<em>const char **的字符串就不行了,因为这需要使用</em>strcmp()<em>,而不是</em>&gt;*.<br>这种情况下可以提供一个现实模板具体化.<br>格式如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template &lt;&gt; class Classname &lt;specialized-type-name&gt;&#123;...&#125;</div></pre></td></tr></table></figure></p>
-<p>当具体化模板和通用模板都与实例化请求匹配时,编译器将使用具体化模板.</p>
-<p>所以说要使用<em>const char</em> <em>类型的</em>SortedArray*模板可以这么写:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template &lt;&gt; class SortedArray&lt;const char *&gt; &#123;...&#125;</div></pre></td></tr></table></figure></p>
-<p>这样在使用<em>const char **类型的</em>SortedArray*模板时将使用上述专用定义而不是用通用模板定义.</p>
-<h3 id="部分具体化"><a href="#部分具体化" class="headerlink" title="部分具体化:"></a>部分具体化:</h3><p>部分具体化可以给类型参数制定具体的类型:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">template &lt;class T1, class T2&gt; class Pair&#123;...&#125;;</div><div class="line">template &lt;class T1&gt; class Pari&lt;class T1,int&gt;&#123;...&#125;;</div></pre></td></tr></table></figure></p>
-<p><em>template</em>后面的是没有被具体化的类型参数.上述<em>T2</em>被具体化为<em>int</em>,但<em>T1</em>不变.</p>
-<p>部分具体化特型使得能够设置各种限制,例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//一般模板</div><div class="line">template&lt;typename T1,typename T2,typename T3&gt;class Trio&#123;...&#125;</div><div class="line"></div><div class="line">//对T3具体化的模板</div><div class="line">template&lt;typename T1,T2&gt; class Trio&lt;T1,T2,T3&gt;&#123;...&#125;</div><div class="line"></div><div class="line">//对T2,T3具体化的模板</div><div class="line">template&lt;typename T1&gt; class Trio&lt;T1,T2*,T3*&gt;&#123;...&#125;</div></pre></td></tr></table></figure></p>
-<p><strong><em>template</em> 后面的是没有被具体化的类型参数</strong></p>
-<p>给出上述定义编译器将作出如下选择:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Trio&lt;int,double,string*&gt; T1; //使用一般模板</div><div class="line">Trio&lt;int,short&gt; T2; //使用对T3具体化的模板</div><div class="line">Trio&lt;string,string*,char*&gt;;//使用对T2,T3具体化的模板</div></pre></td></tr></table></figure></p>
+        <p><img src="http://ww4.sinaimg.cn/mw690/ad4b340bjw1f1u648mxkcj201o01hq2u.jpg" alt=""><br><a id="more"></a></p>
+<h2 id="模板成员"><a href="#模板成员" class="headerlink" title="模板成员:"></a>模板成员:</h2><p>模板类将另一个模板类和模板函数作为其成员<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">template &lt;typename T&gt;</div><div class="line">class beta</div><div class="line">&#123;</div><div class="line">private:</div><div class="line">    template&lt;typename V&gt;</div><div class="line">    class miao</div><div class="line">    &#123;</div><div class="line">    private:</div><div class="line">        V val;</div><div class="line">    public:</div><div class="line">        miao(V v = 0) : val(v)&#123;&#125;</div><div class="line">        void show() const &#123;cout &lt;&lt; val &lt;&lt; endl;&#125;</div><div class="line">        V value() const &#123;return val;&#125;</div><div class="line">    &#125;;</div><div class="line">    miao&lt;T&gt; q;</div><div class="line">    miao&lt;int&gt; n;</div><div class="line"></div><div class="line">public:</div><div class="line">    beta(T t, int i) : q(t),n(i) &#123;&#125;</div><div class="line">    template &lt;typename U&gt;</div><div class="line">    U blab(U u,T t) &#123;return ((n.value() + q.value()) * u/t);&#125;</div><div class="line">    void bshow() const &#123;q.show(); n.show();&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hold&lt;T&gt; q;</div><div class="line">hold&lt;int&gt; n;</div></pre></td></tr></table></figure>
+<p><em>n</em> 是基于<em>int</em> 类型的<em>hold</em> 对象,<em>q</em> 的基于<em>T</em> 类型的<em>hold</em> 对象,下述声明使得<em>T</em>表示的是<em>double</em>,因此<em>q</em> 的类型是 <em>hold&lt; double&gt;</em>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">beat&lt;double&gt; guy(10,2.5);</div></pre></td></tr></table></figure></p>
+<p><em>blab()</em> 方法的<em>U</em> 类型由该方法被调用时的参数决定,<em>T</em> 类型由对象的实例化决定,下述例子中,<em>guy</em> 的声明将<em>T</em> 类型设置为<em>double</em>,<em>U</em> 的类型则为<em>int</em>.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cout&lt;&lt;guy.blab(10,2.5);</div></pre></td></tr></table></figure></p>
+<p>虽然混合类型所引起的自动类型转换导致<em>blab()</em> 函数中的计算以<em>double</em> 类型进行,但返回值的类型为<em>U (即int)</em>,因此上述输被截断为28.</p>
+<p>如果使用<em>guy.blab()</em>时,使用10.0代替10,那么<em>U</em> 的类型将会设置为<em>double</em> ,使得返回值也为<em>double</em>,因此输出为28.2608.</p>
+<h2 id="将模板类用作参数"><a href="#将模板类用作参数" class="headerlink" title="将模板类用作参数"></a>将模板类用作参数</h2><p>模板类可以包含类型参数(如 <em>typename T</em> )和非类型参数(如 <em>int</em> ),还可以包含本身就是模板的参数.</p>
+<p>举个书上的栗子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">template&lt;template &lt;typename T&gt;class Thing&gt;</div><div class="line">class Crab</div><div class="line">&#123;</div><div class="line">private:</div><div class="line">    Thing&lt;int&gt; s1;</div><div class="line">    Thing&lt;double&gt; s2;</div><div class="line">public:</div><div class="line">    Crab()&#123;&#125;</div><div class="line">    bool push(int a,double x)&#123;</div><div class="line">        return</div><div class="line">                s1.push(a) &amp;&amp;</div><div class="line">                s2.push(x);&#125;</div><div class="line">    bool pop(int &amp; a,double &amp; x)&#123;return s1.pop(a) &amp;&amp; s2.pop(x);&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">    Crab&lt;Stack&gt; cs;</div><div class="line">    int ni;</div><div class="line">    double nd;</div><div class="line">    cout &lt;&lt; &quot;Enter int double pairs,such as 4 3.5(0 0 to end):&quot; &lt;&lt; endl;</div><div class="line">    while (cin &gt;&gt; ni &gt;&gt;nd &amp;&amp; ni &gt; 0 &amp;&amp; nd &gt; 0)</div><div class="line">    &#123;</div><div class="line">        if(!cs.push(ni,nd))</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">    while(cs.pop(ni,nd))</div><div class="line">        cout &lt;&lt; ni &lt;&lt; &quot; , &quot; &lt;&lt; nd &lt;&lt; endl;</div><div class="line">    cout &lt;&lt; &quot;DONE&quot; &lt;&lt;endl;</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">template &lt;template &lt;typename T&gt;class Thing&gt;</div><div class="line">class Crab&#123;&#125;</div></pre></td></tr></table></figure>
+<p>如上, 上述模板参数类型为<em>template &lt; typename T&gt; class Thing</em>,其中<em>Thing</em> 为参数.</p>
+<p>这意味着为了使 <em>Crab&lt; King&gt; legs</em> 被接受,模板类参数<em>King</em> 必须是个模板类:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">template &lt;typename K&gt; </div><div class="line">class King&#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p><em>legs</em> 声明将用<em>King&lt; int&gt;</em> 替换 <em>Thing&lt; int&gt;</em> ,用 <em>King&lt; double&gt;</em> 替换 <em>Thing&lt; double&gt;</em>,但是在下面的代码中就有所不同.</p>
+<p>在<em>Crab</em> 类中,有两行代码声明了两个类对象:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Thing&lt;int&gt; s1;</div><div class="line">Thing&lt;double&gt; s2;</div></pre></td></tr></table></figure></p>
+<p>而<em>mian</em> 函数中包含以下声明,因此,<em>Thing&lt; int&gt;</em> 将被实例化为 <em>Stack&lt; int&gt;</em> ,而<em>Thing&lt; double&gt;</em>将被实例化为<em>Stack&lt; double&gt;</em>.<br>总之,模板参数<em>Thing</em> 将被替换为声明<em>Crab</em> 对象时被用作模板参数的模板类型.</p>
 
       
 
@@ -254,7 +253,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/01/06/C++笔记-模板的具体化/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/01/08/C++笔记-成员模板&将模板用作参数/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -268,18 +267,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/01/08/C++笔记-成员模板&将模板用作参数/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++笔记-成员模板&amp;将模板用作于参数
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/30/C++笔记-多重继承/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++笔记-多重继承</div>
+    <a href="/2017/01/06/C++笔记-模板的具体化/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-模板的具体化</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -292,7 +282,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C++笔记-模板的具体化" data-title="C++笔记-模板的具体化" data-url="http://yoursite.com/2017/01/06/C++笔记-模板的具体化/"></div>
+	<div class="ds-thread" data-thread-key="C++笔记-成员模板&amp;将模板用作参数" data-title="C++笔记-成员模板&amp;将模板用作于参数" data-url="http://yoursite.com/2017/01/08/C++笔记-成员模板&amp;将模板用作参数/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
