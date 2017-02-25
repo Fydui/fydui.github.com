@@ -6,14 +6,35 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 果冻の随笔</title>
+  <title>C++笔记-异常(3) | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="果冻の随笔">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="图片来源
+
+异常何时会迷失方向异常被引发之后,有两种情况会导致问题:
+意外异常(unexpected exception):　　如果他是在带异常规范的函数中引发的,则必须与规范列表中的某种异常匹配(在继承层次结构中,类类型与这个类机器派生类的对象匹配)就是得有个catch块能跟你写的异常符合/能接受你那异常,否则则成为意外异常.(C++11已经摒弃这东西了,然而有的代码还在用它)
+　　
+未捕获异常">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++笔记-异常(3)">
+<meta property="og:url" content="http://yoursite.com/2017/02/25/C++笔记-异常(3)/index.html">
 <meta property="og:site_name" content="果冻の随笔">
+<meta property="og:description" content="图片来源
+
+异常何时会迷失方向异常被引发之后,有两种情况会导致问题:
+意外异常(unexpected exception):　　如果他是在带异常规范的函数中引发的,则必须与规范列表中的某种异常匹配(在继承层次结构中,类类型与这个类机器派生类的对象匹配)就是得有个catch块能跟你写的异常符合/能接受你那异常,否则则成为意外异常.(C++11已经摒弃这东西了,然而有的代码还在用它)
+　　
+未捕获异常">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fddetu6jbvj215o15o7aj.jpg">
+<meta property="og:updated_time" content="2017-02-25T14:52:09.209Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="果冻の随笔">
+<meta name="twitter:title" content="C++笔记-异常(3)">
+<meta name="twitter:description" content="图片来源
+
+异常何时会迷失方向异常被引发之后,有两种情况会导致问题:
+意外异常(unexpected exception):　　如果他是在带异常规范的函数中引发的,则必须与规范列表中的某种异常匹配(在继承层次结构中,类类型与这个类机器派生类的对象匹配)就是得有个catch块能跟你写的异常符合/能接受你那异常,否则则成为意外异常.(C++11已经摒弃这东西了,然而有的代码还在用它)
+　　
+未捕获异常">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fddetu6jbvj215o15o7aj.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -133,346 +154,172 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-C++笔记-异常(3)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++笔记-异常(3)
+    </h1>
+  
+
+        <a href="/2017/02/25/C++笔记-异常(3)/" class="archive-article-date">
+  	<time datetime="2017-02-25T14:51:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-25</time>
+</a>
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fddetu6jbvj215o15o7aj.jpg" alt="志熊理科"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=34688373" target="_blank" rel="external">图片来源</a></p>
+<hr>
+<h2 id="异常何时会迷失方向"><a href="#异常何时会迷失方向" class="headerlink" title="异常何时会迷失方向"></a>异常何时会迷失方向</h2><p>异常被引发之后,有两种情况会导致问题:</p>
+<h4 id="意外异常-unexpected-exception"><a href="#意外异常-unexpected-exception" class="headerlink" title="意外异常(unexpected exception):"></a>意外异常(unexpected exception):</h4><p>　　如果他是在带异常规范的函数中引发的,则必须与规范列表中的某种异常匹配(在继承层次结构中,类类型与这个类机器派生类的对象匹配)<del>就是得有个catch块能跟你写的异常符合/能接受你那异常</del>,否则则成为意外异常.(<del>C++11已经摒弃这东西了,然而有的代码还在用它</del>)
+　　</p>
+<h4 id="未捕获异常-uncaught-exception"><a href="#未捕获异常-uncaught-exception" class="headerlink" title="未捕获异常(uncaught exception):"></a>未捕获异常(uncaught exception):</h4><p>　　如果异常不是在函数中引发,则必须捕获他.如果没有捕获(在没有try块或没有catch块时,将出现)<br>　　<br><em>在默认情况下,出现上述情况程序将被终止,然而可以修改程序对上述异常的反应…</em><br>未捕获异常不会导致程序立刻停止,首先会调用terminate()函数,terminate()调用abort()函数,所以说可以修改terminate()调用的函数(不让他调用abort()).可以使用set_terminate()函数.(在#include<exception>中):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">typedef void (*terminate_handler)();</div><div class="line">terminate_handler set_terminate(terminate_handler f) throw(); //C++ 98</div><div class="line">terminate_handler set_terminate(terminate_handler f) noexcept; //C++ 11</div><div class="line">void terminate(); //C++ 98</div><div class="line">void terminate() noexcept; // C++ 11</div></pre></td></tr></table></figure></exception></p>
+<p>　　typedef使得terminate_handler称为一个纸箱没有参数和返回值的函数的指针.terminate_handler将他的名字(地址)作为参数,并且返回这个函数的地址,如果set_terminate被多次调用,则terminate将调用最后一次set_terminate调用设置的函数.</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/23/C++笔记-包含类对象的成员/" class="archive-article-date">
-  	<time datetime="2016-12-23T14:19:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/23/C++笔记-包含类对象的成员/">C++笔记-包含类对象的成员</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/25/C++笔记-异常(3)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/21/C++笔记-类设计总结/" class="archive-article-date">
-  	<time datetime="2016-12-21T14:57:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/21/C++笔记-类设计总结/">C++笔记-类设计总结</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
+  
+<nav id="article-nav">
+  
+    <a href="/2017/03/04/C++笔记-嵌套类/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          C++笔记-嵌套类
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/08/C++笔记-成员模板&将模板用作参数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-成员模板&amp;将模板用作于参数</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/15/C++笔记-继承和动态内存分配/" class="archive-article-date">
-  	<time datetime="2016-12-15T14:01:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/15/C++笔记-继承和动态内存分配/">C++笔记-继承和动态内存分配</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/" class="archive-article-date">
-  	<time datetime="2016-12-14T15:46:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/">C++笔记-抽象基类(Abstract-Base-Class,ABC)</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="C++笔记-异常(3)" data-title="C++笔记-异常(3)" data-url="http://yoursite.com/2017/02/25/C++笔记-异常(3)/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fydui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/13/C++笔记-访问控制protected/" class="archive-article-date">
-  	<time datetime="2016-12-13T15:22:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/13/C++笔记-访问控制protected/">C++笔记-访问控制protected</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/11/C++笔记-静态联编和动态联编/" class="archive-article-date">
-  	<time datetime="2016-12-11T15:38:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/11/C++笔记-静态联编和动态联编/">C++笔记-静态联编和动态联编</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/08/C++笔记-一个简单的基类/" class="archive-article-date">
-  	<time datetime="2016-12-08T13:58:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/08/C++笔记-一个简单的基类/">C++笔记-一个简单的基类</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/07/C++笔记-多态公有继承/" class="archive-article-date">
-  	<time datetime="2016-12-07T15:35:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/07/C++笔记-多态公有继承/">C++笔记-多态公有继承</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/07/C++笔记-类和动态内存分配/" class="archive-article-date">
-  	<time datetime="2016-12-07T13:59:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/07/C++笔记-类和动态内存分配/">C++笔记-类和动态内存分配</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/05/QT-QML与C++交互/" class="archive-article-date">
-  	<time datetime="2016-12-05T14:38:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/05/QT-QML与C++交互/">QML与C++交互</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QML/">QML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/">Qt</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
-  
 
 
           </div>
@@ -496,8 +343,8 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
