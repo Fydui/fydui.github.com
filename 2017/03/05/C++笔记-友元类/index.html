@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++笔记-成员模板&amp;将模板用作于参数 | 果冻の随笔</title>
+  <title>C++笔记-友元类 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="article">
-<meta property="og:title" content="C++笔记-成员模板&将模板用作于参数">
-<meta property="og:url" content="http://yoursite.com/2017/01/08/C++笔记-成员模板&将模板用作参数/index.html">
+<meta property="og:title" content="C++笔记-友元类">
+<meta property="og:url" content="http://yoursite.com/2017/03/05/C++笔记-友元类/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/ad4b340bjw1f1u648mxkcj201o01hq2u.jpg">
-<meta property="og:updated_time" content="2017-01-08T15:49:51.831Z">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/006qlhMLgy1fdbu0cykorj30io0ff49t.jpg">
+<meta property="og:updated_time" content="2017-03-05T15:09:16.265Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++笔记-成员模板&将模板用作于参数">
-<meta name="twitter:image" content="http://ww4.sinaimg.cn/mw690/ad4b340bjw1f1u648mxkcj201o01hq2u.jpg">
+<meta name="twitter:title" content="C++笔记-友元类">
+<meta name="twitter:image" content="http://wx4.sinaimg.cn/mw690/006qlhMLgy1fdbu0cykorj30io0ff49t.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -136,39 +136,42 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++笔记-成员模板&amp;将模板用作参数" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C++笔记-友元类" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++笔记-成员模板&amp;将模板用作于参数
+      C++笔记-友元类
     </h1>
   
 
-        <a href="/2017/01/08/C++笔记-成员模板&将模板用作参数/" class="archive-article-date">
-  	<time datetime="2017-01-08T15:43:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-08</time>
+        <a href="/2017/03/05/C++笔记-友元类/" class="archive-article-date">
+  	<time datetime="2017-03-05T15:07:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-05</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ww4.sinaimg.cn/mw690/ad4b340bjw1f1u648mxkcj201o01hq2u.jpg" alt=""><br><a id="more"></a></p>
-<h2 id="模板成员"><a href="#模板成员" class="headerlink" title="模板成员:"></a>模板成员:</h2><p>模板类将另一个模板类和模板函数作为其成员<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">template &lt;typename T&gt;</div><div class="line">class beta</div><div class="line">&#123;</div><div class="line">private:</div><div class="line">    template&lt;typename V&gt;</div><div class="line">    class miao</div><div class="line">    &#123;</div><div class="line">    private:</div><div class="line">        V val;</div><div class="line">    public:</div><div class="line">        miao(V v = 0) : val(v)&#123;&#125;</div><div class="line">        void show() const &#123;cout &lt;&lt; val &lt;&lt; endl;&#125;</div><div class="line">        V value() const &#123;return val;&#125;</div><div class="line">    &#125;;</div><div class="line">    miao&lt;T&gt; q;</div><div class="line">    miao&lt;int&gt; n;</div><div class="line"></div><div class="line">public:</div><div class="line">    beta(T t, int i) : q(t),n(i) &#123;&#125;</div><div class="line">    template &lt;typename U&gt;</div><div class="line">    U blab(U u,T t) &#123;return ((n.value() + q.value()) * u/t);&#125;</div><div class="line">    void bshow() const &#123;q.show(); n.show();&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hold&lt;T&gt; q;</div><div class="line">hold&lt;int&gt; n;</div></pre></td></tr></table></figure>
-<p><em>n</em> 是基于<em>int</em> 类型的<em>hold</em> 对象,<em>q</em> 的基于<em>T</em> 类型的<em>hold</em> 对象,下述声明使得<em>T</em>表示的是<em>double</em>,因此<em>q</em> 的类型是 <em>hold&lt; double&gt;</em>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">beat&lt;double&gt; guy(10,2.5);</div></pre></td></tr></table></figure></p>
-<p><em>blab()</em> 方法的<em>U</em> 类型由该方法被调用时的参数决定,<em>T</em> 类型由对象的实例化决定,下述例子中,<em>guy</em> 的声明将<em>T</em> 类型设置为<em>double</em>,<em>U</em> 的类型则为<em>int</em>.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cout&lt;&lt;guy.blab(10,2.5);</div></pre></td></tr></table></figure></p>
-<p>虽然混合类型所引起的自动类型转换导致<em>blab()</em> 函数中的计算以<em>double</em> 类型进行,但返回值的类型为<em>U (即int)</em>,因此上述输被截断为28.</p>
-<p>如果使用<em>guy.blab()</em>时,使用10.0代替10,那么<em>U</em> 的类型将会设置为<em>double</em> ,使得返回值也为<em>double</em>,因此输出为28.2608.</p>
-<h2 id="将模板类用作参数"><a href="#将模板类用作参数" class="headerlink" title="将模板类用作参数"></a>将模板类用作参数</h2><p>模板类可以包含类型参数(如 <em>typename T</em> )和非类型参数(如 <em>int</em> ),还可以包含本身就是模板的参数.</p>
-<p>举个书上的栗子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">template&lt;template &lt;typename T&gt;class Thing&gt;</div><div class="line">class Crab</div><div class="line">&#123;</div><div class="line">private:</div><div class="line">    Thing&lt;int&gt; s1;</div><div class="line">    Thing&lt;double&gt; s2;</div><div class="line">public:</div><div class="line">    Crab()&#123;&#125;</div><div class="line">    bool push(int a,double x)&#123;</div><div class="line">        return</div><div class="line">                s1.push(a) &amp;&amp;</div><div class="line">                s2.push(x);&#125;</div><div class="line">    bool pop(int &amp; a,double &amp; x)&#123;return s1.pop(a) &amp;&amp; s2.pop(x);&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">    Crab&lt;Stack&gt; cs;</div><div class="line">    int ni;</div><div class="line">    double nd;</div><div class="line">    cout &lt;&lt; &quot;Enter int double pairs,such as 4 3.5(0 0 to end):&quot; &lt;&lt; endl;</div><div class="line">    while (cin &gt;&gt; ni &gt;&gt;nd &amp;&amp; ni &gt; 0 &amp;&amp; nd &gt; 0)</div><div class="line">    &#123;</div><div class="line">        if(!cs.push(ni,nd))</div><div class="line">            break;</div><div class="line">    &#125;</div><div class="line">    while(cs.pop(ni,nd))</div><div class="line">        cout &lt;&lt; ni &lt;&lt; &quot; , &quot; &lt;&lt; nd &lt;&lt; endl;</div><div class="line">    cout &lt;&lt; &quot;DONE&quot; &lt;&lt;endl;</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">template &lt;template &lt;typename T&gt;class Thing&gt;</div><div class="line">class Crab&#123;&#125;</div></pre></td></tr></table></figure>
-<p>如上, 上述模板参数类型为<em>template &lt; typename T&gt; class Thing</em>,其中<em>Thing</em> 为参数.</p>
-<p>这意味着为了使 <em>Crab&lt; King&gt; legs</em> 被接受,模板类参数<em>King</em> 必须是个模板类:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">template &lt;typename K&gt; </div><div class="line">class King&#123;...&#125;</div></pre></td></tr></table></figure></p>
-<p><em>legs</em> 声明将用<em>King&lt; int&gt;</em> 替换 <em>Thing&lt; int&gt;</em> ,用 <em>King&lt; double&gt;</em> 替换 <em>Thing&lt; double&gt;</em>,但是在下面的代码中就有所不同.</p>
-<p>在<em>Crab</em> 类中,有两行代码声明了两个类对象:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Thing&lt;int&gt; s1;</div><div class="line">Thing&lt;double&gt; s2;</div></pre></td></tr></table></figure></p>
-<p>而<em>mian</em> 函数中包含以下声明,因此,<em>Thing&lt; int&gt;</em> 将被实例化为 <em>Stack&lt; int&gt;</em> ,而<em>Thing&lt; double&gt;</em>将被实例化为<em>Stack&lt; double&gt;</em>.<br>总之,模板参数<em>Thing</em> 将被替换为声明<em>Crab</em> 对象时被用作模板参数的模板类型.</p>
+        <p><img src="http://wx4.sinaimg.cn/mw690/006qlhMLgy1fdbu0cykorj30io0ff49t.jpg" alt="长春"></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>类并非只能拥有友元函数还可以将类作为友元,友元被赋予从类外访问类的私有部分的权限,在这种情况下,友元类的所有方法都可以访问原始类的公有/私有/保护成员,也能指定特定的成员函数为一个类的友元.</p>
+<p>什么时候希望一个类成为另一个类的友元? 书上举得一个栗子:<br><a href="https://github.com/Fydui/MyCpp_Wheel/tree/master/FriendClass-TV" target="_blank" rel="external">完整代码</a></p>
+<blockquote>
+<p>假设编写一个模拟遥控器和电视机的程序,决定有TV和Remote类表示电视机和遥控器,显然这两个类存在着某种关系(净说废话).但电视机不是遥控器,反之亦然,所以正常的公有继承is-a关系并不适用.遥控器并非电视机的一部分.所以,包含私有和保护集成的has-a关系也不适用.但众所周知遥控器可以改变电视机的状态.这说明遥控器应该是电视机类的一个友元.</p>
+<h3 id="友元的声明"><a href="#友元的声明" class="headerlink" title="友元的声明:"></a>友元的声明:</h3><p>友元声明可以位于公有,私有或者保护部分,所在其位置无关紧要.但由于Remote类提到了TV类所以必须先定义Tv类,或者使用前向声明.这样来声明一个友元类:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">friend class Remote;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">class Tv</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    friend class Remote;</div><div class="line">    enum&#123;off,on&#125;;</div><div class="line">    enum&#123;MinVal,MaxVal = 20&#125;;</div><div class="line">    enum&#123;Antenna,cable&#125;;</div><div class="line">    enum&#123;tv,dvd&#125;;</div><div class="line">    Tv(int s = off,int mc = 125):state(s),volume(5),</div><div class="line">        maxchannel(mc),channel(2),mode(cable),input(tv)&#123;&#125;</div><div class="line">    void onoff()&#123;state = (state == tv) ? off: on;&#125;</div><div class="line">    bool ison() const &#123;return state == on;&#125;</div><div class="line">    bool volup();</div><div class="line">    bool voldown();</div><div class="line">    void chanup();</div><div class="line">    void chandown();</div><div class="line">    void set_mode()&#123;mode = (mode = Antenna) ? cable: Antenna;&#125;</div><div class="line">    void set_input()&#123;input = (input = tv) ? dvd : tv;&#125;</div><div class="line">    void settings() const;</div><div class="line">private:</div><div class="line">    int state;</div><div class="line">    int volume;</div><div class="line">    int maxchannel;</div><div class="line">    int channel;</div><div class="line">    int mode;</div><div class="line">    int input;</div><div class="line">&#125;;</div><div class="line">class Remote&#123;</div><div class="line">private:</div><div class="line">    int mode;</div><div class="line">public:</div><div class="line">    Remote(int m = Tv::tv):mode(m)&#123;&#125;</div><div class="line">    bool volup(Tv &amp; t)&#123;return t.volup();&#125;</div><div class="line">    bool voldown(Tv &amp;t)&#123;return t.voldown();&#125;</div><div class="line">    void onoff(Tv &amp; t)&#123;t.onoff();&#125;</div><div class="line">    void chanup(Tv &amp;t)&#123;return t.chanup();&#125;</div><div class="line">    void chandown(Tv &amp;t)&#123;return t.chandown();&#125;</div><div class="line">    void set_mode(Tv &amp;t)&#123;return t.set_mode();&#125;</div><div class="line">    void set_input(Tv &amp;t)&#123;return t.set_input();&#125;</div><div class="line">    void set_chan(Tv &amp;t, int c)&#123;t.channel = c;&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>从上面的从书中摘抄的毫无诚意的代码中可以看出,<strong>所有的Remote方法都是Tv类的友元</strong>,似乎Remote类除了构造函数都使用了Tv类的公有接口,但是事上唯一直接访问了Tv类成员的Remote类方法是<code>Remote::set_chan()</code>,<strong>那么就可以选择仅特定的类成员称为另一个类的友元</strong>.但这样就要小心的排列声明和各种定义;<br>让<code>Remote::set_chan()</code>称为Tv类的友元的方法是,在Tv类声明中将其定义为友元:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">class Tv&#123;</div><div class="line">    friend void Remote::set_chan();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>就酱,<strong>但是吧</strong>……编译器要处理这句话首先得知道Remote的定义,不然编译器不知道Remote是个类,所以这就要把Remote类的声明挪到Tv类声明前面,但Remote类用了Tv对象..这就得把Tv类定义挪到Remote类定义前面去..这..这就很尴尬了,呐,避免这种死循环的方法是使用前向声明(forward declaration):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">class Tv ; //前向声明</div><div class="line">class Remote&#123;...&#125;</div><div class="line">class Tv&#123;...&#125;;</div></pre></td></tr></table></figure></p>
+<p>那能不能这样?:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">class Remote;</div><div class="line">class Tv&#123;...&#125;;</div><div class="line">class Remote&#123;...&#125;;</div></pre></td></tr></table></figure></p>
+<p>这是不行的,因为在编译器看到Tv类中包含Remote的一个方法被声明成友元之前,该先让编译器看到Remote类的声明和<code>Remote::set_chan()</code>函数的声明.</p>
+<p>好了,但在Remote类中可以看到,有些方法包含了内联代码,例如: <code>void onoff(Tv &amp; t){t.onoff();}</code><br>由于它使用了一个Tv的方法,所以在此之前编译器必须看到Tv类声明,但是Tv类在Remote类后面声明..解决方法就是把函数<strong>定义</strong>放在Tv类之后就成..</p>
+<p>吼,<strong>现在只有一个Remote方法是Tv类的友元了</strong>; 编译器一开始通过前项类型得知了Tv是个类,在读取声明并编译了这些方法之后,使用<code>lnline</code>关键字仍然可以使Remote类未定义的函数称为内联方法.<a href="https://github.com/Fydui/MyCpp_Wheel/blob/master/FriendClass-TV/tvfm.h" target="_blank" rel="external">完整代码</a></p>
+<h2 id="其他友元关系"><a href="#其他友元关系" class="headerlink" title="其他友元关系"></a>其他友元关系</h2><p>遥控器能影响电视.现在你想通过电视对遥控器产生某种影响,这可以让类彼此成为对方的友元来实现; 需要记住的是对于使用Remote类对象的Tv方法,其原型可以再Remote类声明之前声明,但必须在Remote类之后定义,这样编译器才有足够的信息来编译该方法.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class TV&#123;</div><div class="line">friend class Remote;</div><div class="line">public:</div><div class="line">    void buzz(Remote &amp; r);</div><div class="line">    ...</div><div class="line">&#125;;</div><div class="line">class Remote</div><div class="line">&#123;</div><div class="line">    friend class Tv;</div><div class="line">    public:</div><div class="line">        void bool volup(Tv $ r)&#123;t.volup();&#125;</div><div class="line">&#125;;</div><div class="line">inline void Tv::buzz(Remote &amp; r)&#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p>由于Remote声明在Tv后面,所以可以再类声明中定义volup();buzz()可以再Tv中声明,但必须在Remote后面定义;</p>
+<h2 id="共同友元"><a href="#共同友元" class="headerlink" title="共同友元"></a>共同友元</h2><p>函数需要访问两个类的私有数据,函数可以是一个类的成员,另一个类的友元; 也可以是两个类的友元:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class A; //前向声明</div><div class="line">class B &#123;</div><div class="line">    friend void fun(A &amp; a,const B &amp; b); //编译器发现前值类型A 得知A是一个类型</div><div class="line">    friend void fun(B &amp; b,const A &amp; a);</div><div class="line">&#125;</div><div class="line">class A&#123;</div><div class="line">    friend void fun(A &amp; a,const B &amp; b);</div><div class="line">    friend void fun(B &amp; b,const A &amp; a);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//定义友元函数</div><div class="line">inline void fun(A &amp; a,const B &amp; b)&#123;...&#125;</div><div class="line">inline void fun(B &amp; b,const A &amp; a)&#123;...&#125;</div></pre></td></tr></table></figure></p>
 
       
 
@@ -253,7 +256,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/01/08/C++笔记-成员模板&将模板用作参数/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/05/C++笔记-友元类/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -267,18 +270,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/05/C++笔记-友元类/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++笔记-友元类
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/01/06/C++笔记-模板的具体化/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++笔记-模板的具体化</div>
+    <a href="/2017/01/08/C++笔记-成员模板&将模板用作参数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-成员模板&amp;将模板用作于参数</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -291,7 +285,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C++笔记-成员模板&amp;将模板用作参数" data-title="C++笔记-成员模板&amp;将模板用作于参数" data-url="http://yoursite.com/2017/01/08/C++笔记-成员模板&amp;将模板用作参数/"></div>
+	<div class="ds-thread" data-thread-key="C++笔记-友元类" data-title="C++笔记-友元类" data-url="http://yoursite.com/2017/03/05/C++笔记-友元类/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
