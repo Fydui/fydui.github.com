@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++笔记-友元类 | 果冻の随笔</title>
+  <title>C++笔记-异常 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="C++笔记-友元类">
-<meta property="og:url" content="http://yoursite.com/2017/03/05/C++笔记-友元类/index.html">
+  <meta name="description" content="图片来源: 不好意思本智障找不到了.请在p站搜雪染ちさ..">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++笔记-异常">
+<meta property="og:url" content="http://yoursite.com/2017/03/07/C++笔记-异常/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/006qlhMLgy1fdbu0cykorj30io0ff49t.jpg">
-<meta property="og:updated_time" content="2017-03-06T11:52:45.685Z">
+<meta property="og:description" content="图片来源: 不好意思本智障找不到了.请在p站搜雪染ちさ..">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fddety00k6j20g40msmyo.jpg">
+<meta property="og:updated_time" content="2017-03-07T15:22:51.756Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++笔记-友元类">
-<meta name="twitter:image" content="http://wx4.sinaimg.cn/mw690/006qlhMLgy1fdbu0cykorj30io0ff49t.jpg">
+<meta name="twitter:title" content="C++笔记-异常">
+<meta name="twitter:description" content="图片来源: 不好意思本智障找不到了.请在p站搜雪染ちさ..">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fddety00k6j20g40msmyo.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -136,42 +139,44 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++笔记-友元类" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C++笔记-异常" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++笔记-友元类
+      C++笔记-异常
     </h1>
   
 
-        <a href="/2017/03/05/C++笔记-友元类/" class="archive-article-date">
-  	<time datetime="2017-03-05T15:07:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-05</time>
+        <a href="/2017/03/07/C++笔记-异常/" class="archive-article-date">
+  	<time datetime="2017-03-07T15:14:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://wx4.sinaimg.cn/mw690/006qlhMLgy1fdbu0cykorj30io0ff49t.jpg" alt="长春"></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>类并非只能拥有友元函数还可以将类作为友元,友元被赋予从类外访问类的私有部分的权限,在这种情况下,友元类的所有方法都可以访问原始类的公有/私有/保护成员,也能指定特定的成员函数为一个类的友元.</p>
-<p>什么时候希望一个类成为另一个类的友元? 书上举得一个栗子:<br><a href="https://github.com/Fydui/MyCpp_Wheel/tree/master/FriendClass-TV" target="_blank" rel="external">完整代码</a></p>
+        <p><img src="http://wx2.sinaimg.cn/mw690/ad4b340bly1fddety00k6j20g40msmyo.jpg" alt="雪染千纱"><br><em>图片来源: 不好意思本智障找不到了.请在p站搜雪染ちさ..</em><br><a id="more"></a></p>
 <blockquote>
-<p>假设编写一个模拟遥控器和电视机的程序,决定有TV和Remote类表示电视机和遥控器,显然这两个类存在着某种关系(净说废话).但电视机不是遥控器,反之亦然,所以正常的公有继承is-a关系并不适用.遥控器并非电视机的一部分.所以,包含私有和保护集成的has-a关系也不适用.但众所周知遥控器可以改变电视机的状态.这说明遥控器应该是电视机类的一个友元.</p>
-<h3 id="友元的声明"><a href="#友元的声明" class="headerlink" title="友元的声明:"></a>友元的声明:</h3><p>友元声明可以位于公有,私有或者保护部分,所在其位置无关紧要.但由于Remote类提到了TV类所以必须先定义Tv类,或者使用前向声明.这样来声明一个友元类:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">friend class Remote;</div></pre></td></tr></table></figure></p>
+<p>在(keng)神(te)奇(duo)的C++中, 本智障经常写出一些正常的代码导致我的bug编译不过去. 举个书上的栗子,计算两个数的调和平均数的定义为: 两个数字倒数的平均数, 表达式: <code>2.0 * x * y / (x + y)</code></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">class Tv</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    friend class Remote;</div><div class="line">    enum&#123;off,on&#125;;</div><div class="line">    enum&#123;MinVal,MaxVal = 20&#125;;</div><div class="line">    enum&#123;Antenna,cable&#125;;</div><div class="line">    enum&#123;tv,dvd&#125;;</div><div class="line">    Tv(int s = off,int mc = 125):state(s),volume(5),</div><div class="line">        maxchannel(mc),channel(2),mode(cable),input(tv)&#123;&#125;</div><div class="line">    void onoff()&#123;state = (state == tv) ? off: on;&#125;</div><div class="line">    bool ison() const &#123;return state == on;&#125;</div><div class="line">    bool volup();</div><div class="line">    bool voldown();</div><div class="line">    void chanup();</div><div class="line">    void chandown();</div><div class="line">    void set_mode()&#123;mode = (mode = Antenna) ? cable: Antenna;&#125;</div><div class="line">    void set_input()&#123;input = (input = tv) ? dvd : tv;&#125;</div><div class="line">    void settings() const;</div><div class="line">private:</div><div class="line">    int state;</div><div class="line">    int volume;</div><div class="line">    int maxchannel;</div><div class="line">    int channel;</div><div class="line">    int mode;</div><div class="line">    int input;</div><div class="line">&#125;;</div><div class="line">class Remote&#123;</div><div class="line">private:</div><div class="line">    int mode;</div><div class="line">public:</div><div class="line">    Remote(int m = Tv::tv):mode(m)&#123;&#125;</div><div class="line">    bool volup(Tv &amp; t)&#123;return t.volup();&#125;</div><div class="line">    bool voldown(Tv &amp;t)&#123;return t.voldown();&#125;</div><div class="line">    void onoff(Tv &amp; t)&#123;t.onoff();&#125;</div><div class="line">    void chanup(Tv &amp;t)&#123;return t.chanup();&#125;</div><div class="line">    void chandown(Tv &amp;t)&#123;return t.chandown();&#125;</div><div class="line">    void set_mode(Tv &amp;t)&#123;return t.set_mode();&#125;</div><div class="line">    void set_input(Tv &amp;t)&#123;return t.set_input();&#125;</div><div class="line">    void set_chan(Tv &amp;t, int c)&#123;t.channel = c;&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>从上面的从书中摘抄的毫无诚意的代码中可以看出,<strong>所有的Remote方法都是Tv类的友元</strong>,似乎Remote类除了构造函数都使用了Tv类的公有接口,但是事上唯一直接访问了Tv类成员的Remote类方法是<code>Remote::set_chan()</code>,<strong>那么就可以选择仅特定的类成员成为另一个类的友元</strong>.但这样就要小心的排列声明和各种定义;<br>让<code>Remote::set_chan()</code>成为Tv类的友元的方法是,在Tv类声明中将其定义为友元:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">class Tv&#123;</div><div class="line">    friend void Remote::set_chan();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>就酱,<strong>但是吧</strong>……编译器要处理这句话首先得知道Remote的定义,不然编译器不知道Remote是个类,所以这就要把Remote类的声明挪到Tv类声明前面,但Remote类用了Tv对象..这就又得把Tv类定义挪到Remote类定义前面去.咦等等.那Remote咋办他需要在Tv类的前面啊.这..这就很尴尬了,呐,避免这种死循环的方法是使用 <strong>前向声明(forward declaration):</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">class Tv ; //前向声明</div><div class="line">class Remote&#123;...&#125;</div><div class="line">class Tv&#123;...&#125;;</div></pre></td></tr></table></figure></p>
-<p>那能不能这样?:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">class Remote;</div><div class="line">class Tv&#123;...&#125;;</div><div class="line">class Remote&#123;...&#125;;</div></pre></td></tr></table></figure></p>
-<p>这是不行的,在编译器在Tv类中的声明中看到Remote类的一个方法称为Tv类的友元之前,该先让编译器看到Remote类的声明和<code>Remote::set_chan()</code>函数的声明.</p>
-<p>好了,但在Remote类中可以看到,有些方法包含了内联代码,例如: <code>void onoff(Tv &amp; t){t.onoff();}</code><br>由于它使用了一个Tv的方法,所以在此之前编译器必须看到Tv类声明,但是Tv类在Remote类后面声明..解决方法就是把函数<strong>定义</strong>放在Tv类之后就成..</p>
-<p>吼,<strong>现在只有一个Remote方法是Tv类的友元了</strong>; 编译器一开始通过前向类型得知了Tv是个类,在读取声明并编译了这些方法之后,使用<code>lnline</code>关键字仍然可以使Remote类未定义的函数称为内联方法.<a href="https://github.com/Fydui/MyCpp_Wheel/blob/master/FriendClass-TV/tvfm.h" target="_blank" rel="external">完整代码</a></p>
-<h2 id="其他友元关系"><a href="#其他友元关系" class="headerlink" title="其他友元关系"></a>其他友元关系</h2><p>遥控器能影响电视.现在你想通过电视对遥控器产生某种影响,这可以让类彼此成为对方的友元来实现; 需要记住的是对于使用Remote类对象的Tv方法,其 <strong>函数原型</strong> 可以在Remote类声明之前声明,但必须在Remote类之后定义,这样编译器才有足够的信息来编译该方法.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class TV&#123;</div><div class="line">friend class Remote;</div><div class="line">public:</div><div class="line">    void buzz(Remote &amp; r);</div><div class="line">    ...</div><div class="line">&#125;;</div><div class="line">class Remote</div><div class="line">&#123;</div><div class="line">    friend class Tv;</div><div class="line">    public:</div><div class="line">        void bool volup(Tv $ r)&#123;t.volup();&#125;</div><div class="line">&#125;;</div><div class="line">inline void Tv::buzz(Remote &amp; r)&#123;...&#125;</div></pre></td></tr></table></figure></p>
-<p>由于Remote声明在Tv后面,所以可以在类声明中定义volup();buzz()可以再Tv中声明,但必须在Remote后面定义;</p>
-<h2 id="共同友元"><a href="#共同友元" class="headerlink" title="共同友元"></a>共同友元</h2><p>函数需要访问两个类的私有数据,函数可以是一个类的成员,另一个类的友元; 也可以是两个类的友元:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class A; //前向声明</div><div class="line">class B &#123;</div><div class="line">    friend void fun(A &amp; a,const B &amp; b); //编译器发现前向类型A 得知A是一个类型</div><div class="line">    friend void fun(B &amp; b,const A &amp; a);</div><div class="line">&#125;</div><div class="line">class A&#123;</div><div class="line">    friend void fun(A &amp; a,const B &amp; b);</div><div class="line">    friend void fun(B &amp; b,const A &amp; a);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//定义友元函数</div><div class="line">inline void fun(A &amp; a,const B &amp; b)&#123;...&#125;</div><div class="line">inline void fun(B &amp; b,const A &amp; a)&#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p>这样的话如果xy互为相反数的情况下岂不是很尴尬? </p>
+<h2 id="abort"><a href="#abort" class="headerlink" title="abort()"></a>abort()</h2><blockquote>
+<p>对于这种问题,处理方式之一是如果检查到xy互为相反数则调用 <code>abort()</code> 函数(abort处于 cstdlib.h ).他会想标准错误流发送 abnormal program termination (程序异常终止),而且返回一个由时间决定的值,告诉操作系统处理失败..当然也可以用exit(),只不过不显示消息而已;</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">   #include &lt;iostream&gt;</div><div class="line">#include &lt;cstdlib&gt;</div><div class="line">double hmean(double a,double b)</div><div class="line">&#123;</div><div class="line">    if(a == -b)</div><div class="line">    &#123;</div><div class="line">        std::cout &lt;&lt; &quot;这俩数有毛病...&quot; &lt;&lt; std::endl;</div><div class="line">        //在MinGW 5.3.0 32bit 下不使用abort的情况输入10和-10,调和平均数是 -inf</div><div class="line">        std::abort(); //运行到这儿直接退出 所以不会显示下面bye的那句</div><div class="line">    &#125;</div><div class="line">    return 2.0 * a * b / (a+b);</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    std::cout&lt;&lt; &quot;输入俩数以计算调和平均数:&quot;;</div><div class="line">    double x, y, z;</div><div class="line">    while(std::cin &gt;&gt;x &gt;&gt; y)</div><div class="line">    &#123;</div><div class="line">        z = hmean(x,y);</div><div class="line">        std::cout&lt;&lt; x &lt;&lt;&quot; 和 &quot;&lt;&lt; y &lt;&lt; &quot; 的调和平均数是 &quot; &lt;&lt; z &lt;&lt; std::endl;</div><div class="line">        std::cout &lt;&lt; &quot;输入任意按回车退出&quot; &lt;&lt; std::endl;</div><div class="line">    &#125;</div><div class="line">    std::cout &lt;&lt; &quot;bye 再次按回车退出.&quot;;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="异常机制"><a href="#异常机制" class="headerlink" title="异常机制"></a>异常机制</h2><p>对于异常的处理有三个部分:</p>
+<ul>
+<li>引发异常(throw)</li>
+<li>使用处理程序捕获异常(catch)</li>
+<li>使用 try 块(try)</li>
+</ul>
+<h4 id="throw关键字表示引发异常-紧随其后的值-如字符串或对象-指出异常的特征"><a href="#throw关键字表示引发异常-紧随其后的值-如字符串或对象-指出异常的特征" class="headerlink" title="throw关键字表示引发异常,紧随其后的值(如字符串或对象)指出异常的特征;"></a><strong>throw</strong>关键字表示<strong>引发异常</strong>,紧随其后的值(如字符串或对象)指出异常的特征;</h4><h4 id="catch关键字表示使用异常处理程序-exception-handler-捕获异常-括号内的表示异常要处理的类型-花括号内的表示遇到异常所采取的措施-虽然catch长的像个自带定义的函数-然而他并不是"><a href="#catch关键字表示使用异常处理程序-exception-handler-捕获异常-括号内的表示异常要处理的类型-花括号内的表示遇到异常所采取的措施-虽然catch长的像个自带定义的函数-然而他并不是" class="headerlink" title="catch关键字表示使用异常处理程序(exception handler)捕获异常,括号内的表示异常要处理的类型,花括号内的表示遇到异常所采取的措施,虽然catch长的像个自带定义的函数,然而他并不是."></a><strong>catch</strong>关键字表示使用异常处理程序(exception handler)<strong>捕获异常</strong>,括号内的表示异常要处理的类型,花括号内的表示遇到异常所采取的措施,虽然catch长的像个自带定义的函数,然而他并不是.</h4><h4 id="try关键字表示其中的代码可能会出现异常-他后面一般跟着一个或多个catch"><a href="#try关键字表示其中的代码可能会出现异常-他后面一般跟着一个或多个catch" class="headerlink" title="try关键字表示其中的代码可能会出现异常,他后面一般跟着一个或多个catch."></a><strong>try</strong>关键字表示其中的代码可能会出现异常,他后面一般跟着一个或多个catch.</h4><p><br><br>如码所示:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">using namespace std;</div><div class="line">double hmean(double a, double b)&#123;</div><div class="line">    if(a == -b)</div><div class="line">        throw &quot;异常:这俩数有毛病&quot;; //异常被触发</div><div class="line">    return 2.0 * a * b /(a + b);</div><div class="line">&#125;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    double x , y, z;</div><div class="line">    cout &lt;&lt; &quot;请输入俩数: &quot;;</div><div class="line">    while(cin &gt;&gt; x &gt;&gt; y)</div><div class="line">    &#123;</div><div class="line">        try &#123;</div><div class="line">           z = hmean(x,y); //try块里的表示需要注意这些代码可能触发异常</div><div class="line">        &#125;</div><div class="line">        catch (const char * s)&#123; //捕捉到异常 程序跳到这儿 发现char类型与 throw后面的字符串匹配</div><div class="line">            cout &lt;&lt; s &lt;&lt; endl;  //匹配之后执行代码块内的代码处理异常</div><div class="line">            cout &lt;&lt; &quot;请重试: &quot;;</div><div class="line">            continue;</div><div class="line">        &#125;</div><div class="line">        cout &lt;&lt; x &lt;&lt; &quot; 和 &quot; &lt;&lt; y &lt;&lt; &quot; 这俩数的调和平均数是: &quot; &lt;&lt; z &lt;&lt; endl;</div><div class="line">        cout &lt;&lt; &quot;输入任意字符串退出: &quot;;</div><div class="line">    &#125;</div><div class="line">    cout &lt;&lt; &quot;bye,再按回车退出&quot; &lt;&lt; endl;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>现在假设异常被触发,hmean()引发异常,被引发的异常是常量字符串:”异常:这俩数有毛病”,于是throw终止函数hmean()的执行,沿着函数调用序列往后查找,发现hmean()函数是从main()中的try块中调用的,于是throw把控制权返回给main函数,程序将在main里寻找<strong>与引发的异常类型所匹配的异常类型处理程序</strong>(说白了就是找参数类型跟throw后面的类型一样的catch块),程序找到唯一匹配的参数为<strong>char*</strong> 的<strong>catch块</strong>:类似下面的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">catch (const char * s)&#123; //捕捉到异常 程序跳到这儿 发现char类型与 throw后面的字符串匹配</div><div class="line">    cout &lt;&lt; s &lt;&lt; endl;  //匹配之后执行代码块内的代码处理异常</div><div class="line">    cout &lt;&lt; &quot;请重试: &quot;;</div><div class="line">    continue;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>于是,程序吧字符串:”异常:这俩数有毛病”赋值给s,然后执行<code>catch(const char* s)</code>内的代码.<br><em>如果函数引发了异常而没有try块或没有匹配的catch时程序将调用abort()函数</em></p>
+<h2 id="将对象作用异常类型"><a href="#将对象作用异常类型" class="headerlink" title="将对象作用异常类型"></a>将对象作用异常类型</h2><p>通常,引发异常的函数将传递一个对象,这就可以通过不同的异常类型来区分不同的函数在不同的情况下引发的异常,另外对象可以携带信息,同时catch块可以根据这些信息来决定采取什么样的措施.<a href="https://github.com/Fydui/MyCpp_Wheel/tree/master/error3" target="_blank" rel="external">请查看代码</a></p>
 
       
 
@@ -256,7 +261,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/05/C++笔记-友元类/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/07/C++笔记-异常/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -270,18 +275,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/07/C++笔记-异常/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++笔记-异常
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/04/C++笔记-嵌套类/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++笔记-嵌套类</div>
+    <a href="/2017/03/05/C++笔记-友元类/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-友元类</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -294,7 +290,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C++笔记-友元类" data-title="C++笔记-友元类" data-url="http://yoursite.com/2017/03/05/C++笔记-友元类/"></div>
+	<div class="ds-thread" data-thread-key="C++笔记-异常" data-title="C++笔记-异常" data-url="http://yoursite.com/2017/03/07/C++笔记-异常/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
