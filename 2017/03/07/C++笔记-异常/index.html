@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:description" content="图片来源: 不好意思本智障找不到了.请在p站搜雪染ちさ..">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fddety00k6j20g40msmyo.jpg">
-<meta property="og:updated_time" content="2017-03-08T14:41:08.948Z">
+<meta property="og:updated_time" content="2017-03-08T14:42:57.036Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-异常">
 <meta name="twitter:description" content="图片来源: 不好意思本智障找不到了.请在p站搜雪染ちさ..">
@@ -179,7 +179,7 @@
 <p>于是,程序吧字符串:”异常:这俩数有毛病”赋值给s,然后执行<code>catch(const char* s)</code>内的代码.<br><em>如果函数引发了异常而没有try块或没有匹配的catch时程序将调用abort()函数</em></p>
 <h2 id="将对象作用异常类型"><a href="#将对象作用异常类型" class="headerlink" title="将对象作用异常类型"></a>将对象作用异常类型</h2><p>通常,引发异常的函数将传递一个对象,这就可以通过不同的异常类型来区分不同的函数在不同的情况下引发的异常,另外对象可以携带信息,同时catch块可以根据这些信息来决定采取什么样的措施.<a href="https://github.com/Fydui/MyCpp_Wheel/tree/master/error3" target="_blank" rel="external">请查看代码</a></p>
 <h2 id="异常规范和C-11"><a href="#异常规范和C-11" class="headerlink" title="异常规范和C++11"></a>异常规范和C++11</h2><p>C++98新增了一种不受待见(最好别用这玩意)的异常规范(exception specification),他长这样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">double harm(double a) throw(bad_thing); //可能会抛出bad_thing异常</div><div class="line">double marm(double) throw();            //不会抛出异常</div></pre></td></tr></table></figure></p>
-<p>throw()部分就是异常规范,他可能出现建造函数原型和函数定义中,他可以包含类型列表.这玩意的作用之一是告诉用户可能需要使用try块(然而直接写注释更方便),另一作用是让编译器添加执行运行阶段的代码,使劲检测是否违反了异常.</p>
+<p>throw()部分就是异常规范,他可能出现在函数原型和函数定义中,他可以包含类型列表.这玩意的作用之一是告诉用户可能需要使用try块(然而直接写注释更方便),另一作用是让编译器添加执行运行阶段的代码,使劲检测是否违反了异常.</p>
 <p>C++11资呲一种特殊的异常规范,使用noexcept指出函数不会引发异常,不过对于这个还是存在争议的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">double marn() noexcept; //marn() 不会抛出异常</div></pre></td></tr></table></figure></p>
 
       
