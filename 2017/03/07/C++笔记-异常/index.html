@@ -15,7 +15,8 @@
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:description" content="图片来源: 不好意思本智障找不到了.请在p站搜雪染ちさ..">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fddety00k6j20g40msmyo.jpg">
-<meta property="og:updated_time" content="2017-03-12T14:11:49.600Z">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/ad4b340bly1fdkg9urbmnj21kw16fgxu.jpg">
+<meta property="og:updated_time" content="2017-03-12T15:06:53.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-异常">
 <meta name="twitter:description" content="图片来源: 不好意思本智障找不到了.请在p站搜雪染ちさ..">
@@ -181,6 +182,16 @@
 <h2 id="异常规范和C-11"><a href="#异常规范和C-11" class="headerlink" title="异常规范和C++11"></a>异常规范和C++11</h2><p>C++98新增了一种不受待见(最好别用这玩意)的异常规范(exception specification),他长这样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">double harm(double a) throw(bad_thing); //可能会抛出bad_thing异常</div><div class="line">double marm(double) throw();            //不会抛出异常</div></pre></td></tr></table></figure></p>
 <p>throw()部分就是异常规范,他可能出现在函数原型和函数定义中,他可以包含类型列表.这玩意的作用之一是告诉用户可能需要使用try块(然而直接写注释更方便),另一作用是让编译器添加执行运行阶段的代码,使劲检测是否违反了异常.</p>
 <p>C++11资呲一种特殊的异常规范,使用noexcept指出函数不会引发异常,不过对于这个还是存在争议的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">double marn() noexcept; //marn() 不会抛出异常</div></pre></td></tr></table></figure></p>
+<h2 id="栈解退"><a href="#栈解退" class="headerlink" title="栈解退"></a>栈解退</h2><p><del>其实一张图就可以解释栈解退不过我还是要哔(chao)哔(xi)两句</del></p>
+<p></p><p>假设try块没有直接调用引发异常的函数,而是调用了对引发异常函数进行调用的函数,则程序将从引发异常的函数直接跳到包含try块的函数.</p>
+<p></p><p> C++是如何处理函数的调用和返回的?</p>
+<blockquote>
+<p>程序将调用函数的指令的地址(返回地址)放到栈中.当被调用的函数执行完毕之后程序将<strong>通过地址</strong>来确定从哪里开始继续执行.函数调用将函数参数也放到了栈中,他们被视为自由变量,如果被调用的函数又调用了另一个函数,那么后者的信息也会被添加到栈中,以此类推.当函数结束时,程序流程将跳到<strong>调用函数时储存的地址处</strong>(也就是返回到调用他的那个函数里),同时<strong>栈顶元素被释放</strong>,以此类推.并在结束时释放自由变量,如果自动变量是类对象,那么他的<strong>析构函数将被调用</strong>(如果有析构函数的话).</p>
+<p>现在假设<strong>异常被触发</strong>(程序终止),则程序也将释放栈中的内存,但不会在释放栈的第一个返回地址后停止,而是继续释放栈,直到找到一个<strong>位于try块中的返回地址</strong>才停止.随后控制权将转到块尾的<strong>catch里</strong>,而不是调用函数后面的第一条语句,这个个过程被称为栈解退.</p>
+<p>然而栈解退有个和函数返回一样的特征. 对于栈中的自动类型对象,类的析构函数将被调用.不同的是,函数返回仅仅处理放在栈中的对象,而throw则是处理try块和throw之间<strong>整个函数调用序列放在栈中的对象</strong>.</p>
+</blockquote>
+<p>如果没有栈解退这种特性,则引发异常后,对于中间函数调用放在栈中的对象,他们的析构函数不会被调用.</p>
+<p>(现在上图: <em>throw 与 return</em><br><img src="http://wx3.sinaimg.cn/mw690/ad4b340bly1fdkg9urbmnj21kw16fgxu.jpg" alt="栈解退"></p>
 
       
 
