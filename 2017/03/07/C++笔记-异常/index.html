@@ -16,7 +16,7 @@
 <meta property="og:description" content="图片来源: 不好意思本智障找不到了.请在p站搜雪染ちさ..">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fddety00k6j20g40msmyo.jpg">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/ad4b340bly1fdkg9urbmnj21kw16fgxu.jpg">
-<meta property="og:updated_time" content="2017-03-12T15:06:53.938Z">
+<meta property="og:updated_time" content="2017-03-12T15:08:01.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-异常">
 <meta name="twitter:description" content="图片来源: 不好意思本智障找不到了.请在p站搜雪染ちさ..">
@@ -187,8 +187,7 @@
 <p></p><p> C++是如何处理函数的调用和返回的?</p>
 <blockquote>
 <p>程序将调用函数的指令的地址(返回地址)放到栈中.当被调用的函数执行完毕之后程序将<strong>通过地址</strong>来确定从哪里开始继续执行.函数调用将函数参数也放到了栈中,他们被视为自由变量,如果被调用的函数又调用了另一个函数,那么后者的信息也会被添加到栈中,以此类推.当函数结束时,程序流程将跳到<strong>调用函数时储存的地址处</strong>(也就是返回到调用他的那个函数里),同时<strong>栈顶元素被释放</strong>,以此类推.并在结束时释放自由变量,如果自动变量是类对象,那么他的<strong>析构函数将被调用</strong>(如果有析构函数的话).</p>
-<p>现在假设<strong>异常被触发</strong>(程序终止),则程序也将释放栈中的内存,但不会在释放栈的第一个返回地址后停止,而是继续释放栈,直到找到一个<strong>位于try块中的返回地址</strong>才停止.随后控制权将转到块尾的<strong>catch里</strong>,而不是调用函数后面的第一条语句,这个个过程被称为栈解退.</p>
-<p>然而栈解退有个和函数返回一样的特征. 对于栈中的自动类型对象,类的析构函数将被调用.不同的是,函数返回仅仅处理放在栈中的对象,而throw则是处理try块和throw之间<strong>整个函数调用序列放在栈中的对象</strong>.</p>
+<p>现在假设<strong>异常被触发</strong>(程序终止),则程序也将释放栈中的内存,但不会在释放栈的第一个返回地址后停止,而是继续释放栈,直到找到一个<strong>位于try块中的返回地址</strong>才停止.随后控制权将转到块尾的<strong>catch里</strong>,而不是调用函数后面的第一条语句,这个个过程被称为栈解退.<br><br><br>然而栈解退有个和函数返回一样的特征. 对于栈中的自动类型对象,类的析构函数将被调用.不同的是,函数返回仅仅处理放在栈中的对象,而throw则是处理try块和throw之间<strong>整个函数调用序列放在栈中的对象</strong>.</p>
 </blockquote>
 <p>如果没有栈解退这种特性,则引发异常后,对于中间函数调用放在栈中的对象,他们的析构函数不会被调用.</p>
 <p>(现在上图: <em>throw 与 return</em><br><img src="http://wx3.sinaimg.cn/mw690/ad4b340bly1fdkg9urbmnj21kw16fgxu.jpg" alt="栈解退"></p>
