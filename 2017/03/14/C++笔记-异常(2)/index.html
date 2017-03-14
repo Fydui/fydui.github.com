@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | 果冻の随笔</title>
+  <title>C++笔记-异常(2) | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="果冻の随笔">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="封面来源">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++笔记-异常(2)">
+<meta property="og:url" content="http://yoursite.com/2017/03/14/C++笔记-异常(2)/index.html">
 <meta property="og:site_name" content="果冻の随笔">
+<meta property="og:description" content="封面来源">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/ad4b340bly1fddetuzyzej21kw28cnd6.jpg">
+<meta property="og:updated_time" content="2017-03-14T14:48:44.356Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="果冻の随笔">
+<meta name="twitter:title" content="C++笔记-异常(2)">
+<meta name="twitter:description" content="封面来源">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/ad4b340bly1fddetuzyzej21kw28cnd6.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -133,214 +139,169 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-C++笔记-异常(2)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      C++笔记-异常(2)
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/14/C++笔记-异常(2)/" class="archive-article-date">
+
+        <a href="/2017/03/14/C++笔记-异常(2)/" class="archive-article-date">
   	<time datetime="2017-03-14T14:46:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-14</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/14/C++笔记-异常(2)/">C++笔记-异常(2)</a>
-    </h1>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://wx3.sinaimg.cn/mw690/ad4b340bly1fddetuzyzej21kw28cnd6.jpg" alt="志雄理科"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=44615370" target="_blank" rel="external">封面来源</a><br><a id="more"></a></p>
+<h2 id="其他异常特型"><a href="#其他异常特型" class="headerlink" title="其他异常特型"></a>其他异常特型</h2><p>(一些碎碎念<br>　　虽然throw-catch机制类似于函数参数和返回机制,但还是有所不同. 其一便是函数中的返回语句是将控制权返回到调用函数的函数,但throw语句将向上寻找,并将控制权返回给一个能够捕获相应异常的try-catch组合.</p>
+<p>另一个不同便是,引发异常是编译器总是创建一个临时拷贝.举个栗子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class problem&#123;...&#125;</div><div class="line">void fun()  throw (problem) // 表示函数只能抛出problem类型的异常.更简单的写法: throw problem()</div><div class="line">&#123;</div><div class="line">    if(...)&#123;</div><div class="line">        problem opps;</div><div class="line">        throw oops;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">...</div><div class="line">try&#123;</div><div class="line">    super();</div><div class="line">&#125;</div><div class="line">catch(problem &amp;p)&#123; // 这里的p指向的是oops的副本而不是其本身,因为函数执行完毕之后 oops当不复存在;</div><div class="line">    ....</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>对于接在函数名后面的throw(something):<br>　　void fun() throw();                 //表示fun函数不允许抛出任何异常，即fun函数是异常安全的<br>　　void fun() throw(…);              //表示fun函数可以抛出任何形式的异常<br>　　void fun() throw(exceptionType);    // 表示fun函数只能抛出exceptionType类型的异常</p>
+</blockquote>
+<p>　　使用引用传递参数更重要的原因是,基类可以使用派生类对象.现在假设有个异常类层次结构,冰妖分别处理不同的异常类型,则使用基类引用能够捕获任何异常对象;而使用派生类对象则只能捕获他所属类以及他的派生类的对象.</p>
+<p>　　因为基类可以使会用派生类对象,而且引发异常的对象将被第一个与之匹配的catch块捕获,那么所以catch块的排列顺序应该与派生类顺序相反:<br><del>这又是一个一不留神就会留下bug的功能</del><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">class bad_1&#123;...&#125;;</div><div class="line">class bad_2 : public bad_1&#123;..&#125;;</div><div class="line">class bad_3 : public bad_2&#123;...&#125;</div><div class="line">...</div><div class="line">void duper()</div><div class="line">&#123;</div><div class="line">    ...</div><div class="line">    if(...) throw bad_1();</div><div class="line">    if(...) throw bad_2();</div><div class="line">    if(...) throw bad_3();</div><div class="line">&#125;</div><div class="line">...</div><div class="line">try &#123;</div><div class="line">    duper();</div><div class="line">&#125;</div><div class="line">catch (bad_3 &amp; b3)&#123;...&#125;</div><div class="line">catch (bad_2 &amp; b2)&#123;...&#125;</div><div class="line">catch (bad_1 &amp; b1)&#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p>如果将<code>catch(bad_1 &amp; b1)</code>放在最前面,他将捕获 bad_1,bad_2,bad_3, 只能通过相反的顺序排列,bad_3才会被bad_3处理程序所捕获.</p>
+<blockquote>
+<p>　　所以说,如果有一个异常类继承层次结构,应该这样排列catch块: 将捕获位于层次结构最下面的异常类的catch语句放在最前面,将捕获基类异常的catch语句放在最后面;<del>也就是倒着写</del></p>
+</blockquote>
+<hr>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/14/C++笔记-异常(2)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/07/C++笔记-异常/" class="archive-article-date">
-  	<time datetime="2017-03-07T15:14:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/07/C++笔记-异常/">C++笔记-异常</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/05/C++笔记-友元类/" class="archive-article-date">
-  	<time datetime="2017-03-05T15:07:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/05/C++笔记-友元类/">C++笔记-友元类</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/04/C++笔记-嵌套类/" class="archive-article-date">
-  	<time datetime="2017-03-04T15:04:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/04/C++笔记-嵌套类/">C++笔记-嵌套类</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/08/C++笔记-成员模板&将模板用作参数/" class="archive-article-date">
-  	<time datetime="2017-01-08T15:43:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/08/C++笔记-成员模板&将模板用作参数/">C++笔记-成员模板&amp;将模板用作于参数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/06/C++笔记-模板的具体化/" class="archive-article-date">
-  	<time datetime="2017-01-06T11:32:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/06/C++笔记-模板的具体化/">C++笔记-模板的具体化</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/03/07/C++笔记-异常/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-异常</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
+</nav>
 
-    
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="C++笔记-异常(2)" data-title="C++笔记-异常(2)" data-url="http://yoursite.com/2017/03/14/C++笔记-异常(2)/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fydui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -364,8 +325,8 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
