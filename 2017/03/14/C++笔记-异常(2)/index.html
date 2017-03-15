@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:description" content="封面来源">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/ad4b340bly1fddetuzyzej21kw28cnd6.jpg">
-<meta property="og:updated_time" content="2017-03-14T14:48:44.356Z">
+<meta property="og:updated_time" content="2017-03-15T14:51:37.974Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-异常(2)">
 <meta name="twitter:description" content="封面来源">
@@ -170,6 +170,32 @@
 <p>　　所以说,如果有一个异常类继承层次结构,应该这样排列catch块: 将捕获位于层次结构最下面的异常类的catch语句放在最前面,将捕获基类异常的catch语句放在最后面;<del>也就是倒着写</del></p>
 </blockquote>
 <hr>
+<h2 id="exception类"><a href="#exception类" class="headerlink" title="exception类"></a>exception类</h2><blockquote>
+<p>　　exception头文件定义了exception类,C++可以把它用作于其他异常类的基类.使代码可以引发exception异常,他有一个名曰what()的虚方法,因为是个虚方法所以你可以根据你的实现重定义他.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#include &lt;exception&gt;</div><div class="line">class bad_hmean : public std:: exception</div><div class="line">&#123;</div><div class="line">    public:</div><div class="line">        const char * what() &#123;return &quot;不要总想搞个大新闻&quot;;&#125;</div><div class="line">&#125;</div><div class="line">//如果不想以不同的方式处理这些派生类的异常,可以在同一个基类中捕获他们:</div><div class="line">try&#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line">catch(std::exception &amp; e)&#123;</div><div class="line">    cout &lt;&lt; e.what() &lt;&lt; endl;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　当然你也可以分开捕获他们,<del>去吧大师球</del></p>
+<hr>
+<h3 id="1-stdexcept异常类"><a href="#1-stdexcept异常类" class="headerlink" title="1.stdexcept异常类"></a>1.stdexcept异常类</h3><p>　　头文件sedexcept定义了几个异常类.比如logic_error和runtime_error类,他们都是以公有集成的方式从exception类继承过来的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class logic_error: public exception&#123;</div><div class="line">    public:</div><div class="line">    except logic_error(const string &amp; what_arg);</div><div class="line">&#125;</div><div class="line">class runtime_error: public exception&#123;</div><div class="line">    public:</div><div class="line">    except runtime_error(const string &amp; what_arg);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//注意 这些类的构造函数都接受一个string对象作为参数,他们提供了what()方法并且返回C-风格字符串</div></pre></td></tr></table></figure></p>
+<p>　　 这两个新的类又被作为两个派生类系列的基类,其中logic_error类描述了典型的逻辑错误,这些逻辑错误是可以通过合理编程避免的,但还是可能发生.<br>下面每个类的名称指出了他们用于报告的错误类型:</p>
+<p><strong>logic_error类:</strong></p>
+<ul>
+<li>domain_error:</li>
+<li>invalid_argument:</li>
+<li>length_error</li>
+<li>out_of_bounds:</li>
+</ul>
+<p><em>doormain_error</em>:<br>　　数学函数值域(range)和定义域(domain),定义域由函数可能的参数组成,值域由函数可能的返回值组成,函数在输入参数或返回值不在制定范围的情况下将会引发domain_error异常;</p>
+<p><em>incalid_argument</em>:<br>　　异常incalid_argument指出了给函数传递了一个意料之外的值.这个和定义域(domain)都有点不一样.例如如果希望输入的每个字符串要么是0要么是1,那么当输入的字符串中包含其他字符的时候,incalid_argument会被触发.<br>　　<br><em>length_error</em>:<br>　　异常length_error指出了由于没有足够的空间类执行所需操作.比如string类的append()方法在合并得到的字符串长度超了的时候;<br>　　<br><em>out_of_bounds</em>:<br>　　异常out_of_bounds通常用于指示索引错误,比如定义了个数组类,其operator()[]在使用的索引无效时引发out_of_bounds异常</p>
+<p></p><p><br><strong>runtime_error类</strong><br>这个类描述了可能在运行期间发生的难以预料的错误:</p>
+<ul>
+<li>range_error:</li>
+<li>overflow_error:</li>
+<li>underflow_error:</li>
+</ul>
+<p>下溢(underflow)<br>　　存在浮点类型可以表示的最小非零值,当计算结果小于这个值的时候,将导致下溢错误.<br>上溢(overflow)<br>　　存在计算结果超过了某种类型能够表示的最大数值时,将导致上溢.<br>对于计算结果可能不在函数允许范围之内,但没有发生上下溢的时候可以用range_error异常;</p>
+<p>　　继承关系可以使程序员一起处理他们(如果你愿意的话):<br>　　下面代码分别处理每种异常,先单独捕获out_of_bounds,然后统一不过其他logic_error系列异常,最后统一不过exception异常,runtime_error,以及其他从exception派生而来的异常:<br>　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">try&#123;</div><div class="line">...</div><div class="line">&#125;</div><div class="line">catch(out_of_bounds &amp; oe)&#123;...&#125;//捕获out_of_bounds</div><div class="line">catch(logic_error &amp; oe)&#123;...&#125;//捕获logic_error类</div><div class="line">catch(exception &amp; oe)&#123;...&#125;//捕获runtime_error,exception,和其他从exception派生而来的异常</div><div class="line">//↑↑如果你很不爽这么做的话可以给runtime_error,exception派生出来俩异常类,使异常类可以归入同一个继承层次中.</div></pre></td></tr></table></figure></p>
+<p>　　</p>
 
       
 
