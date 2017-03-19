@@ -135,6 +135,61 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C++笔记-异常(3)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/19/C++笔记-异常(3)/">C++笔记-异常(3)</a>
+    </h1>
+  
+
+        <a href="/2017/03/19/C++笔记-异常(3)/" class="archive-article-date">
+  	<time datetime="2017-03-19T14:51:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-19</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fddetu6jbvj215o15o7aj.jpg" alt="志熊理科"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=34688373">图片来源</a></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a>
+        <a class="article-more-a"  href="/2017/03/19/C++笔记-异常(3)/#more">more >></a>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/19/C++笔记-异常(3)/#more">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-C++笔记-异常(2)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -335,66 +390,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/03/04/C++笔记-嵌套类/#more">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-C++笔记-异常(3)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/25/C++笔记-异常(3)/">C++笔记-异常(3)</a>
-    </h1>
-  
-
-        <a href="/2017/02/25/C++笔记-异常(3)/" class="archive-article-date">
-  	<time datetime="2017-02-25T14:51:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-25</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fddetu6jbvj215o15o7aj.jpg" alt="志熊理科"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=34688373" target="_blank" rel="external">图片来源</a></p>
-<hr>
-<h2 id="异常何时会迷失方向"><a href="#异常何时会迷失方向" class="headerlink" title="异常何时会迷失方向"></a>异常何时会迷失方向</h2><p>异常被引发之后,有两种情况会导致问题:</p>
-<h4 id="意外异常-unexpected-exception"><a href="#意外异常-unexpected-exception" class="headerlink" title="意外异常(unexpected exception):"></a>意外异常(unexpected exception):</h4><p>　　如果他是在带异常规范的函数中引发的,则必须与规范列表中的某种异常匹配(在继承层次结构中,类类型与这个类机器派生类的对象匹配)<del>就是得有个catch块能跟你写的异常符合/能接受你那异常</del>,否则则成为意外异常.(<del>C++11已经摒弃这东西了,然而有的代码还在用它</del>)
-　　</p>
-<h4 id="未捕获异常-uncaught-exception"><a href="#未捕获异常-uncaught-exception" class="headerlink" title="未捕获异常(uncaught exception):"></a>未捕获异常(uncaught exception):</h4><p>　　如果异常不是在函数中引发,则必须捕获他.如果没有捕获(在没有try块或没有catch块时,将出现)<br>　　<br><em>在默认情况下,出现上述情况程序将被终止,然而可以修改程序对上述异常的反应…</em><br>未捕获异常不会导致程序立刻停止,首先会调用terminate()函数,terminate()调用abort()函数,所以说可以修改terminate()调用的函数(不让他调用abort()).可以使用set_terminate()函数.(在#include<exception>中):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">typedef void (*terminate_handler)();</div><div class="line">terminate_handler set_terminate(terminate_handler f) throw(); //C++ 98</div><div class="line">terminate_handler set_terminate(terminate_handler f) noexcept; //C++ 11</div><div class="line">void terminate(); //C++ 98</div><div class="line">void terminate() noexcept; // C++ 11</div></pre></td></tr></table></figure></exception></p>
-<p>　　typedef使得terminate_handler称为一个纸箱没有参数和返回值的函数的指针.terminate_handler将他的名字(地址)作为参数,并且返回这个函数的地址,如果set_terminate被多次调用,则terminate将调用最后一次set_terminate调用设置的函数.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/25/C++笔记-异常(3)/#more">展开全文 >></a>
         </p>
       
 

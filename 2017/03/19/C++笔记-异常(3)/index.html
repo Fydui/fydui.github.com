@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++笔记-嵌套类 | 果冻の随笔</title>
+  <title>C++笔记-异常(3) | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="封面来源">
+  <meta name="description" content="图片来源">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++笔记-嵌套类">
-<meta property="og:url" content="http://yoursite.com/2017/03/04/C++笔记-嵌套类/index.html">
+<meta property="og:title" content="C++笔记-异常(3)">
+<meta property="og:url" content="http://yoursite.com/2017/03/19/C++笔记-异常(3)/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:description" content="封面来源">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fddettqh57j20jc0jaqad.jpg">
-<meta property="og:updated_time" content="2017-03-07T12:04:03.942Z">
+<meta property="og:description" content="图片来源">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fddetu6jbvj215o15o7aj.jpg">
+<meta property="og:updated_time" content="2017-03-19T14:48:18.517Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++笔记-嵌套类">
-<meta name="twitter:description" content="封面来源">
-<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fddettqh57j20jc0jaqad.jpg">
+<meta name="twitter:title" content="C++笔记-异常(3)">
+<meta name="twitter:description" content="图片来源">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fddetu6jbvj215o15o7aj.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -139,38 +139,58 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++笔记-嵌套类" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C++笔记-异常(3)" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++笔记-嵌套类
+      C++笔记-异常(3)
     </h1>
   
 
-        <a href="/2017/03/04/C++笔记-嵌套类/" class="archive-article-date">
-  	<time datetime="2017-03-04T15:04:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-04</time>
+        <a href="/2017/03/19/C++笔记-异常(3)/" class="archive-article-date">
+  	<time datetime="2017-03-19T14:51:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-19</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://wx2.sinaimg.cn/mw690/ad4b340bly1fddettqh57j20jc0jaqad.jpg" alt="志熊理科"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=26815954" target="_blank" rel="external">封面来源</a><br><a id="more"></a></p>
+        <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fddetu6jbvj215o15o7aj.jpg" alt="志熊理科"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=34688373" target="_blank" rel="external">图片来源</a></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="异常何时会迷失方向"><a href="#异常何时会迷失方向" class="headerlink" title="异常何时会迷失方向"></a>异常何时会迷失方向</h2><p>异常被引发之后,有两种情况会导致问题:</p>
+<h4 id="意外异常-unexpected-exception"><a href="#意外异常-unexpected-exception" class="headerlink" title="意外异常(unexpected exception):"></a>意外异常(unexpected exception):</h4><p>　　如果异常是在带异常规范的函数中引发的,则必须与规范列表中的某种异常匹配(在继承层次结构中,类类型与这个类机器派生类的对象匹配)<del>就是得有个catch块能跟你写的异常符合/能接受你那异常</del>,否则则成为意外异常.(<del>C++11已经摒弃这东西了,然而有的代码还在用它</del>)<br>　　举个正确的栗子:<br>　　通过给函数制定异常规范,可以让函数的用户知道要捕获那些异常.<del>放屁,真水</del><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">　　double Argh(doouble,double) throw(out_of_bounds)</div><div class="line">　　&#123;</div><div class="line">　　    ...</div><div class="line">　　    try&#123;</div><div class="line">　　        x = Argh(a,b);</div><div class="line">　　    &#125;</div><div class="line">　　    catch(out_of_bounds &amp; ex)&#123;</div><div class="line">　　        ...</div><div class="line">　　    &#125;</div><div class="line">　　    ..</div><div class="line">　　&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<p>　　</p>
+<h4 id="未捕获异常-uncaught-exception"><a href="#未捕获异常-uncaught-exception" class="headerlink" title="未捕获异常(uncaught exception):"></a>未捕获异常(uncaught exception):</h4><p>　　如果异常不是在函数中引发,则必须捕获他.如果没有捕获(在没有try块或没有catch块时,将出现)<br>　　<br><em>在默认情况下,出现上述情况程序将被终止,然而可以修改程序对上述异常的反应…</em><br>未捕获异常不会导致程序立刻停止,首先会调用terminate()函数,terminate()会调用abort()函数,但可以修改terminate()调用的函数(不让他调用abort()).可以使用set_terminate()函数来修改.(在#include<exception>中):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">typedef void (*terminate_handler)();</div><div class="line">terminate_handler set_terminate(terminate_handler f) throw(); //C++ 98</div><div class="line">terminate_handler set_terminate(terminate_handler f) noexcept; //C++ 11</div><div class="line">void terminate(); //C++ 98</div><div class="line">void terminate() noexcept; // C++ 11</div></pre></td></tr></table></figure></exception></p>
+<p>　　typedef使得terminate_handler成为一个指向没有参数和返回值的函数的指针.set_terminate()将这个不带任何参数且返回类型为void的函数的名字(地址)作为参数,并且返回这个函数的地址,如果set_terminate()被多次调用,则terminate()将调用最后一次set_terminate调用设置的函数.<br>　　举个栗子:一个未被捕获的异常导致程序打印一条消息,然后调用exit()函数.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#include&lt;exception&gt;</div><div class="line">using namespace std;</div><div class="line"></div><div class="line">void myQuit()</div><div class="line">&#123;</div><div class="line">    cout &lt;&lt; &quot;由于出现未捕获异常,程序终止&quot;;</div><div class="line">    exit(5);</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main&#123; </div><div class="line">    set_terminate(fun);//如果出现未捕获异常,将终止操作指定为调用fun();</div><div class="line">    throw;              //触发未捕获异常</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>现在如果程序引发未捕获异常,则将调用terminate(),而terminate()将会调用myQuit().</p>
+<hr>
 <blockquote>
-<p>在(quan)神(shi)奇(keng)的C++中,放在另一个类中声明的类被称为<strong>嵌套类(nested class)</strong>,它通过提供新的类型类作用域来避免名称混乱.包含类的成员和函数可以创建和使用被包含类的对象; 仅当嵌套类声明位于包含类的公有部分时,才可以在<strong>包含类外</strong>通过作用<strong>域解析运算符</strong>使用<strong>嵌套类</strong>;</p>
+<p>　　原则上,异常规范应该包含函数调用的其他函数所引发的异常.比如A()调用了B(),而B()可能引发retor对象异常,则A(),B()的异常规范中都应该包含retort.<br>　　如果函数引发了其异常规范中没有的异常呢?这样处理起来就比较繁琐,所以C++11也将其摒弃.<del>所以说这玩意咋看都像是坑</del></p>
 </blockquote>
-<p>不不不,这个和包含不一样,包含是将一个类的类对象作为另一个类的类成员; 而嵌套类则是定义了一种类型且<strong>仅在包含嵌套类声明的类中有效</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//在包含类的私有部分声明了个嵌套类</div><div class="line">class Queue</div><div class="line">&#123;</div><div class="line">private:</div><div class="line">    class Node</div><div class="line">    &#123;</div><div class="line">        public:</div><div class="line">            Node();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>使用两次作用域解析运算符就可以定义Node()辣:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Queue::Node::Node()&#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p>　　那么在这种情况下,行为与未捕获异常极其相似,程序将调用unexpected().这函数将调用terminate(),后者在默认情况下调用Abort().跟terminate()一样,有一个可以修改其行为的set_terminate()一样,也有一个用于修改unexpected()的set_unexpected():<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">typedef void (*unexpected_handler)();</div><div class="line">unexpected_handler set_unexpected(unexpected_handler f) throw(); //C++98</div><div class="line">unexpected_handler set_unexpected(unexpected_handler f)  noexcept; //C++11</div><div class="line">void unexpected(); //C++98</div><div class="line">void unexpected() noexcept;//C++0x</div></pre></td></tr></table></figure></p>
+<p>然而set_unexpected()比set_terminate()更加严格,unexpected_handler函数可以:</p>
+<ul>
+<li>通过调用terminate()(默认行为).abort(),exit()等来终止程序</li>
+<li>引发异常<ul>
+<li>如果新引发的异常原来的相匹配,则程序将开始寻找引发新异常的函数规范;</li>
+<li>如果新引发的异常跟原来的不一样,且异常规范中没包括<code>sed::bad_exception</code>则将调用terminate().</li>
+<li>如果新引发的异常跟原来的不一样,且异常规范中包括了<code>sed::bad_exception</code>则不匹配的异常会被<code>sed::bad_exception</code>异常取代.</li>
+</ul>
+</li>
+</ul>
 <hr>
-<h2 id="嵌套类和访问权限"><a href="#嵌套类和访问权限" class="headerlink" title="嵌套类和访问权限"></a>嵌套类和访问权限</h2><p>如果嵌套类是在另一个类的<strong>私有部分</strong>声明的,则只有包含他的类知道他的存在,且对于从包含类派生出来的类来讲,因为派生类不能直接访问基类私有部分,所以嵌套类也是不可见的.</p>
-<p>如果嵌套类是在另一个类的<strong>保护部分</strong>声明的,则对于包含他的类来说是可见的,而对于外部来讲嵌套类是不可见的,但后者的派生类可以直接创建这种类对象.</p>
-<p>如果嵌套类是在另一个类的<strong>公有部分</strong>声明的,因为他是公有的,则对于包含他的类,对与包含他的类的派生类以及外部世界都可以使用它.</p>
-<h3 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h3><p>在Queue类中声明Node类并没有赋予Queue类任何访问权限,Node也没有赋予Queue任何访问权限,所以Queue只能显示的访问Node成员,所有我将Noede类所有成员声明为公有,不过没关系,虽然Queue的方法可以直接访问Node类,但被Queue声明为私有的Node对于外部来讲是不可见的.</p>
-<hr>
-<h2 id="模板类中的嵌套"><a href="#模板类中的嵌套" class="headerlink" title="模板类中的嵌套"></a>模板类中的嵌套</h2><p>(并不会发生什么奇怪的问题; <a href="https://github.com/Fydui/MyCpp_Wheel/tree/master/queueTp" target="_blank" rel="external">完整代码</a></p>
+<h2 id="有关异常的注意事项"><a href="#有关异常的注意事项" class="headerlink" title="有关异常的注意事项"></a>有关异常的注意事项</h2><ul>
+<li>使用异常会降低程序运行速度.(<del>废话</del></li>
+<li>异常规范不适用于模板. 因为模板函数引发的异常随特定的具体化而异.</li>
+<li>异常和动态内存分配并非总能协同工作</li>
+</ul>
+<h4 id="动态内存分配和异常"><a href="#动态内存分配和异常" class="headerlink" title="动态内存分配和异常:"></a>动态内存分配和异常:</h4><p>正常:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">void fun()&#123;</div><div class="line">    string mesg(&quot;Boy Next Door&quot;);</div><div class="line">    ...</div><div class="line">    if(..) throw exception();</div><div class="line">    ...</div><div class="line">    return;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　当函数结束时,将为mesg调用string的析构函数,虽然throw过早的终止了函数,但因为栈解退的存在使得析构函数仍然被调用完成清理.</p>
+<p>有瑕疵:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">void fun(int n)&#123;</div><div class="line">    string * mesg = new string[n];</div><div class="line">    ...</div><div class="line">    if(..) throw exception();</div><div class="line">    ...</div><div class="line">    delete [] mesg;</div><div class="line">    return;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　这里有个瑕疵: 当栈解退时,将删除栈中的变量mesg,但函数过早的终止意味着句尾的<code>delete [] mesg;</code>被忽略.指针虽然没了,但内存还没被释放且不可访问…这就容易造成一些问题..<br>　　<br>修改版:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">void fun(int n)&#123;</div><div class="line">    string * mesg = new string[n];</div><div class="line">    ...</div><div class="line">    try&#123;</div><div class="line">        if(..)</div><div class="line">            throw exception(); //捕获异常</div><div class="line">    &#125;</div><div class="line">    catch(exception &amp; e)&#123;</div><div class="line">        delete [] mesg; //清理</div><div class="line">        throw;          //重新引发</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">    delete [] mesg;</div><div class="line">    return;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><em>然而可以用智能指针解决该问题</em></p>
 
       
 
@@ -255,7 +275,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/04/C++笔记-嵌套类/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/19/C++笔记-异常(3)/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -269,18 +289,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/05/C++笔记-友元类/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++笔记-友元类
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/01/08/C++笔记-成员模板&将模板用作参数/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++笔记-成员模板&amp;将模板用作于参数</div>
+    <a href="/2017/03/14/C++笔记-异常(2)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-异常(2)</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -293,7 +304,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C++笔记-嵌套类" data-title="C++笔记-嵌套类" data-url="http://yoursite.com/2017/03/04/C++笔记-嵌套类/"></div>
+	<div class="ds-thread" data-thread-key="C++笔记-异常(3)" data-title="C++笔记-异常(3)" data-url="http://yoursite.com/2017/03/19/C++笔记-异常(3)/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
