@@ -6,14 +6,47 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/3 | 果冻の随笔</title>
+  <title>C++笔记-类型转换运算符&amp;友元,异常の总结 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="果冻の随笔">
-<meta property="og:url" content="http://yoursite.com/archives/2017/03/index.html">
+  <meta name="description" content="图片来源
+
+类型转换运算符　　C++对于类型转换菜组更严格的限制.并添加了四个类型转换运算符:
+
+dynamic_cast
+const_cast
+static_cast
+reinterpret_cast;
+
+　　dynamic_cast运算符前面介绍过.假设有俩类High和Low,而ph和pl的类型分别为High和Low,则仅当Low是High的可访问基类(直接或者间接)时,下述语句才能将Low*">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++笔记-类型转换运算符&友元,异常の总结">
+<meta property="og:url" content="http://yoursite.com/2017/03/23/C++笔记-类型转换运算符&友元,异常的总结/index.html">
 <meta property="og:site_name" content="果冻の随笔">
+<meta property="og:description" content="图片来源
+
+类型转换运算符　　C++对于类型转换菜组更严格的限制.并添加了四个类型转换运算符:
+
+dynamic_cast
+const_cast
+static_cast
+reinterpret_cast;
+
+　　dynamic_cast运算符前面介绍过.假设有俩类High和Low,而ph和pl的类型分别为High和Low,则仅当Low是High的可访问基类(直接或者间接)时,下述语句才能将Low*">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4gn865qj21kw28g7pa.jpg">
+<meta property="og:updated_time" content="2017-03-23T14:52:16.475Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="果冻の随笔">
+<meta name="twitter:title" content="C++笔记-类型转换运算符&友元,异常の总结">
+<meta name="twitter:description" content="图片来源
+
+类型转换运算符　　C++对于类型转换菜组更严格的限制.并添加了四个类型转换运算符:
+
+dynamic_cast
+const_cast
+static_cast
+reinterpret_cast;
+
+　　dynamic_cast运算符前面介绍过.假设有俩类High和Low,而ph和pl的类型分别为High和Low,则仅当Low是High的可访问基类(直接或者间接)时,下述语句才能将Low*">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4gn865qj21kw28g7pa.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -133,246 +166,170 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-C++笔记-类型转换运算符&amp;友元,异常的总结" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      C++笔记-类型转换运算符&amp;友元,异常の总结
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/23/C++笔记-类型转换运算符&友元,异常的总结/" class="archive-article-date">
+
+        <a href="/2017/03/23/C++笔记-类型转换运算符&友元,异常的总结/" class="archive-article-date">
   	<time datetime="2017-03-23T14:51:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-23</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/23/C++笔记-类型转换运算符&友元,异常的总结/">C++笔记-类型转换运算符&amp;友元,异常の总结</a>
-    </h1>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4gn865qj21kw28g7pa.jpg" alt="霞之丘诗羽"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=49973992" target="_blank" rel="external">图片来源</a></p>
+<hr>
+<h1 id="类型转换运算符"><a href="#类型转换运算符" class="headerlink" title="类型转换运算符"></a>类型转换运算符</h1><p>　　C++对于类型转换菜组更严格的限制.并添加了四个类型转换运算符:</p>
+<ul>
+<li>dynamic_cast</li>
+<li>const_cast</li>
+<li>static_cast</li>
+<li>reinterpret_cast;</li>
+</ul>
+<p>　　<strong>dynamic_cast</strong>运算符前面介绍过.假设有俩类High和Low,而ph和pl的类型分别为High<em>和Low</em>,则仅当Low是High的可访问基类(直接或者间接)时,下述语句才能将Low*指针赋给pl:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pl = dynamic_cast&lt;Low*&gt;ph;</div></pre></td></tr></table></figure></p>
+<p>该运算符的作用是能够在类层次结构中进行向上类型转换.</p>
+<p>　　<strong>const_cast</strong>运算符只有一种用途的类型转换,即改变值为const或volatile特征:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const_cast&lt;type-name&gt;(expression)</div></pre></td></tr></table></figure></p>
+<p>如果类型的其他地方也被修改则上述类型将出错.除了cosnt或volatile特征(有或无)可以不同外,type_name和expression的类型必须相同.再次假设High和Low:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">High bar;</div><div class="line">const High * pbar = &amp;bar;</div><div class="line">...</div><div class="line">High * pb = const_cast&lt;High*&gt;(pbar); //没毛病,将删除pbar的const标签</div><div class="line">const Low * pl = const_cast&lt;const Low*&gt;(pbar);//不行,因为他尝试将const High*改为const Low*</div></pre></td></tr></table></figure></p>
+<p>然而其实也可以不用const_cast:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">High bar;</div><div class="line">const High * pbar = &amp;bar;</div><div class="line">...</div><div class="line">High * pb = (High *)(pbar);</div><div class="line">Low * pl = (Low *)(pbar);</div></pre></td></tr></table></figure></p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/23/C++笔记-类型转换运算符&友元,异常的总结/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/20/C++笔记-RTTI/" class="archive-article-date">
-  	<time datetime="2017-03-20T14:53:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/20/C++笔记-RTTI/">C++笔记-RTTI(运行阶段类型识别:Runtime Type Identification)</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/19/C++笔记-异常(3)/" class="archive-article-date">
-  	<time datetime="2017-03-19T14:51:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/19/C++笔记-异常(3)/">C++笔记-异常(3)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/14/C++笔记-异常(2)/" class="archive-article-date">
-  	<time datetime="2017-03-14T14:46:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/14/C++笔记-异常(2)/">C++笔记-异常(2)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/07/C++笔记-异常/" class="archive-article-date">
-  	<time datetime="2017-03-07T15:14:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/07/C++笔记-异常/">C++笔记-异常</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/05/C++笔记-友元类/" class="archive-article-date">
-  	<time datetime="2017-03-05T15:07:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/05/C++笔记-友元类/">C++笔记-友元类</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/04/C++笔记-嵌套类/" class="archive-article-date">
-  	<time datetime="2017-03-04T15:04:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/04/C++笔记-嵌套类/">C++笔记-嵌套类</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/03/20/C++笔记-RTTI/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-RTTI(运行阶段类型识别:Runtime Type Identification)</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
+</nav>
 
-    
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="C++笔记-类型转换运算符&amp;友元,异常的总结" data-title="C++笔记-类型转换运算符&amp;友元,异常の总结" data-url="http://yoursite.com/2017/03/23/C++笔记-类型转换运算符&amp;友元,异常的总结/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fydui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -396,8 +353,8 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
