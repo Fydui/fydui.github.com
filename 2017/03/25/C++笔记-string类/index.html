@@ -6,47 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++笔记-类型转换运算符&amp;友元,异常の总结 | 果冻の随笔</title>
+  <title>C++笔记-string类 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="图片来源
-
-类型转换运算符　　C++对于类型转换采取更严格的限制.并添加了四个类型转换运算符:
-
-dynamic_cast
-const_cast
-static_cast
-reinterpret_cast;
-
-　　dynamic_cast运算符前面介绍过.假设有俩类High和Low,而ph和pl的类型分别为High和Low,则仅当Low是High的可访问基类(直接或者间接)时,下述语句才能将Low">
-<meta property="og:type" content="article">
-<meta property="og:title" content="C++笔记-类型转换运算符&友元,异常の总结">
-<meta property="og:url" content="http://yoursite.com/2017/03/23/C++笔记-类型转换运算符&友元,异常的总结/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="C++笔记-string类">
+<meta property="og:url" content="http://yoursite.com/2017/03/25/C++笔记-string类/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:description" content="图片来源
-
-类型转换运算符　　C++对于类型转换采取更严格的限制.并添加了四个类型转换运算符:
-
-dynamic_cast
-const_cast
-static_cast
-reinterpret_cast;
-
-　　dynamic_cast运算符前面介绍过.假设有俩类High和Low,而ph和pl的类型分别为High和Low,则仅当Low是High的可访问基类(直接或者间接)时,下述语句才能将Low">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4gn865qj21kw28g7pa.jpg">
-<meta property="og:updated_time" content="2017-03-24T14:44:22.181Z">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4a03nmfj20go09eq3c.jpg">
+<meta property="og:updated_time" content="2017-03-25T14:53:59.471Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++笔记-类型转换运算符&友元,异常の总结">
-<meta name="twitter:description" content="图片来源
-
-类型转换运算符　　C++对于类型转换采取更严格的限制.并添加了四个类型转换运算符:
-
-dynamic_cast
-const_cast
-static_cast
-reinterpret_cast;
-
-　　dynamic_cast运算符前面介绍过.假设有俩类High和Low,而ph和pl的类型分别为High和Low,则仅当Low是High的可访问基类(直接或者间接)时,下述语句才能将Low">
-<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4gn865qj21kw28g7pa.jpg">
+<meta name="twitter:title" content="C++笔记-string类">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4a03nmfj20go09eq3c.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -166,45 +136,55 @@ reinterpret_cast;
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++笔记-类型转换运算符&amp;友元,异常的总结" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C++笔记-string类" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++笔记-类型转换运算符&amp;友元,异常の总结
+      C++笔记-string类
     </h1>
   
 
-        <a href="/2017/03/23/C++笔记-类型转换运算符&友元,异常的总结/" class="archive-article-date">
-  	<time datetime="2017-03-23T14:51:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-23</time>
+        <a href="/2017/03/25/C++笔记-string类/" class="archive-article-date">
+  	<time datetime="2017-03-25T14:51:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-25</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4gn865qj21kw28g7pa.jpg" alt="霞之丘诗羽"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=49973992" target="_blank" rel="external">图片来源</a></p>
+        <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4a03nmfj20go09eq3c.jpg" alt="志熊理科"></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="string类的构造函数"><a href="#string类的构造函数" class="headerlink" title="string类的构造函数:"></a>string类的构造函数:</h2><p>size_type是一个依赖于实现的整形在头文件string中定义的.string类将string::npos定义为字符串的最大长度,通常为unsigned int的最大值.NBTS(null-terminated-string)来表示空字符结束的字符串.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">string(const char *s);      //将string对象初始化为s指向的NBTS</div><div class="line">string(size_type n, char c) //创建一个包含n个元素的string对象,其中每个都被初始化为c</div><div class="line">string(const string &amp;str)   //将一个string对象初始化为string对象str(复制构造函数)</div><div class="line">string()                    //创建一个长度为0的默认string对象</div><div class="line">string(const char * s,size_type n) //创建一个裁剪了s的前n个字符串的对象.</div><div class="line"></div><div class="line">template&lt;class Iter&gt;</div><div class="line">string(Iter begin, Iter end) //将一个string对象初始化为区间[begin,end)内的字符串,begin和end就像指针,用于指定位置</div><div class="line"></div><div class="line">string(const string &amp; str, string size_type pos = 0, size_type n = npos)</div><div class="line">//将一个string对象初始化为对象str中从位置pos开始到结尾的字符,或从pos的位置到第n个字符串;</div><div class="line"></div><div class="line">string(string &amp;&amp; str) noexcept</div><div class="line">//C++11新增,将一个string对象初始化为string对象str,并且可能修改str(移动构造函数)</div><div class="line"></div><div class="line">string(initializer_list&lt;char&gt;il) //C++11新增,将一个string对象初始化为列表il中的字符</div></pre></td></tr></table></figure></p>
 <hr>
-<h1 id="类型转换运算符"><a href="#类型转换运算符" class="headerlink" title="类型转换运算符"></a>类型转换运算符</h1><p>　　C++对于类型转换采取更严格的限制.并添加了四个类型转换运算符:</p>
+<p>　　第五个构造函数将一个C-风格字符串和一个整数作为参数,其中的整数参数来表示要复制多少个字符串(如果20被改成40则将会继续复制字符串..将导致十五个无用的字符串被复制到five的结尾处):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">char alls[] = &quot;All&apos;s well that ends well&quot;;</div><div class="line">string five(alls,20);//这里只是用了前二十个字符来初始化five对象.</div></pre></td></tr></table></figure></p>
+<hr>
+<p>　　第六个构造函数有一个模板参数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template&lt;class Iter&gt;string(Iter begin,Iter end);</div></pre></td></tr></table></figure></p>
+<p>　　begin和end想指针那样指向内存中的两个位置,构造函数将使用begin和end之间的值对string对象初始化.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string six(alls+6,alls+10) //six被初始化为well;</div></pre></td></tr></table></figure></p>
+<p>　　在这里数组名相当于指针,所以alls+6和alls+10的类型都是char<em>,因此类型char</em>将替换Iter.第一个参数指向数组(从零开始)alls中的第六个字符串(w),第二个参数指向alls的第十个(well后面的空格);<br>　　现在假设要用该构造函数将对象初始化为另一个string对象(假设为five)的一部分内容,则下面这句不管用:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string seven(five+6,five+10);</div></pre></td></tr></table></figure></p>
+<p>　　原因在于对象名并不是数组名,所以five不是个指针,但five[6]是一个char值,&amp;five[6]则是个地址,因此可以被用作该构造函数的一个参数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string seven(&amp;five[6],&amp;five[10]);</div></pre></td></tr></table></figure></p>
+<hr>
+<p>　　第七个构造函数将一个string对象的部分复制到构造的对象中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string eight(four,7,16);//从four的第八个字符开始将16个字符复制到eight中</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="C-11新增的构造函数"><a href="#C-11新增的构造函数" class="headerlink" title="C++11新增的构造函数:"></a>C++11新增的构造函数:</h3><p>　　构造函数string(string &amp;&amp; str)类似于复制构造函数,导致新的string为str的副本,但跟复制构造函数不一样的是,他不保证将str视为const.这种构造函数被称为移动构造函数(move constructor).<br>　　构造函数string(initialzer_list)使得下面的声明是合法的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">string p = &#123;&apos;L&apos;,&apos;U&apos;,&apos;C&apos;,&apos;K&apos;&#125;;</div><div class="line">string c&#123;&apos;L&apos;,&apos;U&apos;,&apos;C&apos;,&apos;K&apos;&#125;;</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="string类输入"><a href="#string类输入" class="headerlink" title="string类输入:"></a>string类输入:</h2><p>　　对于string有两种输入方式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">string stuff;</div><div class="line">cin &gt;&gt; stuff;</div><div class="line">getline(cin,stuff);</div><div class="line"></div><div class="line">//getline有个可选参数,用于指定使用哪个字符串来确定输入的边界:</div><div class="line">getline(stuff,&apos;:&apos;); //string的getline会自动调整大小使得正好容得下输入的字符串&apos;</div></pre></td></tr></table></figure></p>
+<p>　　虽然string的getline能自动调节大小,但是有一些限制,如过想要读取一个文本,那么string对象所允许的最大长度(大小为unsigned int的值)可能不够.<br>　　string的getlin从输入中读取字符串并将其储存到目标string中,直到发生下面三种情况之一:</p>
 <ul>
-<li>dynamic_cast</li>
-<li>const_cast</li>
-<li>static_cast</li>
-<li>reinterpret_cast;</li>
+<li>到达文件尾.</li>
+<li>遇到分界字符(如 \n)</li>
+<li>读取的字符数达到最大值;</li>
 </ul>
-<p>　　<strong>dynamic_cast</strong>运算符前面介绍过.假设有俩类High和Low,而ph和pl的类型分别为High<em>和Low</em>,则仅当Low是High的可访问基类(直接或者间接)时,下述语句才能将Low*指针赋给pl:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pl = dynamic_cast&lt;Low*&gt;ph;</div></pre></td></tr></table></figure></p>
-<p>该运算符的作用是能够在类层次结构中进行向上类型转换.</p>
-<p>　　<strong>const_cast</strong>运算符只有一种用途的类型转换,即改变值为const或volatile(<del>去掉/增加const/volatile特性</del>):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const_cast&lt;type-name&gt;(expression)</div></pre></td></tr></table></figure></p>
-<p>如果类型的其他地方也被修改则上述类型将出错.除了cosnt或volatile特征(有或无)可以不同外,type_name和expression的类型必须相同.再次假设High和Low:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">High bar;</div><div class="line">const High * pbar = &amp;bar;</div><div class="line">...</div><div class="line">High * pb = const_cast&lt;High*&gt;(pbar); //没毛病,将删除pbar的const标签</div><div class="line">const Low * pl = const_cast&lt;const Low*&gt;(pbar);//不行,因为他尝试将const High*改为const Low*</div></pre></td></tr></table></figure></p>
-<p>然而其实也可以不用const_cast:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">High bar;</div><div class="line">const High * pbar = &amp;bar;</div><div class="line">...</div><div class="line">High * pb = (High *)(pbar);</div><div class="line">Low * pl = (Low *)(pbar);</div></pre></td></tr></table></figure></p>
-<p>但修改const值的结果可能是不确定的,请看示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">void change(const int * pt, int n)</div><div class="line">&#123;</div><div class="line">    int *pc;</div><div class="line">    </div><div class="line">    pc = const_cast&lt;int * &gt;(pt);    </div><div class="line">    *pc += n;</div><div class="line">&#125;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int popl = 38383;</div><div class="line">    const int pop2 = 2000;</div><div class="line">    </div><div class="line">    cout &lt;&lt; &quot;pop1,pop2: &quot; &lt;&lt; pop1 &lt;&lt; &quot;,&quot; &lt;&lt; pop2 &lt;&lt; endl;</div><div class="line">    change(&amp;pop1,-103);</div><div class="line">    change(&amp;pop2,-103);</div><div class="line">    cout&lt;&lt; &quot;pop1,pop2&quot;&lt;&lt; pop1 &lt;&lt; &quot;,&quot; &lt;&lt; pop2 &lt;&lt; endl;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>　　调用change()时修改了pop1,但没有修改pop2.在change()中,虽然指针pt被声明为const int <em>,但const_cast去掉了pt的const标签,并赋给了pc,所以pc能修改pop1的值.但仅当指针指向的值不是const时才可行,所以pc不能修改pop2的值.<br>　　<br><em>*static_cast</em></em>语法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">static_cast&lt;type-name&gt;(expression)</div></pre></td></tr></table></figure></p>
-<p>　　仅当typename能被隐式的转换成expression所属类型或expression能被隐式的转换成typename所属的类型的时候,上述转换才是合法的.假设Low是High的基类,而P是一个无关的类,则从High转换到Low,或者从Low转换到High的时候是合法的,而从Low转到p则是非法的.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">High bar;</div><div class="line">Low blow;</div><div class="line"></div><div class="line">    High * pb = static_cast&lt;High*&gt;(&amp;blow); //可以</div><div class="line">    Low * pl = static_cast&lt;Low *&gt;(&amp;bar); //可以</div><div class="line">    P * pmer = static_cast&lt;Pond *&gt;(&amp;blow) //不行</div></pre></td></tr></table></figure></p>
-<p><strong>reinterprete_cast</strong>几乎能资呲所有的类型转换,比如可以将指针类型转化为能存下这个指针的整形,但不能将指针转化为更小的整形或浮点型.并且不能讲函数指针转化为数据指针,且不能去掉const标签;<br>语法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">reinterpret_cast&lt;type-name&gt;(expression);</div></pre></td></tr></table></figure></p>
-<p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">struct dat(short a, short b);</div><div class="line">long value = 0xA224B118;</div><div class="line">dat * pd = reinterpret_cast&lt;dat *&gt;(&amp;value);</div><div class="line">cout &lt;&lt; hex &lt;&lt; pd-&gt;a;//显示 前两个字节的值</div></pre></td></tr></table></figure></p>
-<h2 id="友元-异常总结"><a href="#友元-异常总结" class="headerlink" title="友元,异常总结"></a>友元,异常总结</h2><p>　　类可以将其它函数,其他类的程序作为自己的友元.在一些情况下需要使用向前声明.并需要注意正确的组合类和方法的顺序;<br>　　嵌套类是声明在其他类中的类,但不比是其公有接口的组成部分.<br>　　当异常触发时,程序将控制权转交给匹配的catch块,catch块里面的是解决异常或终止程序的代码,在catch块之前的是try块,直接或间接导致异常的函数调用必须放在try块中.<br>　　RTTI可以检测对象的类型.dynamic_cast运算符可以用于将派生类指针转化为基类指针,其可以安全的调用虚函数.typeid运算符返回一个type_info对象.可以对两个typeid的返回值进行比较看看是不是特定的类型.而type_info对象可用于获得关于对象的信息<br>　　而dynamic_cast,static_cast,const_cast,和retinterpret_cast提供了安全的明确的类型转换.</p>
+<hr>
+<h2 id="使用字符串"><a href="#使用字符串" class="headerlink" title="使用字符串"></a>使用字符串</h2><p>　　可以比较字符串.string类对于全部六个关系运算符都进行了重载.如果在机器排列序列中,一个对象位于另一个对象的前面,则前者小于后者.如果机器排列序列为ASCII码,则数字江小鱼大写字符,大写字符小于小写字符.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">string str1 = &quot;cobra&quot;;</div><div class="line">string str2 = &quot;coral&quot;;</div><div class="line">string str3[20] = &quot;anaconda&quot;;</div><div class="line"></div><div class="line">if(str1 &lt; str2) ...</div><div class="line">if(str1 == str3) ...</div><div class="line">if(str3 != str2) ...</div><div class="line"></div><div class="line">//可以确定字符串的长度.size()和length()成员函数都返回字符串中的字符数:</div><div class="line">if(str1.length() == str2.size()) ...</div></pre></td></tr></table></figure></p>
+<p>　　可以以多种方式在字符串中搜索给定的字符串或字符.重载的find方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">size_type find(const string &amp; str, size_type pos = 0) const;</div><div class="line">//从字符串的pos位置开始,查找字符串str,找到了则返回该字符串首次出现时其首字符的索引,没有就返回string::npos</div><div class="line"></div><div class="line">size_type find(const char* s,size_type pos = 0) const; //同上</div><div class="line">size_type find(char ch, size_type pos = 0)const;       //同上</div><div class="line"></div><div class="line">size_type find(const char* s,size_type pos = 0, size_type n);</div><div class="line">//从字符串的pos开始,查找s的前n个字符串组成的子字符串.找到则返回子字符串首次出现的首字符的索引,否则返回string::npos</div></pre></td></tr></table></figure></p>
+<p>　　除此之外还有: </p>
+<ul>
+<li>rfind()方法查找子字符串或字符串最后一次出现的位置;</li>
+<li>find_first_of()方法在字符串中查找参数中任何一个字符串首次出现的位置;</li>
+<li>find_last_of()方法用法相同,查找的是最后一次出现的位置</li>
+<li>find_first_not_of()方法在字符串中查找第一个不包含在参数中的字符串</li>
+</ul>
 
       
 
@@ -289,7 +269,7 @@ reinterpret_cast;
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/23/C++笔记-类型转换运算符&友元,异常的总结/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/25/C++笔记-string类/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -303,18 +283,9 @@ reinterpret_cast;
   
 <nav id="article-nav">
   
-    <a href="/2017/03/25/C++笔记-string类/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++笔记-string类
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/20/C++笔记-RTTI/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++笔记-RTTI(运行阶段类型识别:Runtime Type Identification)</div>
+    <a href="/2017/03/23/C++笔记-类型转换运算符&友元,异常的总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-类型转换运算符&amp;友元,异常の总结</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -327,7 +298,7 @@ reinterpret_cast;
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C++笔记-类型转换运算符&amp;友元,异常的总结" data-title="C++笔记-类型转换运算符&amp;友元,异常の总结" data-url="http://yoursite.com/2017/03/23/C++笔记-类型转换运算符&amp;友元,异常的总结/"></div>
+	<div class="ds-thread" data-thread-key="C++笔记-string类" data-title="C++笔记-string类" data-url="http://yoursite.com/2017/03/25/C++笔记-string类/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
