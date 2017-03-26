@@ -135,6 +135,60 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C++笔记-智能指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/26/C++笔记-智能指针/">C++笔记-智能指针</a>
+    </h1>
+  
+
+        <a href="/2017/03/26/C++笔记-智能指针/" class="archive-article-date">
+  	<time datetime="2017-03-26T14:45:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-26</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fe0gvlzqrbj20u00sg1a0.jpg" alt="霞之丘诗羽"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=49027382">封面来源</a></p>
+        <a class="article-more-a"  href="/2017/03/26/C++笔记-智能指针/#more">more >></a>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/26/C++笔记-智能指针/#more">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-C++笔记-string类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -208,28 +262,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4gn865qj21kw28g7pa.jpg" alt="霞之丘诗羽"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=49973992" target="_blank" rel="external">图片来源</a></p>
-<hr>
-<h1 id="类型转换运算符"><a href="#类型转换运算符" class="headerlink" title="类型转换运算符"></a>类型转换运算符</h1><p>　　C++对于类型转换采取更严格的限制.并添加了四个类型转换运算符:</p>
-<ul>
-<li>dynamic_cast</li>
-<li>const_cast</li>
-<li>static_cast</li>
-<li>reinterpret_cast;</li>
-</ul>
-<p>　　<strong>dynamic_cast</strong>运算符前面介绍过.假设有俩类High和Low,而ph和pl的类型分别为High<em>和Low</em>,则仅当Low是High的可访问基类(直接或者间接)时,下述语句才能将Low*指针赋给pl:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pl = dynamic_cast&lt;Low*&gt;ph;</div></pre></td></tr></table></figure></p>
-<p>该运算符的作用是能够在类层次结构中进行向上类型转换.</p>
-<p>　　<strong>const_cast</strong>运算符只有一种用途的类型转换,即改变值为const或volatile(<del>去掉/增加const/volatile特性</del>):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const_cast&lt;type-name&gt;(expression)</div></pre></td></tr></table></figure></p>
-<p>如果类型的其他地方也被修改则上述类型将出错.除了cosnt或volatile特征(有或无)可以不同外,type_name和expression的类型必须相同.再次假设High和Low:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">High bar;</div><div class="line">const High * pbar = &amp;bar;</div><div class="line">...</div><div class="line">High * pb = const_cast&lt;High*&gt;(pbar); //没毛病,将删除pbar的const标签</div><div class="line">const Low * pl = const_cast&lt;const Low*&gt;(pbar);//不行,因为他尝试将const High*改为const Low*</div></pre></td></tr></table></figure></p>
-<p>然而其实也可以不用const_cast:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">High bar;</div><div class="line">const High * pbar = &amp;bar;</div><div class="line">...</div><div class="line">High * pb = (High *)(pbar);</div><div class="line">Low * pl = (Low *)(pbar);</div></pre></td></tr></table></figure></p>
-<p>但修改const值的结果可能是不确定的,请看示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">void change(const int * pt, int n)</div><div class="line">&#123;</div><div class="line">    int *pc;</div><div class="line">    </div><div class="line">    pc = const_cast&lt;int * &gt;(pt);    </div><div class="line">    *pc += n;</div><div class="line">&#125;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int popl = 38383;</div><div class="line">    const int pop2 = 2000;</div><div class="line">    </div><div class="line">    cout &lt;&lt; &quot;pop1,pop2: &quot; &lt;&lt; pop1 &lt;&lt; &quot;,&quot; &lt;&lt; pop2 &lt;&lt; endl;</div><div class="line">    change(&amp;pop1,-103);</div><div class="line">    change(&amp;pop2,-103);</div><div class="line">    cout&lt;&lt; &quot;pop1,pop2&quot;&lt;&lt; pop1 &lt;&lt; &quot;,&quot; &lt;&lt; pop2 &lt;&lt; endl;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>　　调用change()时修改了pop1,但没有修改pop2.在change()中,虽然指针pt被声明为const int <em>,但const_cast去掉了pt的const标签,并赋给了pc,所以pc能修改pop1的值.但仅当指针指向的值不是const时才可行,所以pc不能修改pop2的值.<br>　　<br><em>*static_cast</em></em>语法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">static_cast&lt;type-name&gt;(expression)</div></pre></td></tr></table></figure></p>
-<p>　　仅当typename能被隐式的转换成expression所属类型或expression能被隐式的转换成typename所属的类型的时候,上述转换才是合法的.假设Low是High的基类,而P是一个无关的类,则从High转换到Low,或者从Low转换到High的时候是合法的,而从Low转到p则是非法的.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">High bar;</div><div class="line">Low blow;</div><div class="line"></div><div class="line">    High * pb = static_cast&lt;High*&gt;(&amp;blow); //可以</div><div class="line">    Low * pl = static_cast&lt;Low *&gt;(&amp;bar); //可以</div><div class="line">    P * pmer = static_cast&lt;Pond *&gt;(&amp;blow) //不行</div></pre></td></tr></table></figure></p>
-<p><strong>reinterprete_cast</strong>几乎能资呲所有的类型转换,比如可以将指针类型转化为能存下这个指针的整形,但不能将指针转化为更小的整形或浮点型.并且不能讲函数指针转化为数据指针,且不能去掉const标签;<br>语法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">reinterpret_cast&lt;type-name&gt;(expression);</div></pre></td></tr></table></figure></p>
-<p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">struct dat(short a, short b);</div><div class="line">long value = 0xA224B118;</div><div class="line">dat * pd = reinterpret_cast&lt;dat *&gt;(&amp;value);</div><div class="line">cout &lt;&lt; hex &lt;&lt; pd-&gt;a;//显示 前两个字节的值</div></pre></td></tr></table></figure></p>
-<h2 id="友元-异常总结"><a href="#友元-异常总结" class="headerlink" title="友元,异常总结"></a>友元,异常总结</h2><p>　　类可以将其它函数,其他类的程序作为自己的友元.在一些情况下需要使用向前声明.并需要注意正确的组合类和方法的顺序;<br>　　嵌套类是声明在其他类中的类,但不比是其公有接口的组成部分.<br>　　当异常触发时,程序将控制权转交给匹配的catch块,catch块里面的是解决异常或终止程序的代码,在catch块之前的是try块,直接或间接导致异常的函数调用必须放在try块中.<br>　　RTTI可以检测对象的类型.dynamic_cast运算符可以用于将派生类指针转化为基类指针,其可以安全的调用虚函数.typeid运算符返回一个type_info对象.可以对两个typeid的返回值进行比较看看是不是特定的类型.而type_info对象可用于获得关于对象的信息<br>　　而dynamic_cast,static_cast,const_cast,和retinterpret_cast提供了安全的明确的类型转换.</p>
-
+        <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4gn865qj21kw28g7pa.jpg" alt="霞之丘诗羽"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=49973992">图片来源</a><br>
+        <a class="article-more-a"  href="/2017/03/23/C++笔记-类型转换运算符&友元,异常的总结/#more">more >></a>
       
 
       
@@ -628,60 +662,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/01/08/C++笔记-成员模板&将模板用作参数/#more">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-C++笔记-模板的具体化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/06/C++笔记-模板的具体化/">C++笔记-模板的具体化</a>
-    </h1>
-  
-
-        <a href="/2017/01/06/C++笔记-模板的具体化/" class="archive-article-date">
-  	<time datetime="2017-01-06T11:32:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-06</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ww3.sinaimg.cn/small/ad4b340bjw1f1u646ivcuj206f06mjtp.jpg" alt=""></p>
-        <a class="article-more-a"  href="/2017/01/06/C++笔记-模板的具体化/#more">more >></a>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/06/C++笔记-模板的具体化/#more">展开全文 >></a>
         </p>
       
 

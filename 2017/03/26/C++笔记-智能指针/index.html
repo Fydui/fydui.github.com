@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++笔记-string类 | 果冻の随笔</title>
+  <title>C++笔记-智能指针 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="C++笔记-string类">
-<meta property="og:url" content="http://yoursite.com/2017/03/25/C++笔记-string类/index.html">
+  <meta name="description" content="封面来源">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++笔记-智能指针">
+<meta property="og:url" content="http://yoursite.com/2017/03/26/C++笔记-智能指针/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4a03nmfj20go09eq3c.jpg">
-<meta property="og:updated_time" content="2017-03-25T14:53:59.471Z">
+<meta property="og:description" content="封面来源">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fe0gvlzqrbj20u00sg1a0.jpg">
+<meta property="og:updated_time" content="2017-03-26T14:47:09.791Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++笔记-string类">
-<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4a03nmfj20go09eq3c.jpg">
+<meta name="twitter:title" content="C++笔记-智能指针">
+<meta name="twitter:description" content="封面来源">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fe0gvlzqrbj20u00sg1a0.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -136,55 +139,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++笔记-string类" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C++笔记-智能指针" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++笔记-string类
+      C++笔记-智能指针
     </h1>
   
 
-        <a href="/2017/03/25/C++笔记-string类/" class="archive-article-date">
-  	<time datetime="2017-03-25T14:51:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-25</time>
+        <a href="/2017/03/26/C++笔记-智能指针/" class="archive-article-date">
+  	<time datetime="2017-03-26T14:45:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-26</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4a03nmfj20go09eq3c.jpg" alt="志熊理科"></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="string类的构造函数"><a href="#string类的构造函数" class="headerlink" title="string类的构造函数:"></a>string类的构造函数:</h2><p>size_type是一个依赖于实现的整形在头文件string中定义的.string类将string::npos定义为字符串的最大长度,通常为unsigned int的最大值.NBTS(null-terminated-string)来表示空字符结束的字符串.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">string(const char *s);      //将string对象初始化为s指向的NBTS</div><div class="line">string(size_type n, char c) //创建一个包含n个元素的string对象,其中每个都被初始化为c</div><div class="line">string(const string &amp;str)   //将一个string对象初始化为string对象str(复制构造函数)</div><div class="line">string()                    //创建一个长度为0的默认string对象</div><div class="line">string(const char * s,size_type n) //创建一个裁剪了s的前n个字符串的对象.</div><div class="line"></div><div class="line">template&lt;class Iter&gt;</div><div class="line">string(Iter begin, Iter end) //将一个string对象初始化为区间[begin,end)内的字符串,begin和end就像指针,用于指定位置</div><div class="line"></div><div class="line">string(const string &amp; str, string size_type pos = 0, size_type n = npos)</div><div class="line">//将一个string对象初始化为对象str中从位置pos开始到结尾的字符,或从pos的位置到第n个字符串;</div><div class="line"></div><div class="line">string(string &amp;&amp; str) noexcept</div><div class="line">//C++11新增,将一个string对象初始化为string对象str,并且可能修改str(移动构造函数)</div><div class="line"></div><div class="line">string(initializer_list&lt;char&gt;il) //C++11新增,将一个string对象初始化为列表il中的字符</div></pre></td></tr></table></figure></p>
+        <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fe0gvlzqrbj20u00sg1a0.jpg" alt="霞之丘诗羽"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=49027382" target="_blank" rel="external">封面来源</a></p>
+<a id="more"></a>
+<h2 id="使用智能指针"><a href="#使用智能指针" class="headerlink" title="使用智能指针"></a>使用智能指针</h2><p>　　C++有三个智能指针模板(auto_ptr,unique_ptr,shared_ptr),都定义了类似于指针的对象,可以将new获得的地址赋值给这种对象.(其中auto_ptr是C++98提供的解决方案,C++11已经摒弃,不建议使用).当智能指针过期时,其析构函数将使用delete来释放内存.另外share_ptr和unique_ptr的行为与auto_ptr相同.<br>　　要使用智能指针首先包含头文件memory.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">auto_ptr&lt;double&gt; pd(new double);</div></pre></td></tr></table></figure></p>
+<p>　　new double是new返回的指针,指向新分配的内存块.他是构造函数<code>auto_ptr&lt;double&gt;</code>的参数.即对应于原型中的形参p的实参.同样new double也是构造函数的实参.其他两种智能指针的写法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">unique_ptr&lt;double&gt; pdu(new double);</div><div class="line">shared_ptr&lt;string&gt; pss(new string);</div></pre></td></tr></table></figure></p>
+<p>下列代码举例了全部三种智能指针:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;string&gt;</div><div class="line">#include &lt;memory&gt;</div><div class="line">using namespace std;</div><div class="line">class Report</div><div class="line">&#123;</div><div class="line">private:</div><div class="line">    string str;</div><div class="line">public:</div><div class="line">    Report(const string s) : str(s)</div><div class="line">        &#123;cout &lt;&lt; &quot;Objectt created:&quot; &lt;&lt; endl;&#125;</div><div class="line">    ~Report() &#123;cout &lt;&lt; &quot;Object deleted&quot; &lt;&lt; endl;&#125;</div><div class="line">    void comment() const &#123;cout &lt;&lt; str &lt;&lt; endl;&#125;</div><div class="line">&#125;;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    &#123;</div><div class="line">        auto_ptr&lt;Report&gt; ps(new Report(&quot;auto_ptr&quot;));</div><div class="line">        ps-&gt;comment();</div><div class="line">    &#125;</div><div class="line">    &#123;</div><div class="line">        shared_ptr&lt;Report&gt; ps(new Report(&quot;shared_ptr&quot;));</div><div class="line">        ps-&gt;comment();</div><div class="line">    &#125;</div><div class="line">    &#123;</div><div class="line">        unique_ptr&lt;Report&gt; ps(new Report(&quot;unique_ptr&quot;));</div><div class="line">        ps-&gt;comment();</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　智能指针很多地方和正常指针类似,可以对他进行解引用操作( *p),用它来访问成员(p-&gt;fun),将他赋值给指向相同类型的常规指针,或者赋值给另一个同类型的只能指针;</p>
 <hr>
-<p>　　第五个构造函数将一个C-风格字符串和一个整数作为参数,其中的整数参数来表示要复制多少个字符串(如果20被改成40则将会继续复制字符串..将导致十五个无用的字符串被复制到five的结尾处):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">char alls[] = &quot;All&apos;s well that ends well&quot;;</div><div class="line">string five(alls,20);//这里只是用了前二十个字符来初始化five对象.</div></pre></td></tr></table></figure></p>
+<h2 id="unique-ptr为何优于auto-ptr"><a href="#unique-ptr为何优于auto-ptr" class="headerlink" title="unique_ptr为何优于auto_ptr"></a>unique_ptr为何优于auto_ptr</h2><p>auto:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">auto_ptr&lt;string&gt; p1(new string(&quot;auto&quot;));</div><div class="line">auto_ptr&lt;string&gt; p2;</div><div class="line">p2 = p1;</div></pre></td></tr></table></figure></p>
+<p>　　在第三句,p2接管string对象所有权后,p1的所有权被剥夺,但如果程序随后视图使用p1,则是件坏事因为p1已经不再指向有效的数据;<br>unique_ptr:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">unique_ptr&lt;string&gt; p3(new string(&quot;auto&quot;));</div><div class="line">unique_ptr&lt;string&gt; p4;</div><div class="line">p4 = p3;</div></pre></td></tr></table></figure></p>
+<p>　　编译器认为第三句非法,避免了p3不再指向有效数据的问题;<br>　　但有时候将一个智能指针赋值给另一个不会出现悬挂指针的危险:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">unique_ptr&lt;string&gt; demo(const char * s)</div><div class="line">&#123;</div><div class="line">unique_ptr&lt;string&gt; temp(new string);</div><div class="line">return temp;</div><div class="line">&#125;</div><div class="line">...</div><div class="line">unique_ptr&lt;string&gt;ps;</div><div class="line">ps = demo(&quot;2333333&quot;);</div></pre></td></tr></table></figure></p>
+<p>　　demo()返回一个临时unique_ptr,然后ps接管了demo的临时返回值,ps拥有了string对象的所有权.因为demo返回的临时对象很快就会被销毁.所以没有机会使用它来访问无效的数据,所以编译器允许这种赋值.所以就是,<strong>如果源unique_ptr是个临时右值,编译器将允许赋值,但如果源unique_ptr将存在一段时间,编译器将禁止这样做..</strong>…..<br>　　如果一定要写类似于p3p4那样的代码.要安全的使用指针的话,可以给他赋新值,C++有个标准库函数<code>std::move()</code>,能够让你将一个unique_ptr赋给另一个.:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">using namespace std;</div><div class="line">unique_ptr&lt;string&gt; ps1, ps2;</div><div class="line">ps1 = demo(&quot;23333&quot;);</div><div class="line">ps2 = move(ps1);</div><div class="line">cout &lt;&lt; *ps2 &lt;&lt; *ps1 &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
+<p>unique_ptr还可以当数组用:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unique_ptr&lt;double[]&gt;pda(new double(5));</div></pre></td></tr></table></figure></p>
+<p>　　<em>为啥unique_ptr能知道安全和不安全的用法呢? 因为它使用了C++11的移动构造函数和右值引用….</em></p>
 <hr>
-<p>　　第六个构造函数有一个模板参数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template&lt;class Iter&gt;string(Iter begin,Iter end);</div></pre></td></tr></table></figure></p>
-<p>　　begin和end想指针那样指向内存中的两个位置,构造函数将使用begin和end之间的值对string对象初始化.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string six(alls+6,alls+10) //six被初始化为well;</div></pre></td></tr></table></figure></p>
-<p>　　在这里数组名相当于指针,所以alls+6和alls+10的类型都是char<em>,因此类型char</em>将替换Iter.第一个参数指向数组(从零开始)alls中的第六个字符串(w),第二个参数指向alls的第十个(well后面的空格);<br>　　现在假设要用该构造函数将对象初始化为另一个string对象(假设为five)的一部分内容,则下面这句不管用:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string seven(five+6,five+10);</div></pre></td></tr></table></figure></p>
-<p>　　原因在于对象名并不是数组名,所以five不是个指针,但five[6]是一个char值,&amp;five[6]则是个地址,因此可以被用作该构造函数的一个参数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string seven(&amp;five[6],&amp;five[10]);</div></pre></td></tr></table></figure></p>
-<hr>
-<p>　　第七个构造函数将一个string对象的部分复制到构造的对象中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string eight(four,7,16);//从four的第八个字符开始将16个字符复制到eight中</div></pre></td></tr></table></figure></p>
-<hr>
-<h3 id="C-11新增的构造函数"><a href="#C-11新增的构造函数" class="headerlink" title="C++11新增的构造函数:"></a>C++11新增的构造函数:</h3><p>　　构造函数string(string &amp;&amp; str)类似于复制构造函数,导致新的string为str的副本,但跟复制构造函数不一样的是,他不保证将str视为const.这种构造函数被称为移动构造函数(move constructor).<br>　　构造函数string(initialzer_list)使得下面的声明是合法的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">string p = &#123;&apos;L&apos;,&apos;U&apos;,&apos;C&apos;,&apos;K&apos;&#125;;</div><div class="line">string c&#123;&apos;L&apos;,&apos;U&apos;,&apos;C&apos;,&apos;K&apos;&#125;;</div></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="string类输入"><a href="#string类输入" class="headerlink" title="string类输入:"></a>string类输入:</h2><p>　　对于string有两种输入方式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">string stuff;</div><div class="line">cin &gt;&gt; stuff;</div><div class="line">getline(cin,stuff);</div><div class="line"></div><div class="line">//getline有个可选参数,用于指定使用哪个字符串来确定输入的边界:</div><div class="line">getline(stuff,&apos;:&apos;); //string的getline会自动调整大小使得正好容得下输入的字符串&apos;</div></pre></td></tr></table></figure></p>
-<p>　　虽然string的getline能自动调节大小,但是有一些限制,如过想要读取一个文本,那么string对象所允许的最大长度(大小为unsigned int的值)可能不够.<br>　　string的getlin从输入中读取字符串并将其储存到目标string中,直到发生下面三种情况之一:</p>
-<ul>
-<li>到达文件尾.</li>
-<li>遇到分界字符(如 \n)</li>
-<li>读取的字符数达到最大值;</li>
-</ul>
-<hr>
-<h2 id="使用字符串"><a href="#使用字符串" class="headerlink" title="使用字符串"></a>使用字符串</h2><p>　　可以比较字符串.string类对于全部六个关系运算符都进行了重载.如果在机器排列序列中,一个对象位于另一个对象的前面,则前者小于后者.如果机器排列序列为ASCII码,则数字江小鱼大写字符,大写字符小于小写字符.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">string str1 = &quot;cobra&quot;;</div><div class="line">string str2 = &quot;coral&quot;;</div><div class="line">string str3[20] = &quot;anaconda&quot;;</div><div class="line"></div><div class="line">if(str1 &lt; str2) ...</div><div class="line">if(str1 == str3) ...</div><div class="line">if(str3 != str2) ...</div><div class="line"></div><div class="line">//可以确定字符串的长度.size()和length()成员函数都返回字符串中的字符数:</div><div class="line">if(str1.length() == str2.size()) ...</div></pre></td></tr></table></figure></p>
-<p>　　可以以多种方式在字符串中搜索给定的字符串或字符.重载的find方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">size_type find(const string &amp; str, size_type pos = 0) const;</div><div class="line">//从字符串的pos位置开始,查找字符串str,找到了则返回该字符串首次出现时其首字符的索引,没有就返回string::npos</div><div class="line"></div><div class="line">size_type find(const char* s,size_type pos = 0) const; //同上</div><div class="line">size_type find(char ch, size_type pos = 0)const;       //同上</div><div class="line"></div><div class="line">size_type find(const char* s,size_type pos = 0, size_type n);</div><div class="line">//从字符串的pos开始,查找s的前n个字符串组成的子字符串.找到则返回子字符串首次出现的首字符的索引,否则返回string::npos</div></pre></td></tr></table></figure></p>
-<p>　　除此之外还有: </p>
-<ul>
-<li>rfind()方法查找子字符串或字符串最后一次出现的位置;</li>
-<li>find_first_of()方法在字符串中查找参数中任何一个字符串首次出现的位置;</li>
-<li>find_last_of()方法用法相同,查找的是最后一次出现的位置</li>
-<li>find_first_not_of()方法在字符串中查找第一个不包含在参数中的字符串</li>
-</ul>
+<h2 id="选择智能指针"><a href="#选择智能指针" class="headerlink" title="选择智能指针"></a>选择智能指针</h2><p>　　如果程序要使用多个指向同一个对象的指针,应选择shared_ptr,必去有个指针数组,并使用一些辅助指针来标示特定的元素(比如最大值最小值);比如两个对象都指向第三个对象的指针; stl容器;这些操作都可以使用shared_ptr;但不能用unique_ptr和auto_ptr;<br>　　如果程序不需要多个指向同一个对象的指针,则可以使用unique_ptr.如果函数使用new分配内存并返回指向该内存的指针.则其返回类型声明为unique_ptr是个不错的选择;这样所有权将转让给接受返回值的unique_ptr,而该智能指针将负责调用delete;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">unique_ptr&lt;int&gt; make_int(int n)</div><div class="line">&#123;</div><div class="line">    return unique_ptr&lt;int&gt; (new int (n));   </div><div class="line">&#125;</div><div class="line">void show(unique_ptr&lt;int&gt; &amp; pi)</div><div class="line">&#123;</div><div class="line">    cout &lt;&lt; *a &lt;&lt; &quot; &quot;;</div><div class="line">&#125;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    vector&lt;unique_ptr&lt;int&gt;&gt; vp(size);</div><div class="line">    for(jint i = 0; i &lt; vp.size(); i++)</div><div class="line">        vp[i] = make_int(rand() % 1000);</div><div class="line">    vp.push_back(make_int (rand() % 1000));</div><div class="line">    for_each(vp.begin(),vp.end(),show());</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　其中的push_back()调用没毛病,因为他返回一个临时的unique_ptr对象.另外如果安置而不是按引用给show()传递对象,则for_each()将会非法,因为这将导致使用一个来自vp的非临时unique_ptr初始化pi,前面说过,这是不行的.<br>　　在unique_ptr为右值的时候,可将其赋值给shared_ptr,要求和赋值给另一个unique_ptr一样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">unique_ptr&lt;int&gt; pup(make_int(rand%1000));     //假设make_int返回类型是unique_ptr</div><div class="line">shared_ptr&lt;int&gt; spp(pup);</div><div class="line">shared_ptr&lt;int&gt; spr(make_int(rand() % 1000)); //假设make_int返回类型是unique_ptr</div></pre></td></tr></table></figure></p>
+<p>　　模板shared_ptr有个显示构造函数,可将右值的unique_ptr转化为shared_ptr.shared_ptr将接管原来的unique_ptr所有的对象;</p>
 
       
 
@@ -269,7 +258,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/25/C++笔记-string类/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/26/C++笔记-智能指针/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -283,18 +272,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/26/C++笔记-智能指针/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++笔记-智能指针
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/23/C++笔记-类型转换运算符&友元,异常的总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++笔记-类型转换运算符&amp;友元,异常の总结</div>
+    <a href="/2017/03/25/C++笔记-string类/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-string类</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -307,7 +287,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C++笔记-string类" data-title="C++笔记-string类" data-url="http://yoursite.com/2017/03/25/C++笔记-string类/"></div>
+	<div class="ds-thread" data-thread-key="C++笔记-智能指针" data-title="C++笔记-智能指针" data-url="http://yoursite.com/2017/03/26/C++笔记-智能指针/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
