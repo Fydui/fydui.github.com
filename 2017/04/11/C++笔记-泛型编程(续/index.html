@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fek7pjd8qkj21kw0bg0u5.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fek7pke60fj21kw0k3tcb.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fek7pjy2ncj21kw0grdil.jpg">
-<meta property="og:updated_time" content="2017-04-12T15:09:30.746Z">
+<meta property="og:updated_time" content="2017-04-01T14:29:25.966Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-泛型编程(续">
 <meta name="twitter:description" content="封面来源">
@@ -173,9 +173,13 @@
 <h3 id="序列-sequence"><a href="#序列-sequence" class="headerlink" title="序列(sequence)"></a>序列(sequence)</h3><p>　　序列概念增加了迭代器至少是正向迭代器的要求,并且要求元素按严格的线形顺序排列,即存在第一个元素,最后一个元素,除了端点的俩元素外,每个元素前后都分别有一个元素,且不会在两次迭代之间发生变化.这7个STL容器类型都是序列: deque,forward_list,list,queue,priority_queue,stack,vector;<br>　　<br>　　下表表示了序列所需要的操作,t表示类型为T(存在容器中的值的类型)的值,n表示整数,p,q,i,j表示迭代器:<br>　　<img src="http://wx2.sinaimg.cn/mw690/ad4b340bly1fek7pke60fj21kw0k3tcb.jpg" alt=""><br>　　<br>　　因为模板deque,list,queue,priority_queue,stack和vector都是序列的概念模型,所以他们中的一些还可以使用下表所列出的操作:<br>　　<img src="http://wx2.sinaimg.cn/mw690/ad4b340bly1fek7pjy2ncj21kw0grdil.jpg" alt=""></p>
 <h3 id="详细介绍"><a href="#详细介绍" class="headerlink" title="详细介绍"></a>详细介绍</h3><h4 id="vector"><a href="#vector" class="headerlink" title="　　vector:　"></a>　　vector:　</h4><pre><code>　　　　前面说过了,不做赘述
 </code></pre><h4 id="deque"><a href="#deque" class="headerlink" title="　　deque:　"></a>　　deque:　</h4><p>　　　　deque模板类表示双端队列,实现类似vector,他支持随机访问,但不同的是:从deque对象的开始位置插入和删除元素的时间是固定的,而vector是在结尾处提供了固定时间的插入和删除,在而别的地方都是线性时间,但vector的速度似乎快一点..</p>
-<h4 id="list"><a href="#list" class="headerlink" title="　　list:"></a>　　list:</h4><p>　　　　list模板类表示双向链表.除了第一个和最后一个元素外,每个元素都与前后的元素相连接.他和vector的区别在于,list在链表中任意位置插入和删除的时间是固定的(<del>废话</del>).list擅长的是元素的快速插入和删除.但他不支持数组表示法和随机访问.从容器中管插入或删除元素后,链表迭代器指向的位置不变,但数据不同.然后插入新元素并不会移动已有元素,只是修改链接信息.<br>　　　　list的成员函数,Alloc有默认值:<br>　　　　　　○ void merge(list<t,alloc> &amp; x) //将链表x与调用链表合并.两个链表必须排序,合并后的链表在调用链表中,x为空.这个函数复杂度为线性时间;<br>　　　　　　○ void remove(const T &amp; val) //从链表中删除val的所有实例,复杂度为线性时间;<br>　　　　　　○ void sotr() //使用&lt;运算符排序,复杂度为NlogN;<br>　　　　　　○ void splice(iterator pos, list<t,alloc> x) //将链表x的内容插入到pos的前面,x为空,复杂度为固定时间;<br>　　　　　　○ void unique() //将连续的相同元素压缩为单个元素,复杂度为线性时间
-　　　　　　</t,alloc></t,alloc></p>
-<p>　　　　</p>
+<h4 id="list"><a href="#list" class="headerlink" title="　　list:"></a>　　list:</h4><p>　　　　list模板类表示双向链表.除了第一个和最后一个元素外,每个元素都与前后的元素相连接.他和vector的区别在于,list在链表中任意位置插入和删除的时间是固定的(<del>废话</del>).list擅长的是元素的快速插入和删除.但他不支持数组表示法和随机访问.从容器中管插入或删除元素后,链表迭代器指向的位置不变,但数据不同.然后插入新元素并不会移动已有元素,只是修改链接信息.<br>　　　　list的成员函数,Alloc有默认值:<br>　　　　　　○ void merge(list<t,alloc> &amp; x) //将链表x与调用链表合并.两个链表必须排序,合并后的链表在调用链表中,x为空.这个函数复杂度为线性时间;<br>　　　　　　○ void remove(const T &amp; val) //从链表中删除val的所有实例,复杂度为线性时间;<br>　　　　　　○ void sort() //使用&lt;运算符排序,复杂度为NlogN;<br>　　　　　　○ void splice(iterator pos, list<t,alloc> x) //将链表x的内容插入到pos的前面,x为空,复杂度为固定时间;<br>　　　　　　○ void unique() //将连续的相同元素压缩为单个元素(删除重复元素),复杂度为线性时间<br>　　　　　　<em><a href="https://github.com/Fydui/MyCpp_Wheel/blob/master/STL_list/main.cpp" target="_blank" rel="external">list的示例代码</a></em></t,alloc></t,alloc></p>
+<p>　　　　insert()和splice()之间的区别在于:insert()将原始区间的副本插入到目标地址,而splice()则将原始区间移动到目标地址,且splice()方法执行后,迭代器指向的元素不变.</p>
+<p>####　　forward_list(C++11):<br>　　　　　forward_list容器类实现了单链表.也就是每个节点都只连接到下一个节点,而没有连接到前一个节点.所以他只需要正向迭代器,并且是不可反转容器;</p>
+<p>####　　queue:<br>　　　　　queue模板类是个适配器类.他让底层类(默认为deque)展示典型的队列接口.但他限制比deque多,不允许随机访问队列,不允许遍历队列,他可以:<br>　　　　　○ bool empty()const //如果队列为空,返回true,否则返回false<br>　　　　　○ size_type size()const //返回队列中元素的数目<br>　　　　　○ T&amp; front() //返回指向队首元素的引用<br>　　　　　○ T&amp; back() //返回指向队尾元素的引用<br>　　　　　○ void push(const T&amp; x) //在队尾插入x<br>　　　　　○ void pop() //删除队首元素</p>
+<p>####　　priority_queue:<br>　　　　该类是另一个适配器,支持的操作和queue一样,区别是在priority_queue中最大的元素会被移动到队首;<br>　　　　构造函数参数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">priority_queue&lt;int&gt; pql;</div><div class="line">priority_queue&lt;int&gt; pq2(greater&lt;int&gt;)</div></pre></td></tr></table></figure></p>
+<p>####　　stack:<br>　　　　该类也是个适配器,和queue相似,他给底层类(默认是vector)提供了典型的栈接口;但他不允许随机访问栈元素,不允许遍历栈,只能用一些栈的基本操作,如压入,弹出,查看栈顶值,检查元素数目,测试栈是否为空,他还可以:<br>　　　　○ bool empty() const //如果栈为空则返回true,否则返回false<br>　　　　○ size_type size() const //返回栈中元素数目<br>　　　　○ T&amp; top() //返回指向栈顶元素的引用<br>　　　　○ void push(const T&amp; x) //在顶部插入x<br>　　　　○ void pop() //删除栈顶元素</p>
+<p>####　　array(C++11):<br>　　　　非SLT容器,其长度为固定,所以也就没有调整容器大小的操作(如push_back(),insert()),但定义了一些成员函数如operator [] ()和at().可将很多STL算法用于他(如copy(),for_each());</p>
 
       
 
