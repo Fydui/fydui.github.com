@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: CPP | 果冻の随笔</title>
+  <title>C++笔记-泛型编程 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="果冻の随笔">
-<meta property="og:url" content="http://yoursite.com/tags/CPP/page/2/index.html">
+  <meta name="description" content="封面作者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++笔记-泛型编程">
+<meta property="og:url" content="http://yoursite.com/2017/04/05/C++笔记-泛型编程/index.html">
 <meta property="og:site_name" content="果冻の随笔">
+<meta property="og:description" content="封面作者">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fec5z2kccnj20sq16p4pp.jpg">
+<meta property="og:updated_time" content="2017-04-05T14:21:55.522Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="果冻の随笔">
+<meta name="twitter:title" content="C++笔记-泛型编程">
+<meta name="twitter:description" content="封面作者">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fec5z2kccnj20sq16p4pp.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -133,356 +139,174 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-C++笔记-泛型编程" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++笔记-泛型编程
+    </h1>
+  
+
+        <a href="/2017/04/05/C++笔记-泛型编程/" class="archive-article-date">
+  	<time datetime="2017-04-05T14:20:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-05</time>
+</a>
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://wx2.sinaimg.cn/mw690/ad4b340bly1fec5z2kccnj20sq16p4pp.jpg" alt="霞之丘诗羽"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=48229965" target="_blank" rel="external">封面作者</a></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><blockquote>
+<p>　　STL是一种泛型编程.面向对象编程关注的是程序的数据方面,而泛型编程关注的是算法.泛型编程旨在编写独立于数据类型的代码.在C艹中通常使用的工具是模板,模板是的能够按照泛型定义函数和类,而STL通过通用算法更近了一步.</p>
+</blockquote>
+<h2 id="为何使用迭代器"><a href="#为何使用迭代器" class="headerlink" title="为何使用迭代器"></a>为何使用迭代器</h2><blockquote>
+<p>　　模板使得算法独立于存储类型,而迭代器使算法独立于使用的容器类型.所以他们都是STL通用方法的组成部分.</p>
+</blockquote>
+<p>　　如果在一个double数组中搜索特定值可以这样写:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">double * find_ar(double * ar, int n, const double &amp; val)</div><div class="line">&#123;</div><div class="line">    for(int i = 0; i &lt; n; i++)</div><div class="line">    if(ar[i] == val)</div><div class="line">        return &amp;ar[i];//如果在数组中找到val则返回val在数组中的地址;</div><div class="line">    return nullptr;   //否则返回一个空指针</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　在这里我们基于了特定的数据结构(数组)<em>可以使用模板来将这种算法推广到包含==运算符的任意类型的数组.</em><br>　　不过我们也可以使用链表:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">struct Node</div><div class="line">&#123;</div><div class="line">    double item;</div><div class="line">    Node * p_next;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　假设有一个指向链表第一个节点的指针,每个节点的p_next都指向下一个节点,链表最后一个节点的p_next被设置为nullptr…则可以这么写:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Node * find_ll(Node * head,const double &amp; val)</div><div class="line">&#123;</div><div class="line">    Node * start;</div><div class="line">    for(start= head; start!=nullptr; start = start-&gt;p_next)</div><div class="line">        if(start-&gt;item == val)</div><div class="line">            return start;</div><div class="line">    return nullptr;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　他俩一个使用数组,一个将start重置为start-&gt;p_next,广义上他们都一样:将值于容器中的值比较,直到找到匹配为止.但在这里我们基于了特定的数据结构(链表)<br>　　而泛型编程旨在使用同一个find函数来处理数组,链表,或其他容器类型.<strong>函数不仅独立于容器中储存的类型,而且独立于容器本身的数据结构.</strong>模板为我们提供了存储在容器中的数据类型的通用表达,所以我们还需要遍历容器中的值的通用表达.而迭代器正好是干这活的…<br>　　要实现find函数,我们的迭代器应该具备以下特征:
+　　</p>
+<ul>
+<li><strong>应能够对迭代器执行解引用操作,一边能够访问他引用的值,即如果p是个迭代器,则能对*p进行定义;</strong></li>
+<li><strong>应能够将一个迭代器赋值给另一个.即如果p和q是迭代器.则能够对p=q进行定义;</strong></li>
+<li><strong>应能够使用迭代器遍历容器中的所有元素,这可以为迭代器定义++p和p++来实现;</strong></li>
+<li><strong>应能够将一个迭代器和另一个迭代器进行比较,看他们是否相等.即如果p和q都是迭代器则能对p==q和p!=q进行定义</strong></li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/04/C++笔记-嵌套类/" class="archive-article-date">
-  	<time datetime="2017-03-04T15:04:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/04/C++笔记-嵌套类/">C++笔记-嵌套类</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/08/C++笔记-成员模板&将模板用作参数/" class="archive-article-date">
-  	<time datetime="2017-01-08T15:43:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/08/C++笔记-成员模板&将模板用作参数/">C++笔记-成员模板&amp;将模板用作于参数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/06/C++笔记-模板的具体化/" class="archive-article-date">
-  	<time datetime="2017-01-06T11:32:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/06/C++笔记-模板的具体化/">C++笔记-模板的具体化</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/30/C++笔记-多重继承/" class="archive-article-date">
-  	<time datetime="2016-12-30T11:31:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/30/C++笔记-多重继承/">C++笔记-多重继承</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/05/C++笔记-泛型编程/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/24/C++笔记-私有继承/" class="archive-article-date">
-  	<time datetime="2016-12-23T16:17:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/24/C++笔记-私有继承/">C++笔记-私有继承</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/03/28/C++笔记-Vector/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-Vector</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/23/C++笔记-包含类对象的成员/" class="archive-article-date">
-  	<time datetime="2016-12-23T14:19:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/23/C++笔记-包含类对象的成员/">C++笔记-包含类对象的成员</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/21/C++笔记-类设计总结/" class="archive-article-date">
-  	<time datetime="2016-12-21T14:57:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/21/C++笔记-类设计总结/">C++笔记-类设计总结</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="C++笔记-泛型编程" data-title="C++笔记-泛型编程" data-url="http://yoursite.com/2017/04/05/C++笔记-泛型编程/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fydui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/15/C++笔记-继承和动态内存分配/" class="archive-article-date">
-  	<time datetime="2016-12-15T14:01:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/15/C++笔记-继承和动态内存分配/">C++笔记-继承和动态内存分配</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/" class="archive-article-date">
-  	<time datetime="2016-12-14T15:46:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/">C++笔记-抽象基类(Abstract-Base-Class,ABC)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/13/C++笔记-访问控制protected/" class="archive-article-date">
-  	<time datetime="2016-12-13T15:22:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/13/C++笔记-访问控制protected/">C++笔记-访问控制protected</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/CPP/">&laquo; Prev</a><a class="page-number" href="/tags/CPP/">1</a><span class="page-number current">2</span><a class="page-number" href="/tags/CPP/page/3/">3</a><a class="extend next" rel="next" href="/tags/CPP/page/3/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -506,9 +330,9 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
