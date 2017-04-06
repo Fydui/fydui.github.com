@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:description" content="封面作者">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fec5z2kccnj20sq16p4pp.jpg">
-<meta property="og:updated_time" content="2017-04-05T14:21:55.522Z">
+<meta property="og:updated_time" content="2017-04-06T14:20:13.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-泛型编程">
 <meta name="twitter:description" content="封面作者">
@@ -175,6 +175,20 @@
 <li><strong>应能够使用迭代器遍历容器中的所有元素,这可以为迭代器定义++p和p++来实现;</strong></li>
 <li><strong>应能够将一个迭代器和另一个迭代器进行比较,看他们是否相等.即如果p和q都是迭代器则能对p==q和p!=q进行定义</strong></li>
 </ul>
+<p>　　对于find函数来讲,有上述功能就够了,STL按照功能的强弱定义了不同等级的迭代器.另外常规指针就能满足迭代器的要求,可以使之接受两个指示区间的指针参数,其中一个指向数组的起始位置另一个指向数组的超尾;并且如果我们的函数没找到指定的值,那么让他返回尾指针,因此可以这样重写find_ar():<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">typedef double * iterator;</div><div class="line">iterator find_ar(iterator begin,iterator end,const double &amp; val)</div><div class="line">&#123;</div><div class="line">    iterator ar;</div><div class="line">    for(ar = begin; ar!=end; ar++)</div><div class="line">        if(*ar == val)</div><div class="line">            return ar;</div><div class="line">    return end;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　对于find_ll()函数,可以定义一个迭代器类,其中定义了运算符*和++;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">struct Node&#123;</div><div class="line">    double item;</div><div class="line">    Node * p_next;</div><div class="line">&#125;</div><div class="line">class iterator &#123;</div><div class="line">    Node * pt;</div><div class="line">public:</div><div class="line">    iterator() : pt(nullptr)&#123;&#125;</div><div class="line">    iterator(Node * p) : pt(p)&#123;&#125;</div><div class="line">    double operatror*()&#123;return pt-&gt;p_next;&#125;</div><div class="line">    iterator &amp; operator++()&#123; //++pt</div><div class="line">        pt = pt-&gt;p_next;</div><div class="line">        return *this;</div><div class="line">    &#125;</div><div class="line">    iterator &amp; operator++(int)&#123; //int表示后缀版++运算符,该int参数永远不会用到只做区分</div><div class="line">        iterator temp = *this;</div><div class="line">        pt = pt-&gt;p_next;</div><div class="line">        return temp;</div><div class="line">    &#125;</div><div class="line">    //你就假装我这里重载了==和!=</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　废了这么大劲之后,我们的find函数改就可以这样写:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">iterator find_ll(iterator head, const double &amp; val)</div><div class="line">&#123;</div><div class="line">    iterator start;</div><div class="line">    for(start = head; head!=0; ++start)</div><div class="line">        if(*start = val)</div><div class="line">            return start;</div><div class="line">        return nullptr;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　机智的你一定发现了我这不学好的一天净扯淡: 这踏马不废话么这俩玩意(函数)一毛一样啊,差别就是find_ar用了超尾.find_ll返回的是nullptr啊..其实我们还可以让链表的最后一个元素后面还有个空白元素..这样链表也有了超尾.他们俩就成了真·一个(功能的)算法;</p>
+<p>//我是第一个分割线↓</p>
+<hr>
+<p>　　前面的废话都是为了下面的废话做铺垫的:</p>
+<blockquote>
+<p>　　<strong>STL其实就是遵循上面的方法.首先每个容器类(vector, list等)定义了相同的迭代器类型,对于其中的某个类,迭代器可能是指针;但对于另一个类,迭代器可能是对象.但他们都将提供列如 * 和++等这样的操作.其次每个容器类都有个超尾标记,当迭代器递增到容器最后一个值的后面的时候把这个值赋值给迭代器.每个容器类都有begin()和end()方法,begin返回指向第一个元素的迭代器,end返回一个指向超尾的迭代器.每个容器类都有++操作用来遍历容器</strong> <del>尽是废话</del></p>
+</blockquote>
+<p>　　使用迭代器的时候不用管他是咋实现的..知道咋用就成(<del>如果你碰到需要自己定义迭代器的情况当我放屁</del>):<del>观众: 你智障吧废话谁踏马不会用这玩意</del> 没错我就是智障:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vector&lt;double&gt;::iterator pr; //这玩意是输出vector&lt;double&gt;里的元素</div><div class="line">for(pr = sco.begin(); pr != sco.end(); pr++)</div><div class="line">    cout &lt;&lt; *pr &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
+<p>这里本萌妹使用了C艹11,做一个炫酷的紧跟潮流<del>个屁</del>的智障:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">for(auto pr = sco.begin(); pr != sco.end(); pr++)</div><div class="line">    cout &lt;&lt; *pr &lt;&lt; endl;</div></pre></td></tr></table></figure>
+<p>作为一种编程风格,最好直接使用STL函数来处理细节,如for_each(),或C艹11的迷之基于范围的for循环:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for(auto x: sco) cout &lt;&lt; x &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
 
       
 
