@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:description" content="封面作者">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fec5z2kccnj20sq16p4pp.jpg">
-<meta property="og:updated_time" content="2017-04-06T14:29:34.869Z">
+<meta property="og:updated_time" content="2017-04-08T14:24:27.473Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-泛型编程">
 <meta name="twitter:description" content="封面作者">
@@ -189,6 +189,24 @@
 <p>这里本萌妹使用了C艹11,做一个炫酷的紧跟潮流<del>个屁</del>的智障:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">for(auto pr = sco.begin(); pr != sco.end(); pr++)</div><div class="line">    cout &lt;&lt; *pr &lt;&lt; endl;</div></pre></td></tr></table></figure>
 <p>作为一种编程风格,最好直接使用STL函数来处理细节,如for_each(),或C艹11的迷之基于范围的for循环:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for(auto x: sco) cout &lt;&lt; x &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="迭代器类型"><a href="#迭代器类型" class="headerlink" title="迭代器类型"></a>迭代器类型</h2><blockquote>
+<p>　　STL定义了五中迭代器,分别是: 输入迭代器,输出迭代器,正向迭代器,双向迭代器,随机访问迭代器;他们都可以执行解引用操作</p>
+</blockquote>
+<h3 id="输入迭代器："><a href="#输入迭代器：" class="headerlink" title="输入迭代器："></a>输入迭代器：</h3><p>　　从程序的角度来说,即来自容器内部的讯息被视为输入,因此输入迭代器可被程序用来读取容器中的信息,但不一定能让程序修改容器里的值.<br>　　输入迭代器必须能访问容器中所有的值(<del>废话</del>),可以通过++运算符来实现(<del>废话</del>).但输入迭代器并不保证第二次遍历容器时顺序不变,另外当迭代器被递增后,也不保证先前的值可以被解引用.基于输入迭代器的算法都应该是单通行(single-pass)的,<strong>输入迭代器是单项迭代器,可以递增,但不能递减.</strong></p>
+<h3 id="输出迭代器"><a href="#输出迭代器" class="headerlink" title="输出迭代器:"></a>输出迭代器:</h3><p>　　输出指的是将信息从程序传输给迭代器,因此程序的输出就是容器的输入,和输入迭代器差不多,他只能够解引用让程序能修改容器的值,也就是只能写,而不能读.<br>　　对于单通行,只读算法可以使用输入迭代器,对于单通行,只写算法,则可以使用输出迭代器.
+　　</p>
+<h3 id="正向迭代器"><a href="#正向迭代器" class="headerlink" title="正向迭代器:"></a>正向迭代器:</h3><p>　　正向迭代器与输入输出迭代器不同的是,他总是按照相同的顺序遍历一系列值.另外正向迭代器递增后仍可以怼前面的迭代器值解引用,并得到相同的值.<br>　　既可以读写又可以只读:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int * pirw; //读写</div><div class="line">const int * pir;//只读</div></pre></td></tr></table></figure></p>
+<h3 id="双向迭代器"><a href="#双向迭代器" class="headerlink" title="双向迭代器:"></a>双向迭代器:</h3><pre><code>具有正向迭代器全部特征,并且支持(前后缀)递减运算符;
+</code></pre><h3 id="随机迭代器"><a href="#随机迭代器" class="headerlink" title="随机迭代器:"></a>随机迭代器:</h3><pre><code>具有全部双向迭代器的特征,并且能够根据要求直接跳到容器中任何一个元素;
+</code></pre><hr>
+<h2 id="概念-改进和模型-完全不知道书上在说啥"><a href="#概念-改进和模型-完全不知道书上在说啥" class="headerlink" title="概念,改进和模型(完全不知道书上在说啥)"></a>概念,改进和模型(<del>完全不知道书上在说啥</del>)</h2><p><del>下面是咬文嚼字时间</del></p>
+<blockquote>
+<p>　　迭代器是一系列要求,而不是类型.STL算法可以使用任何满足要求的迭代器所实现,STL术语叫概念(concept)来描述一系列要求.概念可以具有继承的关系,例如双向迭代器继承了正向迭代器的功能,然而不能将继承机制用于迭代器: 假设我们将双向迭代器实现为一个常规指针,而指针属于C++内置类型,不能从派生而来.但从概念上将他确实能够继承.所以有些STL文献使用术语改进(refinement)来表示这种概念上的继承.so,双向迭代器是正向迭代器概念的一种改进.而概念的具体实现叫做模型(model).</p>
+</blockquote>
+<h3 id="将指针用于迭代器"><a href="#将指针用于迭代器" class="headerlink" title="将指针用于迭代器"></a>将指针用于迭代器</h3><p>　　迭代器是广义指针,指针满足所有迭代器要求,因此STL算法可以使用指针来对基于指针的非STL同期进行操作(<del>这段我也不咋懂</del>),其实就是可以将STL用于数组…..<br><code>const int SIZE = 100;
+double Rec[SIZE];
+sort(Rec,Rec+100);</code>　<br>　　sort()函数接受指向容器第一个元素的迭代器和指向超尾的迭代器作为参数.Rec或&amp;Rec[0]是第一个元素的地址,Rec+SIZE是最后一个元素后面的元素的地址;</p>
 
       
 
