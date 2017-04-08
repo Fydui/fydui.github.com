@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:description" content="封面作者">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fec5z2kccnj20sq16p4pp.jpg">
-<meta property="og:updated_time" content="2017-04-06T14:20:13.934Z">
+<meta property="og:updated_time" content="2017-04-06T14:29:34.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-泛型编程">
 <meta name="twitter:description" content="封面作者">
@@ -185,7 +185,7 @@
 <blockquote>
 <p>　　<strong>STL其实就是遵循上面的方法.首先每个容器类(vector, list等)定义了相同的迭代器类型,对于其中的某个类,迭代器可能是指针;但对于另一个类,迭代器可能是对象.但他们都将提供列如 * 和++等这样的操作.其次每个容器类都有个超尾标记,当迭代器递增到容器最后一个值的后面的时候把这个值赋值给迭代器.每个容器类都有begin()和end()方法,begin返回指向第一个元素的迭代器,end返回一个指向超尾的迭代器.每个容器类都有++操作用来遍历容器</strong> <del>尽是废话</del></p>
 </blockquote>
-<p>　　使用迭代器的时候不用管他是咋实现的..知道咋用就成(<del>如果你碰到需要自己定义迭代器的情况当我放屁</del>):<del>观众: 你智障吧废话谁踏马不会用这玩意</del> 没错我就是智障:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vector&lt;double&gt;::iterator pr; //这玩意是输出vector&lt;double&gt;里的元素</div><div class="line">for(pr = sco.begin(); pr != sco.end(); pr++)</div><div class="line">    cout &lt;&lt; *pr &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
+<p>　　使用迭代器的时候不用管他是咋实现的..知道咋用就成(<del>如果你碰到需要自己定义迭代器的情况当我放屁</del>):<del>观众: 你智障吧废话谁踏马不会用这玩意</del><br>　　哎呦你咋知道的…没错我就是智障.在知道了迭代器大概是咋构造的之后的我们可以更加自信满满的<del>并没有</del>雄赳赳气昂昂跨..啊不..写出迭代器:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vector&lt;double&gt;::iterator pr; //这玩意是输出vector&lt;double&gt;里的元素</div><div class="line">for(pr = sco.begin(); pr != sco.end(); pr++)</div><div class="line">    cout &lt;&lt; *pr &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
 <p>这里本萌妹使用了C艹11,做一个炫酷的紧跟潮流<del>个屁</del>的智障:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">for(auto pr = sco.begin(); pr != sco.end(); pr++)</div><div class="line">    cout &lt;&lt; *pr &lt;&lt; endl;</div></pre></td></tr></table></figure>
 <p>作为一种编程风格,最好直接使用STL函数来处理细节,如for_each(),或C艹11的迷之基于范围的for循环:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for(auto x: sco) cout &lt;&lt; x &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
@@ -456,6 +456,10 @@
           
             <li class="search-li">
               <a href="https://ray-eldath.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Eldathの博客</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ice1000.org/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>冰封の博客</a>
             </li>
           
         </ul>
