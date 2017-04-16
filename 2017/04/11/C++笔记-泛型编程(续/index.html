@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fek7pjd8qkj21kw0bg0u5.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fek7pke60fj21kw0k3tcb.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1fek7pjy2ncj21kw0grdil.jpg">
-<meta property="og:updated_time" content="2017-04-16T13:41:19.835Z">
+<meta property="og:updated_time" content="2017-04-16T14:02:56.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-泛型编程(续">
 <meta name="twitter:description" content="封面来源">
@@ -187,6 +187,11 @@
 <p>　　和别的容器相似set也使用模板来制定要储存的值类型,与其他容器相似,set也有一个将迭代器区间作为参数的构造函数.上述代码片段输出表明键是唯一的,虽然数组里有俩for,但如果两个集合包含相同的值,则这个值将在并集中只出现一次,所以for在集合中只出现了一次,这是因为set的键值是唯一的,且集合是经过排序的:<code>cout: ass booy can next we</code><br>　　set_union()函数接受五个迭代器参数,前两个迭代器定义了第一个集合的区间,接下来的两个参数定义了第二个集合的区间,最后一个参数是输出迭代器,指出将结果集合复制到什么位置.举个栗子,要显示集合A,B的并集可以:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set_union(A.begin(),A.end(),B.begin(),B.end(),ostream_iterator&lt;string,char&gt; out(cout,&quot; &quot;));</div></pre></td></tr></table></figure></p>
 <p>假设要将记过放到C集合中,而不是现实他,则最后一个参数应该是个匿名insert_iterator,将信息复制给C:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set_union(A.begin(),A.end(),B.begin(),B.end(),insert_iterator&lt;set&lt;string&gt;&gt;(C,C.begin()));</div></pre></td></tr></table></figure></p>
 <p>　　方法lower_bound()将键作为参数并返回一个迭代器,迭代器指向集合中的第一个不小于键参数的成员,upper_boun()将键作为参数并返回一个指向集合中第一个大于键参数的成员.函数set_intersection()和set_difference()粉蝶查找交集和获得两个集合的差,参数与set_union()相同;</p>
+<hr>
+<p>####　　multimap示例:<br>　　基本的multimap声明使用模板参数指定键的类型和存储的值类型.他一个键可以与多个键值相关联.下面声明创建一个multimap对象,键类型为int,值类型为string,第三个模板参数是可选的,用于对键排序,默认使用less&lt;&gt;:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">multimap&lt;int,string&gt; codes;</div></pre></td></tr></table></figure></p>
+<p>　　如果要用区号作为键来存城市名字,一种方法是创建个pair,再将它插入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pair&lt;const int, string&gt; item(213,&quot;Los Angeles&quot;);</div><div class="line">codes.insert(item);</div><div class="line"></div><div class="line">//或创建匿名pair对象:</div><div class="line">codes.insert(pair&lt;const int, string&gt; (213,&quot;Los Angeles&quot;);)</div></pre></td></tr></table></figure></p>
+<p>　　对于pair对象,可以使用first和second访问其两个部分:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pair&lt;const int, string&gt; item(213,&quot;Los Angeles&quot;);</div><div class="line">cout &lt;&lt; item.first &lt;&lt; item.second &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
+<p>　　成员函数count()接受键作为参数,返回具有该键的元素数数目.lower_bound()和upper_bound()将键作为参数,并分别返回集合中第一个不小于键参数的成员和第一个大于键参数的成员;equal_range()用键做参数,返回两个迭代器,表示的区间与该键匹配.</p>
 
       
 
