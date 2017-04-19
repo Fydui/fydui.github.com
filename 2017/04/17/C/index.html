@@ -16,7 +16,7 @@
 <meta property="og:description" content="作者">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/ad4b340bly1feq2ig5cqbj20i20pjgub.jpg">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fer7q4ur6ij21kw0zugpq.jpg">
-<meta property="og:updated_time" content="2017-04-18T14:43:59.645Z">
+<meta property="og:updated_time" content="2017-04-19T15:14:57.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-函数对象">
 <meta name="twitter:description" content="作者">
@@ -175,6 +175,10 @@
 <h3 id="预定义的函数符"><a href="#预定义的函数符" class="headerlink" title="预定义的函数符:"></a>预定义的函数符:</h3><p>　　transform()函数有两个版本,第一个版本的前两个参数是指定容器区间的迭代器,第三个参数将结果复制到哪里的迭代器,第四个参数则是一个函数对象(函数符);比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">transform(l.begin(),l.end(),out,sqrt);//你就当l是个容器实例,out是个输出迭代器,sqrt是开平方;</div><div class="line">//这就是吧容器l里的挨个开平方,并发送到输出流</div></pre></td></tr></table></figure></p>
 <p>　　第二个版本与第一个版本有所不同,版本二是一个二元函数,其第三个参数为第二个区间的起始位置,后面的参数不变,所以说如果我们想算俩容器里每个数的平均值就可以:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">double add(double x, double y)&#123;return x + y&#125;;</div><div class="line">transform(l.begin(),l.end(),l2.begin(),out,add);</div></pre></td></tr></table></figure></p>
 <p>但这样吧….就得给每种类型都定义一个add,,,所以让我们用模板吧比如plus&lt;&gt;..那么让我们看看SLT预定的几个函数符:<br><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fer7q4ur6ij21kw0zugpq.jpg" alt="表16.12"></p>
+<hr>
+<h3 id="自适应函数符合函数适配器"><a href="#自适应函数符合函数适配器" class="headerlink" title="自适应函数符合函数适配器"></a>自适应函数符合函数适配器</h3><p>　　上表列出的预定义函数符都是自适应的,自适应函数符携带了表示参数类型和返回类型的typedef成员,他们分别是:result_type,first_argument_type和second_argument_type.比如plus<int>对象的返回类型被表示为plus<int>::result_type,这是int的typedef;<br>    函数符自适应性的意义在于: 函数适配器对象可以使用函数对象,并使用typedef成员.例如,接受一个自适应函数符参数的函数可以使用result_type成员来声明一个与函数的返回类型匹配的变量.<br>    比如现在我们想将容器l里的每个元素都乘上2.5..那么跟上面那个一样我们是用:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">transform(l.begin(),l.end(),out,multiplies);</div></pre></td></tr></table></figure></int></int></p>
+<p>　　但是吧multiplies是个二元函数…所以我们得把接受两个参数的函数符(multiplies)转换成接受一个参数的multiplies.我们使用神奇的<code>bind1st()</code>;假设现在有个二元函数对象f2(),可以把f2()的第一个参数的值跟f2()相关联,所以我们对multiplies的二元转一元就可以写成:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bind1st(multiplies&lt;double&gt;,2.5); </div><div class="line">//将mu和2.5相关联.2.5将用于mu的第一个参数;</div></pre></td></tr></table></figure></p>
+<p>第二个参数在此:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">transform(l.begin(),l.end(),out,multiplies&lt;double&gt;,2.5);</div><div class="line">//这样容器l里的每个元素都将作为mu的第二个参数;达到乘2.5的目的</div></pre></td></tr></table></figure></p>
 
       
 
