@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:description" content="封面来源">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1feunnr2nhwj20jn0rsgxx.jpg">
-<meta property="og:updated_time" content="2017-04-21T14:57:39.264Z">
+<meta property="og:updated_time" content="2017-04-21T14:58:18.496Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-算法(STL)">
 <meta name="twitter:description" content="封面来源">
@@ -158,7 +158,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1feunnr2nhwj20jn0rsgxx.jpg" alt="霞之丘诗羽"><br><a href="https://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=48338779" target="_blank" rel="external">封面来源</a></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h3 id="算法的一些通用特征"><a href="#算法的一些通用特征" class="headerlink" title="　　算法的一些通用特征:"></a>　　算法的一些通用特征:</h3><p>　　STL文档使用模板参数名称来表示参数模型的概念.比如下面的copy()原型:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">template&lt;class InputIterator, class OutputIterator&gt;</div><div class="line">OutputIterator copy(InputIterator first, OutputIterator last, OutputIterator result);</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<hr>
+<h3 id="算法的一些通用特征"><a href="#算法的一些通用特征" class="headerlink" title="　　算法的一些通用特征:"></a>　　算法的一些通用特征:</h3><p>　　STL文档使用模板参数名称来表示参数模型的概念.比如下面的copy()原型:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">template&lt;class InputIterator, class OutputIterator&gt;</div><div class="line">OutputIterator copy(InputIterator first, OutputIterator last, OutputIterator result);</div></pre></td></tr></table></figure></p>
 <p>所以标识符InputIterator和OutputIterator都是模板参数,看名字一眼就能看出来区间参数必须是输入迭代器或更高级的,而只是结果存储的迭代器必须是输出迭代器或更高级的.<br>　　STL的有些算法有两个版本: 就地算法(in-place algorithm)和复制算法(copying algorithm),顾名思义,sort()就是就地算法的例子:函数完成时,结果被存放在原始数据的位置上; 而copy()函数将结果发送到另一个位置,所以他是复制算法;STL对此的约定是,复制版本的名称将以<code>_copy</code>结尾.<br>　　比如replace()函数,他将所有的old_value替换为new_value,则它的复制版本为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">template&lt;class InputIterator,class OutputIterator, class T&gt;</div><div class="line">OutputIterator replace_copy(InputIterator first,Inputiterator last, OutputIterator result,</div><div class="line">                            const T&amp; old_value, const T&amp; old_value);</div></pre></td></tr></table></figure></p>
 <p>对于复制算法的约定是: 返回一个迭代器,指向复制的超尾(最后一个值后面)的位置<br>　　另一个常见变体是: 有些函数是根据函数应用于容器元素得到的结果来执行操作的.他们通常以_if结尾,比如replace_if:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">template &lt; class ForwardIterator, class UnaryPredicate, class T &gt;</div><div class="line">  void replace_if (ForwardIterator first, ForwardIterator last,</div><div class="line">                   UnaryPredicate pred, const T&amp; new_value)</div><div class="line">&#123;</div><div class="line">  while (first!=last) &#123; </div><div class="line">    if (pred(*first)) *first=new_value; //pred()是个一元谓词,根据其真假来决定是否将new_value赋给first</div><div class="line">    ++first;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
@@ -260,7 +262,7 @@
 <nav id="article-nav">
   
   
-    <a href="/2017/04/17/C++笔记-函数对象/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/04/17/C/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">C++笔记-函数对象</div>
       <i class="icon-circle-right"></i>
     </a>

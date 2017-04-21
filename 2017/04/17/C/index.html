@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>C++笔记-函数对象 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="作者">
+  <meta name="description" content="封面作者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++笔记-函数对象">
 <meta property="og:url" content="http://yoursite.com/2017/04/17/C/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:description" content="作者">
+<meta property="og:description" content="封面作者">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/ad4b340bly1feq2ig5cqbj20i20pjgub.jpg">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fer7q4ur6ij21kw0zugpq.jpg">
-<meta property="og:updated_time" content="2017-04-19T15:14:57.910Z">
+<meta property="og:updated_time" content="2017-04-21T14:58:25.638Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-函数对象">
-<meta name="twitter:description" content="作者">
+<meta name="twitter:description" content="封面作者">
 <meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/ad4b340bly1feq2ig5cqbj20i20pjgub.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
@@ -158,7 +158,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://wx3.sinaimg.cn/mw690/ad4b340bly1feq2ig5cqbj20i20pjgub.jpg" alt="霞之丘诗羽"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=52703804" target="_blank" rel="external">作者</a></p>
+        <p><img src="http://wx3.sinaimg.cn/mw690/ad4b340bly1feq2ig5cqbj20i20pjgub.jpg" alt="霞之丘诗羽"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=52703804" target="_blank" rel="external">封面作者</a></p>
 <a id="more"></a>
 <hr>
 <p>　　很多STL算法都使用函数对象也叫函数符.函数符是可以以函数方式与()结合使用的任意对象.包括函数名,指向函数的指针,和重载了()运算符的类对象(即定义了函数operator()()的类)可以定义这样一个类:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class Linear</div><div class="line">&#123;</div><div class="line">    private:</div><div class="line">        double slope;</div><div class="line">        double y0;</div><div class="line">    public:</div><div class="line">        Linear(double s = 1, double y = 0) </div><div class="line">            : slope(s),y0(y)&#123;&#125;</div><div class="line">        double operator() (double x)&#123;return y0+slope * x;&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
@@ -276,6 +276,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/04/21/C++笔记-算法(STL)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          C++笔记-算法(STL)
+        
+      </div>
+    </a>
   
   
     <a href="/2017/04/17/C++笔记-函数对象/" id="article-nav-older" class="article-nav-link-wrap">
