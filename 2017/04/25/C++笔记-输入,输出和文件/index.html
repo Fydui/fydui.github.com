@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/25/C++笔记-输入,输出和文件/index.html">
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:description" content="流和缓冲区　　C++程序把输入和输出看作字节流.输入时,程序从输入流中抽取字节;输出时,程序将字节插入到输出流中.输入流中的字节可能来自键盘/硬盘/程序. 输出流中的字节可以流向屏幕/打印机/硬盘/程序.换句话说,流充当了程序和流源(流的来源)或流目标之间的桥梁.C++程序处理输出的方式将独立于其去向,因此管理输入分:　　○ 将流与输入去向的程序关联起来　　○ 将流与文件链接起来.　　换句话说">
-<meta property="og:updated_time" content="2017-05-10T14:40:12.443Z">
+<meta property="og:updated_time" content="2017-05-06T15:30:35.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-输入,输出和文件">
 <meta name="twitter:description" content="流和缓冲区　　C++程序把输入和输出看作字节流.输入时,程序从输入流中抽取字节;输出时,程序将字节插入到输出流中.输入流中的字节可能来自键盘/硬盘/程序. 输出流中的字节可以流向屏幕/打印机/硬盘/程序.换句话说,流充当了程序和流源(流的来源)或流目标之间的桥梁.C++程序处理输出的方式将独立于其去向,因此管理输入分:　　○ 将流与输入去向的程序关联起来　　○ 将流与文件链接起来.　　换句话说">
@@ -170,6 +170,9 @@
 <h2 id="一些ostream方法"><a href="#一些ostream方法" class="headerlink" title="一些ostream方法"></a>一些ostream方法</h2><p>　　除了大家喜闻乐见的方法之外,ostream类提供了put()方法和write()方法.前者用于显示字符.后者用于显示字符串.<br>　　最初,put()方法原型如下:<br> 　　 <code>ostream &amp; put(char)</code>;<br> 　　当前标准被模板化,以适用于wchar_t:<br> 　　 <code>cout.put(&#39;W&#39;)</code>;<br> 　　还可以将数值类型参数(如int)用于put,这样:<br> 　　 <code>cout.put(65) // 输出A</code><br> 　　 <code>cout.put(66.3) //转为66 输出B</code><br> 　　write()方法显示整个字符串,模板原型如下:<br> 　　<code>basic_ostream&lt;charT,traits&gt;&amp;write(const char_type* s,streamsize n)</code><br> 　　第一个参数提供了要显示的字符串的地址,第二个参数指出要显示多少个字符串.</p>
 <p>下面是一个及其智障的示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;cstring&gt;</div><div class="line">using namespace std;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    const char * s1 = &quot;Florida&quot;;</div><div class="line">    const char * s2 = &quot;Kansas&quot;;</div><div class="line">    const char * s3 = &quot;Euphoria&quot;;</div><div class="line">    </div><div class="line">    int len = strlen(s2);</div><div class="line">       cout &lt;&lt; &quot;Increasing LOOP&quot; &lt;&lt; endl;</div><div class="line">    </div><div class="line">    int i;</div><div class="line">    for(i = 1; i &lt;= len; i++)</div><div class="line">    &#123;</div><div class="line">        cout.write(s2,i);</div><div class="line">        cout &lt;&lt;endl;</div><div class="line">    &#125;</div><div class="line">    cout &lt;&lt; &quot;Decreasing LOOP:&quot;;</div><div class="line">    for(i = len; i &gt; 0; i--)</div><div class="line">    cout.write(s2,i) &lt;&lt; endl;</div><div class="line">    cout &lt;&lt; &quot;Exceeding string length: &quot; &lt;&lt; endl;</div><div class="line">    cout.write(s2,len+5) &lt;&lt; endl;</div><div class="line">    </div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>需要注意的是,write()方法并不会在遇到空字符的时候自动停止打印.而是只打印指定数目的字符.即使超出了字符的边界.</p>
+<h2 id="刷新输出缓冲区"><a href="#刷新输出缓冲区" class="headerlink" title="刷新输出缓冲区"></a>刷新输出缓冲区</h2><p>　　在屏幕输出时,程序不必等到缓冲区被填满.列如,将换行符发送到缓冲区之后.将刷新缓冲区.多数C++实现都会在输入即将发生的时候刷新缓冲区.<br>　　可以手动控制刷新缓冲区: 控制符flush刷新缓冲区,而控制符endl刷新缓冲区并插入一个换行符.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cout &lt;&lt; &quot;Kazusa&quot; &lt;&lt; flush;</div><div class="line">cout &lt;&lt; &quot;Setsuna&quot; &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
+<p>其实控制符也是函数 可以直接调用flush()来刷新缓冲区:<br>　　<code>flush(cout);</code></p>
+<h2 id="用cout进行格式化"><a href="#用cout进行格式化" class="headerlink" title="用cout进行格式化"></a>用cout进行格式化</h2><p>###　　1.修改显示时使用的计数系统:<br>　　　 ostream类是从ios类派生而来的.而后者是从ios_base派生来的.ios_base类里都是描述格式状态的信息.例如,一个类成员中某些位决定了使用的技术系统,而另一个成员决定了字段宽度.通过使用控制符(manipulator),可以控制显示整数时使用的计数系统.比如控制字段宽度,和小数尾数.<br>　　　 要控制整数以十进制,十六进制,八进制.可以使用dec,hex和oct控制符.<br>　　　 如<code>hex(cout) 或 cout&lt;&lt; hex</code> 将其技术系统格式状态设置为16进制;<br>　　　 下面是一个比较智障的栗子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">    int main()</div><div class="line">&#123;</div><div class="line">    cout &lt;&lt; &quot;Enter an integer;&quot;;</div><div class="line">    int n;</div><div class="line">    cin &gt;&gt; n;</div><div class="line"></div><div class="line">    cout &lt;&lt; &quot;n    n*n&quot; &lt;&lt;endl;</div><div class="line">    cout &lt;&lt; n &lt;&lt; &quot;    &quot; &lt;&lt; n*n &lt;&lt; &quot;(decimal)&quot; &lt;&lt; endl;</div><div class="line">    cout &lt;&lt; hex;</div><div class="line">    cout &lt;&lt; n &lt;&lt; &quot;    &quot;;</div><div class="line">    cout &lt;&lt; n*n &lt;&lt; &quot; (hexadecimal)&quot; &lt;&lt; endl;</div><div class="line">    cout &lt;&lt; oct &lt;&lt; n &lt;&lt; &quot;    &quot; &lt;&lt; n * n &lt;&lt; &quot;(octal)&quot; &lt;&lt; endl;</div><div class="line">    dec(cout);</div><div class="line">    cout &lt;&lt; n &lt;&lt; &quot;    &quot;&lt;&lt; n *n &lt;&lt; &quot; (decimal)&quot; &lt;&lt; endl;</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
 
@@ -377,15 +380,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">QML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">随笔</a>
               </li>
             
             <div class="clearfix"></div>
