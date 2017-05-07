@@ -273,7 +273,8 @@
       
         <a id="more"></a>
 <hr>
-<h2 id="流和缓冲区"><a href="#流和缓冲区" class="headerlink" title="流和缓冲区"></a>流和缓冲区</h2><p>　　C++程序把输入和输出看作字节流.输入时,程序从输入流中抽取字节;输出时,程序将字节插入到输出流中.输入流中的字节可能来自键盘/硬盘/程序. 输出流中的字节可以流向屏幕/打印机/硬盘/程序.换句话说,流充当了程序和流源(流的来源)或流目标之间的桥梁.C++程序处理输出的方式将独立于其去向,因此管理输入分:<br>　　○ 将流与输入去向的程序关联起来<br>　　○ 将流与文件链接起来.<br>　　换句话说,输入流需要两个链接,每端各一个.文件端链接来源,程序段链接将流的输出部分转存到程序中; 同样对输出流的管理包括将输出流连接到程序以及将输出目标与流关联起来;<br>　　通常使用缓冲区可以更高效地处理输入输出.缓冲区是用作中介的内存块,将信息从设备传输到程序或从程序传输给设备的临时存储工具.</p>
+<h2 id="流和缓冲区"><a href="#流和缓冲区" class="headerlink" title="流和缓冲区"></a>流和缓冲区</h2><p>　　C++程序把输入和输出看作字节流.输入时,程序从输入流中抽取字节;输出时,程序将字节插入到输出流中.输入流中的字节可能来自键盘/硬盘/程序. 输出流中的字节可以流向屏幕/打印机/硬盘/程序.换句话说,流充当了程序和流源(流的来源)或流目标之间的桥梁.C++程序处理输出的方式将独立于其去向,因此管理输入分:<br>　　○ 将流与输入去向的程序关联起来<br>　　○ 将流与文件链接起来.<br>　　换句话说,输入流需要两个链接,每端各一个.文件端链接来源,程序段链接将流的输出部分转存到程序中; 同样对输出流的管理包括将输出流连接到程序以及将输出目标与流关联起来;<br>　　通常使用缓冲区可以更高效地处理输入输出.缓冲区是用作中介的内存块,将信息从设备传输到程序或从程序传输给设备的临时存储工具.<br>　　缓冲方法从磁盘上读取大量信息,讲这些信息存在缓冲区中,然后每次从缓冲区里读取一个字节,因为从内存中读取单个字节的速度非常快.所以这种方法更快更方便.达到缓冲区尾部之后程序将从磁盘上读取另一块数据.输出时程序首先填满缓冲区.然后把成块数据传给硬盘,并清空缓冲区,已被下一批输出使用.这被称为刷新缓冲区(flushing the buffer).</p>
+<h2 id="流-缓冲区和iostream文件"><a href="#流-缓冲区和iostream文件" class="headerlink" title="流,缓冲区和iostream文件"></a>流,缓冲区和iostream文件</h2><p>　　○ streambuf类维缓冲区提供内存,并提供了用于填充缓冲区,访问缓冲区内容,刷新缓冲区和管理缓冲区内存的类方法.<br>　　○ ios_base 类表示流的一般特征,如是否可读取,是二进制流还是文本流等;<br>　　○ ios类基于ios_base,其中包括了一个指向streambuf对象的指针成员;<br>　　○ ostream类是从iios类派而来的, 提供了输出的方法;<br>　　○ istream 类也是从ios类派来的,提供了输入方法;<br>　　○ iostream类是基于istream和ostream类的 因此继承了输入输出方法;</p>
 
       
 
@@ -761,15 +762,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">QML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">随笔</a>
               </li>
             
             <div class="clearfix"></div>
