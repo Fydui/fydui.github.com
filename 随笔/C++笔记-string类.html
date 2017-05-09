@@ -6,35 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++笔记-异常(3) | 果冻の随笔</title>
+  <title>C++笔记-string类 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="图片来源
-
-异常何时会迷失方向异常被引发之后,有两种情况会导致问题:
-意外异常(unexpected exception):　　如果他是在带异常规范的函数中引发的,则必须与规范列表中的某种异常匹配(在继承层次结构中,类类型与这个类机器派生类的对象匹配)就是得有个catch块能跟你写的异常符合/能接受你那异常,否则则成为意外异常.(C++11已经摒弃这东西了,然而有的代码还在用它)
-　　
-未捕获异常">
-<meta property="og:type" content="article">
-<meta property="og:title" content="C++笔记-异常(3)">
-<meta property="og:url" content="http://yoursite.com/2017/02/25/C++笔记-异常(3)/index.html">
+  <meta name="keywords">
+<meta property="og:type" content="website">
+<meta property="og:title" content="C++笔记-string类">
+<meta property="og:url" content="http://yoursite.com/随笔/C++笔记-string类.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:description" content="图片来源
-
-异常何时会迷失方向异常被引发之后,有两种情况会导致问题:
-意外异常(unexpected exception):　　如果他是在带异常规范的函数中引发的,则必须与规范列表中的某种异常匹配(在继承层次结构中,类类型与这个类机器派生类的对象匹配)就是得有个catch块能跟你写的异常符合/能接受你那异常,否则则成为意外异常.(C++11已经摒弃这东西了,然而有的代码还在用它)
-　　
-未捕获异常">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fddetu6jbvj215o15o7aj.jpg">
-<meta property="og:updated_time" content="2017-02-25T14:52:09.209Z">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4a03nmfj20go09eq3c.jpg">
+<meta property="og:updated_time" content="2017-03-25T14:53:59.471Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++笔记-异常(3)">
-<meta name="twitter:description" content="图片来源
-
-异常何时会迷失方向异常被引发之后,有两种情况会导致问题:
-意外异常(unexpected exception):　　如果他是在带异常规范的函数中引发的,则必须与规范列表中的某种异常匹配(在继承层次结构中,类类型与这个类机器派生类的对象匹配)就是得有个catch块能跟你写的异常符合/能接受你那异常,否则则成为意外异常.(C++11已经摒弃这东西了,然而有的代码还在用它)
-　　
-未捕获异常">
-<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fddetu6jbvj215o15o7aj.jpg">
+<meta name="twitter:title" content="C++笔记-string类">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4a03nmfj20go09eq3c.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -71,6 +54,8 @@
 			<ul>
 			
 				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -130,6 +115,8 @@
 				
 					<li><a href="/">主页</a></li>
 		        
+					<li><a href="/">随笔</a></li>
+		        
 		        
 		        	<li><a href="/archives">所有文章</a></li>
 		        
@@ -154,31 +141,55 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++笔记-异常(3)" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="page-undefined" class="article article-type-page " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++笔记-异常(3)
+      C++笔记-string类
     </h1>
   
 
-        <a href="/2017/02/25/C++笔记-异常(3)/" class="archive-article-date">
-  	<time datetime="2017-02-25T14:51:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-25</time>
+        <a href="/随笔/C++笔记-string类.html" class="archive-article-date">
+  	<time datetime="2017-03-25T14:51:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-25</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fddetu6jbvj215o15o7aj.jpg" alt="志熊理科"><br><a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=34688373" target="_blank" rel="external">图片来源</a></p>
+        <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1fdx4a03nmfj20go09eq3c.jpg" alt="志熊理科"></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="string类的构造函数"><a href="#string类的构造函数" class="headerlink" title="string类的构造函数:"></a>string类的构造函数:</h2><p>size_type是一个依赖于实现的整形在头文件string中定义的.string类将string::npos定义为字符串的最大长度,通常为unsigned int的最大值.NBTS(null-terminated-string)来表示空字符结束的字符串.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">string(const char *s);      //将string对象初始化为s指向的NBTS</div><div class="line">string(size_type n, char c) //创建一个包含n个元素的string对象,其中每个都被初始化为c</div><div class="line">string(const string &amp;str)   //将一个string对象初始化为string对象str(复制构造函数)</div><div class="line">string()                    //创建一个长度为0的默认string对象</div><div class="line">string(const char * s,size_type n) //创建一个裁剪了s的前n个字符串的对象.</div><div class="line"></div><div class="line">template&lt;class Iter&gt;</div><div class="line">string(Iter begin, Iter end) //将一个string对象初始化为区间[begin,end)内的字符串,begin和end就像指针,用于指定位置</div><div class="line"></div><div class="line">string(const string &amp; str, string size_type pos = 0, size_type n = npos)</div><div class="line">//将一个string对象初始化为对象str中从位置pos开始到结尾的字符,或从pos的位置到第n个字符串;</div><div class="line"></div><div class="line">string(string &amp;&amp; str) noexcept</div><div class="line">//C++11新增,将一个string对象初始化为string对象str,并且可能修改str(移动构造函数)</div><div class="line"></div><div class="line">string(initializer_list&lt;char&gt;il) //C++11新增,将一个string对象初始化为列表il中的字符</div></pre></td></tr></table></figure></p>
 <hr>
-<h2 id="异常何时会迷失方向"><a href="#异常何时会迷失方向" class="headerlink" title="异常何时会迷失方向"></a>异常何时会迷失方向</h2><p>异常被引发之后,有两种情况会导致问题:</p>
-<h4 id="意外异常-unexpected-exception"><a href="#意外异常-unexpected-exception" class="headerlink" title="意外异常(unexpected exception):"></a>意外异常(unexpected exception):</h4><p>　　如果他是在带异常规范的函数中引发的,则必须与规范列表中的某种异常匹配(在继承层次结构中,类类型与这个类机器派生类的对象匹配)<del>就是得有个catch块能跟你写的异常符合/能接受你那异常</del>,否则则成为意外异常.(<del>C++11已经摒弃这东西了,然而有的代码还在用它</del>)
-　　</p>
-<h4 id="未捕获异常-uncaught-exception"><a href="#未捕获异常-uncaught-exception" class="headerlink" title="未捕获异常(uncaught exception):"></a>未捕获异常(uncaught exception):</h4><p>　　如果异常不是在函数中引发,则必须捕获他.如果没有捕获(在没有try块或没有catch块时,将出现)<br>　　<br><em>在默认情况下,出现上述情况程序将被终止,然而可以修改程序对上述异常的反应…</em><br>未捕获异常不会导致程序立刻停止,首先会调用terminate()函数,terminate()调用abort()函数,所以说可以修改terminate()调用的函数(不让他调用abort()).可以使用set_terminate()函数.(在#include<exception>中):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">typedef void (*terminate_handler)();</div><div class="line">terminate_handler set_terminate(terminate_handler f) throw(); //C++ 98</div><div class="line">terminate_handler set_terminate(terminate_handler f) noexcept; //C++ 11</div><div class="line">void terminate(); //C++ 98</div><div class="line">void terminate() noexcept; // C++ 11</div></pre></td></tr></table></figure></exception></p>
-<p>　　typedef使得terminate_handler称为一个纸箱没有参数和返回值的函数的指针.terminate_handler将他的名字(地址)作为参数,并且返回这个函数的地址,如果set_terminate被多次调用,则terminate将调用最后一次set_terminate调用设置的函数.</p>
+<p>　　第五个构造函数将一个C-风格字符串和一个整数作为参数,其中的整数参数来表示要复制多少个字符串(如果20被改成40则将会继续复制字符串..将导致十五个无用的字符串被复制到five的结尾处):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">char alls[] = &quot;All&apos;s well that ends well&quot;;</div><div class="line">string five(alls,20);//这里只是用了前二十个字符来初始化five对象.</div></pre></td></tr></table></figure></p>
+<hr>
+<p>　　第六个构造函数有一个模板参数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">template&lt;class Iter&gt;string(Iter begin,Iter end);</div></pre></td></tr></table></figure></p>
+<p>　　begin和end想指针那样指向内存中的两个位置,构造函数将使用begin和end之间的值对string对象初始化.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string six(alls+6,alls+10) //six被初始化为well;</div></pre></td></tr></table></figure></p>
+<p>　　在这里数组名相当于指针,所以alls+6和alls+10的类型都是char<em>,因此类型char</em>将替换Iter.第一个参数指向数组(从零开始)alls中的第六个字符串(w),第二个参数指向alls的第十个(well后面的空格);<br>　　现在假设要用该构造函数将对象初始化为另一个string对象(假设为five)的一部分内容,则下面这句不管用:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string seven(five+6,five+10);</div></pre></td></tr></table></figure></p>
+<p>　　原因在于对象名并不是数组名,所以five不是个指针,但five[6]是一个char值,&amp;five[6]则是个地址,因此可以被用作该构造函数的一个参数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string seven(&amp;five[6],&amp;five[10]);</div></pre></td></tr></table></figure></p>
+<hr>
+<p>　　第七个构造函数将一个string对象的部分复制到构造的对象中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string eight(four,7,16);//从four的第八个字符开始将16个字符复制到eight中</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="C-11新增的构造函数"><a href="#C-11新增的构造函数" class="headerlink" title="C++11新增的构造函数:"></a>C++11新增的构造函数:</h3><p>　　构造函数string(string &amp;&amp; str)类似于复制构造函数,导致新的string为str的副本,但跟复制构造函数不一样的是,他不保证将str视为const.这种构造函数被称为移动构造函数(move constructor).<br>　　构造函数string(initialzer_list)使得下面的声明是合法的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">string p = &#123;&apos;L&apos;,&apos;U&apos;,&apos;C&apos;,&apos;K&apos;&#125;;</div><div class="line">string c&#123;&apos;L&apos;,&apos;U&apos;,&apos;C&apos;,&apos;K&apos;&#125;;</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="string类输入"><a href="#string类输入" class="headerlink" title="string类输入:"></a>string类输入:</h2><p>　　对于string有两种输入方式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">string stuff;</div><div class="line">cin &gt;&gt; stuff;</div><div class="line">getline(cin,stuff);</div><div class="line"></div><div class="line">//getline有个可选参数,用于指定使用哪个字符串来确定输入的边界:</div><div class="line">getline(stuff,&apos;:&apos;); //string的getline会自动调整大小使得正好容得下输入的字符串&apos;</div></pre></td></tr></table></figure></p>
+<p>　　虽然string的getline能自动调节大小,但是有一些限制,如过想要读取一个文本,那么string对象所允许的最大长度(大小为unsigned int的值)可能不够.<br>　　string的getlin从输入中读取字符串并将其储存到目标string中,直到发生下面三种情况之一:</p>
+<ul>
+<li>到达文件尾.</li>
+<li>遇到分界字符(如 \n)</li>
+<li>读取的字符数达到最大值;</li>
+</ul>
+<hr>
+<h2 id="使用字符串"><a href="#使用字符串" class="headerlink" title="使用字符串"></a>使用字符串</h2><p>　　可以比较字符串.string类对于全部六个关系运算符都进行了重载.如果在机器排列序列中,一个对象位于另一个对象的前面,则前者小于后者.如果机器排列序列为ASCII码,则数字江小鱼大写字符,大写字符小于小写字符.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">string str1 = &quot;cobra&quot;;</div><div class="line">string str2 = &quot;coral&quot;;</div><div class="line">string str3[20] = &quot;anaconda&quot;;</div><div class="line"></div><div class="line">if(str1 &lt; str2) ...</div><div class="line">if(str1 == str3) ...</div><div class="line">if(str3 != str2) ...</div><div class="line"></div><div class="line">//可以确定字符串的长度.size()和length()成员函数都返回字符串中的字符数:</div><div class="line">if(str1.length() == str2.size()) ...</div></pre></td></tr></table></figure></p>
+<p>　　可以以多种方式在字符串中搜索给定的字符串或字符.重载的find方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">size_type find(const string &amp; str, size_type pos = 0) const;</div><div class="line">//从字符串的pos位置开始,查找字符串str,找到了则返回该字符串首次出现时其首字符的索引,没有就返回string::npos</div><div class="line"></div><div class="line">size_type find(const char* s,size_type pos = 0) const; //同上</div><div class="line">size_type find(char ch, size_type pos = 0)const;       //同上</div><div class="line"></div><div class="line">size_type find(const char* s,size_type pos = 0, size_type n);</div><div class="line">//从字符串的pos开始,查找s的前n个字符串组成的子字符串.找到则返回子字符串首次出现的首字符的索引,否则返回string::npos</div></pre></td></tr></table></figure></p>
+<p>　　除此之外还有: </p>
+<ul>
+<li>rfind()方法查找子字符串或字符串最后一次出现的位置;</li>
+<li>find_first_of()方法在字符串中查找参数中任何一个字符串首次出现的位置;</li>
+<li>find_last_of()方法用法相同,查找的是最后一次出现的位置</li>
+<li>find_first_not_of()方法在字符串中查找第一个不包含在参数中的字符串</li>
+</ul>
 
       
 
@@ -210,7 +221,7 @@
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/">undefined</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/">undefined</a></li></ul>
 	</div>
 
       
@@ -263,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/25/C++笔记-异常(3)/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/随笔/C++笔记-string类.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -275,25 +286,6 @@
 </article>
 
   
-<nav id="article-nav">
-  
-    <a href="/2017/03/04/C++笔记-嵌套类/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++笔记-嵌套类
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/01/08/C++笔记-成员模板&将模板用作参数/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++笔记-成员模板&amp;将模板用作于参数</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 
 
@@ -301,7 +293,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C++笔记-异常(3)" data-title="C++笔记-异常(3)" data-url="http://yoursite.com/2017/02/25/C++笔记-异常(3)/"></div>
+	<div class="ds-thread" data-thread-key="undefined" data-title="C++笔记-string类" data-url="http://yoursite.com/随笔/C++笔记-string类.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -343,7 +335,7 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
@@ -455,6 +447,10 @@
           
             <li class="search-li">
               <a href="https://ray-eldath.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Eldathの博客</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ice1000.org/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>冰封の博客</a>
             </li>
           
         </ul>
