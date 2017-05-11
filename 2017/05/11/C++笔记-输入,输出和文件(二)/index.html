@@ -12,9 +12,11 @@
 <meta property="og:title" content="C++笔记-输入,输出和文件(二)">
 <meta property="og:url" content="http://yoursite.com/2017/05/11/C++笔记-输入,输出和文件(二)/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:updated_time" content="2017-05-11T13:11:10.118Z">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1ffk27z9oxxj21kw0sn444.jpg">
+<meta property="og:updated_time" content="2017-05-11T15:19:20.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-输入,输出和文件(二)">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1ffk27z9oxxj21kw0sn444.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -163,6 +165,12 @@
         <h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p><em>下面是cin の show time</em></p>
 <p>##　　cin如何检查输入<br>　　不同版本的抽取运算符(&gt;&gt;)查看输入流的方法是相同的.他们跳过空白(空格,换行符,和制表符)直到遇到非空白字符,但在C的单字符模式下,&gt;&gt;它读取从非空白字符开始,到与目标类型不匹配的第一个字符之间全部内容;<br>　　例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int elevation;</div><div class="line">cin &gt;&gt; elevation;</div><div class="line">//假设键入-123Z</div></pre></td></tr></table></figure></p>
 <p>　　运算符将读取前四个.因为他们都是有效的整数.但Z不是.有的时候键入可能没有满足程序的期望,比如输入的是ZCAR,而不是-123Z,这种情况下程序不会修改elevation的值,并返回0;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    using namespace std;</div><div class="line">    cout &lt;&lt; &quot;Enter&quot; &lt;&lt; endl;</div><div class="line">    int sum = 0;</div><div class="line">    int input;</div><div class="line">    while(cin &gt;&gt; input)</div><div class="line">    &#123;</div><div class="line">        sum += input;</div><div class="line">    &#125;</div><div class="line">    cout &lt;&lt;　&quot;&quot; &lt;&lt; input &lt;&lt; endl;</div><div class="line">    cout &lt;&lt; &quot;Sum = &quot; &lt;&lt; sum &lt;&lt; endl;</div><div class="line">    </div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* 输入-123Z</div><div class="line">   输出:</div></pre></td></tr></table></figure></p>
+<p>##　流状态<br>　　流状态由3个ios_base元素组成: eofbit,badbit, failbit.其中没一个元素都是一位(1或0); 当cin操作达到文件末尾时,它将设置eofbit; 当cin操作未能读取到预期的字符时,他将设置failbit; 当一些无法诊断的失败破坏流时,它将设置badbit;当三个状态为都为0时表示一切顺利,(他为什么这么熟练啊);<br>　　下表列出了位和一些报告或改变流的ios_base方法;<br>　　书上的表格奉上:<br>　　<img src="http://wx2.sinaimg.cn/mw690/ad4b340bly1ffk27z9oxxj21kw0sn444.jpg" alt="&quot;p756&quot;"></p>
+<p>##　其他istream类方法<br>　　　　　○ get(char &amp;)和getline(void)方法读取下一个输入字符,即使他是空格,制表符,换行符;<br>　　　　　○ get(插入<em>, int, char)和getline(char</em>,int,char)在默认情况下读取一行;</p>
+<p>###　　　单字符输入:<br>　　　　　<strong>get(char &amp;)</strong><br>　　　　　假设有如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">int ct = 0;</div><div class="line">char ch;</div><div class="line">cin.get(ch);</div><div class="line">while(ch != &apos;\n&apos;)</div><div class="line">&#123;</div><div class="line">    cout &lt;&lt; ch;</div><div class="line">    ct++;</div><div class="line">    cin.get(ch);</div><div class="line">&#125;</div><div class="line">cout &lt;&lt; ct &lt;&lt; endl;</div><div class="line">//输入: I C++ clearly. &lt;Enter&gt;</div><div class="line">//输出: I C++ clearly.</div></pre></td></tr></table></figure></p>
+<p>通过get(ch),代码读取,显示,并考虑空格和可打印字符;<br>假设程序使用&gt;&gt;:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">int ct = 0;</div><div class="line">char ch;</div><div class="line">cin.get(ch);</div><div class="line">while(ch != &apos;\n&apos;)</div><div class="line">&#123;</div><div class="line">    cout &lt;&lt; ch;</div><div class="line">    ct++;</div><div class="line">    cin&gt;&gt;get(ch);</div><div class="line">&#125;</div><div class="line">cout &lt;&lt; ct &lt;&lt; endl;</div><div class="line">//输入: I C++ clearly. &lt;Enter&gt;</div><div class="line">//输出: IC++clearly.</div></pre></td></tr></table></figure></p>
+<p>代码将首先跳过空格.并且循环不会停止.因为&gt;&gt;跳过了换行符,所以换行不会被赋值给ch,所以循环不会被终止.<br>　　　成员函数get(void)<br>　　　get(void)尘缘函数还读取空白.但使用返回值来将输入传递给程序:<br>　　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">int ch = 0;</div><div class="line">char ch;</div><div class="line">ch cin.get();</div><div class="line">while(ch != &apos;\n&apos;)</div><div class="line">&#123;</div><div class="line">cout &lt;&lt; ch;</div><div class="line">ct++;</div><div class="line">ch = cin.get()</div><div class="line">&#125;</div><div class="line">cout &lt;&lt; ct &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
+<p> 　　到达文件尾的时候.cin.get(void)都会返回值EOF(iostream的一个符号常量).可以利用此特型这样来读取输入:<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">int ch;</div><div class="line">while((ch = cin.get()) != EOF)</div><div class="line">&#123;</div><div class="line">    //...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
 
@@ -361,15 +369,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">QML</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">随笔</a>
               </li>
             
             <div class="clearfix"></div>
