@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: CPP | 果冻の随笔</title>
+  <title>C++笔记-输入,输出和文件(三) | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="果冻の随笔">
-<meta property="og:url" content="http://yoursite.com/tags/CPP/index.html">
+  <meta name="description" content="封面作者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++笔记-输入,输出和文件(三)">
+<meta property="og:url" content="http://yoursite.com/2017/05/16/C++笔记-输入,输出和文件(三)/index.html">
 <meta property="og:site_name" content="果冻の随笔">
+<meta property="og:description" content="封面作者">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1ffnma5wzb2j20xl0p4485.jpg">
+<meta property="og:updated_time" content="2017-05-16T15:27:28.868Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="果冻の随笔">
+<meta name="twitter:title" content="C++笔记-输入,输出和文件(三)">
+<meta name="twitter:description" content="封面作者">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/ad4b340bly1ffnma5wzb2j20xl0p4485.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -141,346 +147,166 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-C++笔记-输入,输出和文件(三)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      C++笔记-输入,输出和文件(三)
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/16/C++笔记-输入,输出和文件(三)/" class="archive-article-date">
+
+        <a href="/2017/05/16/C++笔记-输入,输出和文件(三)/" class="archive-article-date">
   	<time datetime="2017-05-16T11:36:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/16/C++笔记-输入,输出和文件(三)/">C++笔记-输入,输出和文件(三)</a>
-    </h1>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://wx2.sinaimg.cn/mw690/ad4b340bly1ffnma5wzb2j20xl0p4485.jpg" alt="&quot;雪菜&quot;"><br><a href="https://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=60475698" target="_blank" rel="external">封面作者</a><br><a id="more"></a></p>
+<hr>
+<h2 id="文件输入输出"><a href="#文件输入输出" class="headerlink" title="文件输入输出"></a>文件输入输出</h2><p>###　简单文件I/O<br>　　如果想让程序写入文件,可以这样来做:<br>　　 1. 创建一个 ofstream 对象来管理输出流;<br>　　 2. 将该对象与特定的文件关联起来;<br>　　 3. 使用cout的方式使用该对象,将输出写入文件;<br>　　 4.<br>　　 首先包含头文件<code>#include&lt;fstream&gt;</code>,然后声明一个ofstream的对象:<br>　　　<code>ofstream fout</code><br>　　 接下来,必须将这个对象与特定的文件关联起来,可以使用open,假设要打开文件jar.txt:<br>　　　<code>ofstream.open(&quot;jar.txt&quot;);</code><br>　　 也可以使用构造函数将这俩构步合成一条语句:<br>　　　<code>ofstream fout(&quot;jar.txt&quot;);</code><br>　　　然后以使用cout的方式使用fout,比如要把”boy next door”放到文件中:<br>　　　<code>fout &lt;&lt; &quot;boy next door&quot; ;</code><br>　　由于ostream是ofstream类的基类,因此可以使用所有的ostream方法.另外以这种方式打开文件来进行输入时,如果没有要打开的文件,则将新创建一个.如果有了,则打开并清空文件,并输入;</p>
+<p>　　读取文件和写入文件差不多:<br>　　1. 创建一个ifstream对象来管理输入流;<br>　　2. 将该对象与特定的文件关联起来;<br>　　3. 已使用cin的方式使用该对象;<br>　　同样,首先包含头文件<code>#include&lt;fstream&gt;</code>,然后声明一个ifstream对象,将它与文件名关联起来:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ifstream fin;</div><div class="line">fin.open(&quot;my.txt&quot;);</div><div class="line"></div><div class="line">//或者写成一句话</div><div class="line">ifstream fin(&quot;my.txt&quot;);</div></pre></td></tr></table></figure></p>
+<p>　　可以像使用cin那样使用fin;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">char ch;</div><div class="line">fin &gt;&gt; ch;</div><div class="line"></div><div class="line">char buf[80];</div><div class="line">fin &gt;&gt; buf;</div><div class="line"></div><div class="line">fin.getline(buf,80);</div><div class="line"></div><div class="line">string lien;</div><div class="line">getline(fin,line);</div></pre></td></tr></table></figure></p>
+<p>　　当输入和输出流对象过期时,流到文件的链接将会关闭,但不会删除流; 可以使用close()显式关闭:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fout.close; //断开文件与写入流的链接</div><div class="line">fin.close;  //断开文件与输出流的链接</div></pre></td></tr></table></figure></p>
+<p>　　下面是书上的一个栗子,输入文件名将某些信息写入文件,并读出;:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;fstream&gt;</div><div class="line">#include &lt;string&gt;</div><div class="line">using namespace std;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    string filename;</div><div class="line"></div><div class="line">    cout &lt;&lt; &quot;输入文件名: &quot; &lt;&lt; endl;</div><div class="line">    cin &gt;&gt; filename;</div><div class="line"></div><div class="line">    ofstream fout(filename.c_str());</div><div class="line">    fout &lt;&lt; &quot;梦里不知秋已深,余情岂是为他人\n&quot;;</div><div class="line">    cout &lt;&lt; &quot;out DONE&quot; &lt;&lt; endl;</div><div class="line">    fout.close();</div><div class="line"></div><div class="line">    ifstream fin(filename.c_str());</div><div class="line">    cout &lt;&lt; &quot;File name :&quot; &lt;&lt; filename &lt;&lt; endl;</div><div class="line">    char ch;</div><div class="line"></div><div class="line">    while(fin.get(ch))</div><div class="line">        cout &lt;&lt; ch;</div><div class="line">    cout &lt;&lt; &quot;DONE&quot; &lt;&lt; endl;</div><div class="line">    fin.close();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>###　is_open()<br>　　使用isopen检查文件是否被打开;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">if (!fin.is_open()) &#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p>###　文件模式<br>　　文件模式描述的是文件将如何被使用: 读 写 追加等:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ifstream fin(&quot;banjo&quot;,model);</div><div class="line">ofstream fout();</div><div class="line">fout.opem(&quot;harp&quot;,mode2);</div></pre></td></tr></table></figure></p>
+<p>　　ios_base类定义了一个openmode类型;可以选择ios_base类中定义的多个常量来制定模式:<br>　　○ ios_base::in 打开文件,以便读取<br>　　○ ios_base::out 打开文件,以便写入<br>　　○ ios_base::ate 打开文件并移动到文件尾<br>　　○ ios_base::app 追加到文件尾<br>　　○ ios_base::true 如果文件存在,则清空<br>　　○ ios_base::binary 二进制文件<br>　　○ ios_base::app 保留文件内容,并在文件尾追加新信息<br>　　○ 文件模式 | ios_base::ate 以指定模式打开并移动到文件尾;<br>　　ifstream open()使用ios_base::in作为模式参数的默认值; ofstream open()方法使用ios_base::out|ios_base::trunc作为默认值; 可以使用 | 运算符来合并格式;</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/16/C++笔记-输入,输出和文件(三)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/11/C++笔记-输入,输出和文件(二)/" class="archive-article-date">
-  	<time datetime="2017-05-11T07:58:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/11/C++笔记-输入,输出和文件(二)/">C++笔记-输入,输出和文件(二)</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/05/11/C++笔记-输入,输出和文件(二)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++笔记-输入,输出和文件(二)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/25/C++笔记-输入,输出和文件/" class="archive-article-date">
-  	<time datetime="2017-04-25T14:58:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/25/C++笔记-输入,输出和文件/">C++笔记-输入,输出和文件</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/21/C++笔记-算法(STL)/" class="archive-article-date">
-  	<time datetime="2017-04-21T14:53:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/21/C++笔记-算法(STL)/">C++笔记-算法(STL)</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="C++笔记-输入,输出和文件(三)" data-title="C++笔记-输入,输出和文件(三)" data-url="http://yoursite.com/2017/05/16/C++笔记-输入,输出和文件(三)/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fydui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/17/C++笔记-函数对象/" class="archive-article-date">
-  	<time datetime="2017-04-17T14:58:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/17/C++笔记-函数对象/">C++笔记-函数对象</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/11/C++笔记-泛型编程(续/" class="archive-article-date">
-  	<time datetime="2017-04-11T14:35:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/11/C++笔记-泛型编程(续/">C++笔记-泛型编程(续</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/05/C++笔记-泛型编程/" class="archive-article-date">
-  	<time datetime="2017-04-05T14:20:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/05/C++笔记-泛型编程/">C++笔记-泛型编程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/C++笔记-Vector/" class="archive-article-date">
-  	<time datetime="2017-03-28T13:34:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/C++笔记-Vector/">C++笔记-Vector</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/26/C++笔记-智能指针/" class="archive-article-date">
-  	<time datetime="2017-03-26T14:45:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/26/C++笔记-智能指针/">C++笔记-智能指针</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/25/C++笔记-string类/" class="archive-article-date">
-  	<time datetime="2017-03-25T14:51:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/25/C++笔记-string类/">C++笔记-string类</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/tags/CPP/page/2/">2</a><a class="page-number" href="/tags/CPP/page/3/">3</a><a class="page-number" href="/tags/CPP/page/4/">4</a><a class="extend next" rel="next" href="/tags/CPP/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -504,9 +330,9 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
