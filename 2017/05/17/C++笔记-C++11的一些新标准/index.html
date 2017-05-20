@@ -16,7 +16,7 @@ initializer_list　　C++11提供了模板类initializer_list,可将其作用于
 <meta property="og:site_name" content="果冻の随笔">
 <meta property="og:description" content="一些C艹11的新标准…反正都是些泥萌大家都知道的过时东西;
 initializer_list　　C++11提供了模板类initializer_list,可将其作用于参数,如果类有接受initializer+list作为参数的构造函数,则初始化列表就语法只能用于该构造函数,且列表中的元素必须是同一种类型或可以转换为同一种类型;这个类包含了成员函数begin()和end()用于获得列表范围;1">
-<meta property="og:updated_time" content="2017-05-18T15:49:48.114Z">
+<meta property="og:updated_time" content="2017-05-20T15:08:30.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-C++11的一些新标准">
 <meta name="twitter:description" content="一些C艹11的新标准…反正都是些泥萌大家都知道的过时东西;
@@ -180,6 +180,10 @@ initializer_list　　C++11提供了模板类initializer_list,可将其作用于
 <h3 id="作用域内枚举"><a href="#作用域内枚举" class="headerlink" title="作用域内枚举"></a>作用域内枚举</h3><p>　　传统的C++枚举提供了一种创建名称常量的方式; 但如果在同一个作用域内定义两个枚举,则他们不能重名;C++11新增了一种枚举解决了这些问题,这种枚举使用class或struct定义:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">enum class NEW1&#123;never,sometimes,often&#125;;</div><div class="line">enum struct NEW2&#123;never,lever,server&#125;;</div></pre></td></tr></table></figure></p>
 <h3 id="基于范围的for循环"><a href="#基于范围的for循环" class="headerlink" title="基于范围的for循环"></a>基于范围的for循环</h3><p>　　对于内置数组以及包含方法begin()和end(0的类,可以使用基于范围的for循环来简化编程工作;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">double prices[5] = &#123;4.99,10.99,6.87,7.99,8.49&#125;</div><div class="line">for(auto x : prices)</div><div class="line">    cout &lt;&lt; x &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
 <p>　　x将以此为prices中1的每个元素的值,x的类型应与数组元素的类型匹配; 吐过想修改数组或容器里的元素可以使用引用:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vector&lt;int&gt; vi(6)</div><div class="line">for(auto &amp;x : vi)</div><div class="line">    x = rand();;</div></pre></td></tr></table></figure></p>
+<h3 id="默认的方法和禁用方法"><a href="#默认的方法和禁用方法" class="headerlink" title="默认的方法和禁用方法"></a>默认的方法和禁用方法</h3><p>   假设要使用某个默认的函数，而这个函数由于某种原因没有自动创建,例如提供了移动构造函数,则编译器不会自动创建默认的构造函数,复制构造函数和复值构造函数.在这情况下使用default显示的声明这些方法的默认版本:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class Someclass</div><div class="line">&#123;</div><div class="line">    public:</div><div class="line">    someclass(someclass &amp;&amp;)</div><div class="line">    someclass() = default; //使用编译生成的默认构造函数</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　关键字delet可以禁止编译器使用特定方法,且适用于任何函数,例如,要禁止复制构造函数可以:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">    class Someclass</div><div class="line">    &#123;</div><div class="line">        public:</div><div class="line">        someclass(someclass &amp;&amp;)</div><div class="line">        someclass(const someclass &amp;) </div><div class="line">    &#125;</div><div class="line">```　　</div><div class="line"></div><div class="line">### 管理虚方法: override 和 final</div><div class="line">   如果一个基类声明了一个虚方法，而我在派生类中提供了不同的版本..特征标不匹配,这将隐藏旧版本;</div></pre></td></tr></table></figure></p>
+<p>class A<br>{<br>    int a;<br>public:<br>    A(int i = 0) : a(i){}<br>    virtual void f(char ch) const {…};<br>}</p>
+<p>class B<br>{<br>public:<br>    B(int i = 0) : a(i){}<br>    virtual void f(char<em> ch) const {…};<br>}<br>```<br>　　由于B定义的是f(char</em>ch)而不是f(char ch); 这导致了程序不能使用: <code>bingo(10); b.f(&#39;@&#39;)</code> 类似这样的代码;<br>　　所以我们可以使用override,把它放在f(char * ch) 后面.如果与基类方法不匹配则将视为错误;<br>　　而final解决了另一个问题.可能想禁止派生类覆盖特定的虚方法,谓词可在参数后面加上final;例如,下面的代码禁止A的派生类重新定义f().<code>virtual void f(char ch) const final{...};</code></p>
 
       
 
@@ -378,15 +382,15 @@ initializer_list　　C++11提供了模板类initializer_list,可将其作用于
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">QML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">随笔</a>
               </li>
             
             <div class="clearfix"></div>
