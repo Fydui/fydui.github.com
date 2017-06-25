@@ -8,19 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>C++笔记-C++11的一些新标准 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一些C艹11的新标准…反正都是些泥萌大家都知道的过时东西;
-initializer_list　　C++11提供了模板类initializer_list,可将其作用于参数,如果类有接受initializer+list作为参数的构造函数,则初始化列表就语法只能用于该构造函数,且列表中的元素必须是同一种类型或可以转换为同一种类型;这个类包含了成员函数begin()和end()用于获得列表范围;1">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="C++笔记-C++11的一些新标准">
 <meta property="og:url" content="http://yoursite.com/2017/05/17/C++笔记-C++11的一些新标准/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:description" content="一些C艹11的新标准…反正都是些泥萌大家都知道的过时东西;
-initializer_list　　C++11提供了模板类initializer_list,可将其作用于参数,如果类有接受initializer+list作为参数的构造函数,则初始化列表就语法只能用于该构造函数,且列表中的元素必须是同一种类型或可以转换为同一种类型;这个类包含了成员函数begin()和end()用于获得列表范围;1">
-<meta property="og:updated_time" content="2017-05-24T15:58:42.080Z">
+<meta property="og:updated_time" content="2017-06-25T07:58:19.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记-C++11的一些新标准">
-<meta name="twitter:description" content="一些C艹11的新标准…反正都是些泥萌大家都知道的过时东西;
-initializer_list　　C++11提供了模板类initializer_list,可将其作用于参数,如果类有接受initializer+list作为参数的构造函数,则初始化列表就语法只能用于该构造函数,且列表中的元素必须是同一种类型或可以转换为同一种类型;这个类包含了成员函数begin()和end()用于获得列表范围;1">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -166,9 +160,7 @@ initializer_list　　C++11提供了模板类initializer_list,可将其作用于
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<hr>
-<p>　　一些C艹11的新标准…反正都是些泥萌大家都知道的过时东西;</p>
+        <h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>　　一些C艹11的新标准…反正都是些泥萌大家都知道的过时东西;</p>
 <h3 id="initializer-list"><a href="#initializer-list" class="headerlink" title="initializer_list"></a>initializer_list</h3><p>　　C++11提供了模板类initializer_list,可将其作用于参数,如果类有接受initializer+list作为参数的构造函数,则初始化列表就语法只能用于该构造函数,且列表中的元素必须是同一种类型或可以转换为同一种类型;这个类包含了成员函数begin()和end()用于获得列表范围;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#include&lt;initializer_list&gt;</div><div class="line">double sum(std::initializer_list&lt;double&gt; il)</div><div class="line">&#123;</div><div class="line">    double tot = 0;</div><div class="line">    for(auto p= il.begin(), p!=il.end(), p++)</div><div class="line">        tot += *p;</div><div class="line">    return to;</div><div class="line">&#125;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    double sum(&#123;2.5,3.1,4&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="decltype"><a href="#decltype" class="headerlink" title="decltype"></a>decltype</h3><p>　　关键字decltype将变量的类型声明为表达式指定的类型; <code>decltyoe(x) y</code>让y的类型与x相同,x是一个表达式; 比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">double x;</div><div class="line">int n;</div><div class="line">decltype(x*n) q; // q和x*n的类型一样 即 double</div><div class="line">decltype(&amp;x) pd; //pd和&amp;x的类型一样 即 *double</div><div class="line">decltype(n) n1; //n1的类型和n一样 即int</div><div class="line">decltype((x)) d1;//d1的类型为 &amp;double</div></pre></td></tr></table></figure></p>
 <p>　　这在定义模板的时候挺有用的,因为只有在模板被实例化的时候才能够确定类型;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">template &lt;typename T, typename U&gt;</div><div class="line">void ef(T t, U u)</div><div class="line">&#123;</div><div class="line">    decltype(T*U) tu; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
