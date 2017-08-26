@@ -6,17 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++笔记-私有继承 | 果冻の随笔</title>
+  <title>Archives: 2017/8 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="C++笔记-私有继承">
-<meta property="og:url" content="http://yoursite.com/2016/12/24/C++笔记-私有继承/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="果冻の随笔">
+<meta property="og:url" content="http://yoursite.com/archives/2017/08/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:image" content="http://ww1.sinaimg.cn/small/ad4b340bjw8enanqlij6mj20u00u0tba.jpg">
-<meta property="og:updated_time" content="2017-05-09T11:26:51.214Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++笔记-私有继承">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/small/ad4b340bjw8enanqlij6mj20u00u0tba.jpg">
+<meta name="twitter:title" content="果冻の随笔">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -144,177 +141,54 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++笔记-私有继承" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      C++笔记-私有继承
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/08/26/C#笔记-简单类型/" class="archive-article-date">
+  	<time datetime="2017-08-26T15:17:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-26</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/08/26/C#笔记-简单类型/">C#笔记-简单类型</a>
     </h1>
   
 
-        <a href="/2016/12/24/C++笔记-私有继承/" class="archive-article-date">
-  	<time datetime="2016-12-23T16:17:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-24</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ww1.sinaimg.cn/small/ad4b340bjw8enanqlij6mj20u00u0tba.jpg" alt="然而沼跃鱼早已看穿了一切"><br><a id="more"></a></p>
-<p>使用私有继承,基类的共有成员以及保护成员都将成为派生类的私有成员派生类不继承基类的接口,但能在派生类的成员函数中使用它们,私有继承特征与包含相同:不继承接口,继承实现.所以它可以用来实现has-a关系.</p>
-<p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class player : private string,private valarray&lt;double&gt;</div><div class="line">//使用多个基类:多重继承</div><div class="line">&#123;</div><div class="line">    public:</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在这里新版本的构造函数将使用初始化成员列表,使用类名而不是使用成员名来标识构造函数:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">player::player(const char* str,const double* p,int i) : </div><div class="line">                string(str),valarray&lt;double&gt;(p,i)&#123; &#125;</div></pre></td></tr></table></figure>
-<h3 id="保护继承"><a href="#保护继承" class="headerlink" title="保护继承"></a>保护继承</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">class player : protected string,protected valarray&lt;double&gt;&#123;...&#125;</div></pre></td></tr></table></figure>
-<p>保护继承时,基类的公有成员和保护成员都将成为派生类的保护成员.使用私有继承时,第三代类将不能使用基类的接口,这是因为基类的公有方法在派生类中将变成私有方法.使用保护继承时,基类的公有方法将在二代类中变成受保护的,所以第三代类可以使用它们.</p>
-<h3 id="使用using重定义访问权限"><a href="#使用using重定义访问权限" class="headerlink" title="使用using重定义访问权限"></a>使用using重定义访问权限</h3><p>使用保护派生或者私有派生时,基类的公有继承将成为保护或者私有成员,如果想让基类方法在类外使用可以定义一个使用该基类方法的派生类方法.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//派生类player希望使用基类valarray类的sum方法</div><div class="line">double player::sum() const &#123;</div><div class="line">    return valarry&lt;double&gt;::sum();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>或者可以使用using声明:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class player : private valarray&lt;double&gt;</div><div class="line">&#123;</div><div class="line">    public:</div><div class="line">        using valarray&lt;double&gt;::min;</div><div class="line">        using valarray&lt;double&gt;::max;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>他们就像player类的共有方法一样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cout &lt;&lt; &quot;high score:&quot; &lt;&lt; a[i].max &lt;&lt; endl;</div></pre></td></tr></table></figure></p>
-<p>注意 using声明只使用成员名,没有特征标,圆括号,返回类型,例如要在player]类中使用valarray类的operator[]方法,只需包含:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">using::valarray::operator[];</div></pre></td></tr></table></figure></p>
-<p><em>通常使用包含来建立has-a关系;如果新类需要访问原有类的保护成员,或需要重新定义虚函数应使用私有继承</em></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/24/C++笔记-私有继承/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2016/12/27/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hello World!!
-        
-      </div>
-    </a>
   
   
-    <a href="/2016/12/23/C++笔记-包含类对象的成员/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++笔记-包含类对象的成员</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-
-
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C++笔记-私有继承" data-title="C++笔记-私有继承" data-url="http://yoursite.com/2016/12/24/C++笔记-私有继承/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"fydui"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
+    
 
 
           </div>
@@ -338,8 +212,8 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

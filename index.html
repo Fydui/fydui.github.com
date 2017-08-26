@@ -143,6 +143,170 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C#笔记-简单类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/26/C#笔记-简单类型/">C#笔记-简单类型</a>
+    </h1>
+  
+
+        <a href="/2017/08/26/C#笔记-简单类型/" class="archive-article-date">
+  	<time datetime="2017-08-26T15:17:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-26</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>　<em>这一切都是和C++那么相似,但又那么不同</em></p>
+</blockquote>
+<h3 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型:"></a>整数类型:</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">类 型</th>
+<th style="text-align:left">别 名</th>
+<th style="text-align:left">允许的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">sbyte</td>
+<td style="text-align:left">System.SByte</td>
+<td style="text-align:left">介于 -128~128 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">byte</td>
+<td style="text-align:left">System.Byte</td>
+<td style="text-align:left">介于 0~255 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">short</td>
+<td style="text-align:left">System.Int16</td>
+<td style="text-align:left">介于 -32,768~32,767 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">ushort</td>
+<td style="text-align:left">System.UInt16</td>
+<td style="text-align:left">介于 0~65,535 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">System.Int32</td>
+<td style="text-align:left">介于 -2,147,483,648~2,147,483,648 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">uint</td>
+<td style="text-align:left">System.UInt32</td>
+<td style="text-align:left">介于 0~4,294,967,295 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">long</td>
+<td style="text-align:left">System.Int64</td>
+<td style="text-align:left">介于 -9,223,372,036,854,775,808~9,223,,372,036,854,775,807 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">ulong</td>
+<td style="text-align:left">System.UInt64</td>
+<td style="text-align:left">介于 0~18,446,744,073,709,551,615 之间的整数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="浮点类型"><a href="#浮点类型" class="headerlink" title="浮点类型:"></a>浮点类型:</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">类 型</th>
+<th style="text-align:left">别 名</th>
+<th style="text-align:left">近似的最小值</th>
+<th>近似的最大值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">float</td>
+<td style="text-align:left">System.Single</td>
+<td style="text-align:left">1.5*10^-45</td>
+<td>3.4*10^38</td>
+</tr>
+<tr>
+<td style="text-align:left">double</td>
+<td style="text-align:left">System.Double</td>
+<td style="text-align:left">5.0*10^-324</td>
+<td>1.7*10^308</td>
+</tr>
+<tr>
+<td style="text-align:left">decimal</td>
+<td style="text-align:left">System.Decimal</td>
+<td style="text-align:left">1.0*10^-28</td>
+<td>7.9*10^28</td>
+</tr>
+</tbody>
+</table>
+<p>　　前两种可以用 <code>+/-m*2^e</code> 的形式来存储浮点数,m和e的值淫类型而异,<code>decimal</code>使用 <code>+/-m*10^e</code>形式;</p>
+<h3 id="文本和布尔类型"><a href="#文本和布尔类型" class="headerlink" title="文本和布尔类型:"></a>文本和布尔类型:</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">类 型</th>
+<th style="text-align:left">别 名</th>
+<th style="text-align:left">允许的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">char</td>
+<td style="text-align:left">System.Char</td>
+<td style="text-align:left">一个Unicode字符,存储0-65535之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">System.Boolean</td>
+<td style="text-align:left">布尔值: true或false</td>
+</tr>
+<tr>
+<td style="text-align:left">string</td>
+<td style="text-align:left">System.String</td>
+<td style="text-align:left">一组字符</td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/26/C#笔记-简单类型/#more">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-随笔-笨蛋指挥官和不怎么笨的声望和...." class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -632,60 +796,6 @@
 
 
   
-    <article id="post-C++笔记-算法(STL)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/21/C++笔记-算法(STL)/">C++笔记-算法(STL)</a>
-    </h1>
-  
-
-        <a href="/2017/04/21/C++笔记-算法(STL)/" class="archive-article-date">
-  	<time datetime="2017-04-21T14:53:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-21</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://wx1.sinaimg.cn/mw690/ad4b340bly1feunnr2nhwj20jn0rsgxx.jpg" alt="霞之丘诗羽"><br><a href="https://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=48338779">封面来源</a></p>
-        <a class="article-more-a"  href="/2017/04/21/C++笔记-算法(STL)/#more">more >></a>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/21/C++笔记-算法(STL)/#more">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -761,15 +871,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">QML</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
