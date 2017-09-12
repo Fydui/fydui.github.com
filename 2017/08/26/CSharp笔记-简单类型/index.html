@@ -6,17 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++笔记-抽象基类(Abstract-Base-Class,ABC) | 果冻の随笔</title>
+  <title>C#笔记-简单类型 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="C++笔记-抽象基类(Abstract-Base-Class,ABC)">
-<meta property="og:url" content="http://yoursite.com/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/index.html">
+  <meta name="description" content="这一切都是和C++那么相似,但又那么不同
+
+图片作者:Toshi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C#笔记-简单类型">
+<meta property="og:url" content="http://yoursite.com/2017/08/26/CSharp笔记-简单类型/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1farqqoy7hxj20w00i0jsq.jpg">
-<meta property="og:updated_time" content="2017-05-09T11:28:41.239Z">
+<meta property="og:description" content="这一切都是和C++那么相似,但又那么不同
+
+图片作者:Toshi">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/ad4b340bly1fiyoww0yt5j21hc0u01ky.jpg">
+<meta property="og:updated_time" content="2017-08-27T15:18:28.720Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++笔记-抽象基类(Abstract-Base-Class,ABC)">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1farqqoy7hxj20w00i0jsq.jpg">
+<meta name="twitter:title" content="C#笔记-简单类型">
+<meta name="twitter:description" content="这一切都是和C++那么相似,但又那么不同
+
+图片作者:Toshi">
+<meta name="twitter:image" content="http://wx4.sinaimg.cn/large/ad4b340bly1fiyoww0yt5j21hc0u01ky.jpg">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -144,33 +153,137 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++笔记-抽象基类(Abstract-Base-Class,ABC)" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-CSharp笔记-简单类型" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C++笔记-抽象基类(Abstract-Base-Class,ABC)
+      C#笔记-简单类型
     </h1>
   
 
-        <a href="/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/" class="archive-article-date">
-  	<time datetime="2016-12-14T15:46:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-14</time>
+        <a href="/2017/08/26/CSharp笔记-简单类型/" class="archive-article-date">
+  	<time datetime="2017-08-26T15:17:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-26</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://ww3.sinaimg.cn/mw690/ad4b340bjw1farqqoy7hxj20w00i0jsq.jpg" alt="抽象基类"><br><a id="more"></a></p>
-<h2 id="啥时候使用抽象基类"><a href="#啥时候使用抽象基类" class="headerlink" title="啥时候使用抽象基类?"></a>啥时候使用抽象基类?</h2><p>在下理解的是:<br>你有一个基类和一个该基类的派生类,但是基类里有一些你派生类根本用不上的方法,使用了派生类就会导致一些信息冗余.然而不继承基类单独写个类你发现效率也不高,而且你发现你的基类和你的派生类之前还是有共同点的..这个时候就要上抽象基类了….把其共同点放到抽象基类里,然后分别从抽象基类派生刚才的”基类”与”派生类”.</p>
-<h2 id="啥是抽象基类"><a href="#啥是抽象基类" class="headerlink" title="啥是抽象基类"></a>啥是抽象基类</h2><blockquote>
-<p>就是类里定义了纯虚函数的类………然而定义了纯虚函数就只能作为基类了.23333</p>
+        <blockquote>
+<p>　<em>这一切都是和C++那么相似,但又那么不同</em></p>
 </blockquote>
-<h2 id="纯虚函数"><a href="#纯虚函数" class="headerlink" title="纯虚函数"></a>纯虚函数</h2><p>纯虚函数:virtual 返回类型 函数名(形参) =0;<br>在虚函数声明后面加个 =0 就是纯虚函数了,当类声明中包含纯虚函数的时候,则不能创建该类对象.所以包含纯虚函数的类只能作为基类,在原型中使用 =0 指出类是一个抽象基类,在类中可以不定义该函数.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class player&#123;</div><div class="line">    private:</div><div class="line">        int age;</div><div class="line">        string name;</div><div class="line">    pbulic:</div><div class="line">        ...</div><div class="line">        virtual void show() = 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="总之"><a href="#总之" class="headerlink" title="总之:"></a>总之:</h3><blockquote>
-<p>ABC描述的是至少使用一个纯虚函数的接口,从ABC派生出的类将根据派生类的具体特征使用常规虚函数来实现这种接口.</p>
-</blockquote>
+<p><img src="http://wx4.sinaimg.cn/large/ad4b340bly1fiyoww0yt5j21hc0u01ky.jpg" alt="黄昏的电车"><br><a href="https://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=19198508" target="_blank" rel="external">图片作者:Toshi</a></p>
+<a id="more"></a>
+<h3 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型:"></a>整数类型:</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">类 型</th>
+<th style="text-align:left">别 名</th>
+<th style="text-align:left">允许的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">sbyte</td>
+<td style="text-align:left">System.SByte</td>
+<td style="text-align:left">介于 -128~128 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">byte</td>
+<td style="text-align:left">System.Byte</td>
+<td style="text-align:left">介于 0~255 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">short</td>
+<td style="text-align:left">System.Int16</td>
+<td style="text-align:left">介于 -32,768~32,767 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">ushort</td>
+<td style="text-align:left">System.UInt16</td>
+<td style="text-align:left">介于 0~65,535 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">System.Int32</td>
+<td style="text-align:left">介于 -2,147,483,648~2,147,483,648 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">uint</td>
+<td style="text-align:left">System.UInt32</td>
+<td style="text-align:left">介于 0~4,294,967,295 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">long</td>
+<td style="text-align:left">System.Int64</td>
+<td style="text-align:left">介于 -9,223,372,036,854,775,808~9,223,,372,036,854,775,807 之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">ulong</td>
+<td style="text-align:left">System.UInt64</td>
+<td style="text-align:left">介于 0~18,446,744,073,709,551,615 之间的整数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="浮点类型"><a href="#浮点类型" class="headerlink" title="浮点类型:"></a>浮点类型:</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">类 型</th>
+<th style="text-align:left">别 名</th>
+<th style="text-align:left">近似的最小值</th>
+<th>近似的最大值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">float</td>
+<td style="text-align:left">System.Single</td>
+<td style="text-align:left">1.5*10^-45</td>
+<td>3.4*10^38</td>
+</tr>
+<tr>
+<td style="text-align:left">double</td>
+<td style="text-align:left">System.Double</td>
+<td style="text-align:left">5.0*10^-324</td>
+<td>1.7*10^308</td>
+</tr>
+<tr>
+<td style="text-align:left">decimal</td>
+<td style="text-align:left">System.Decimal</td>
+<td style="text-align:left">1.0*10^-28</td>
+<td>7.9*10^28</td>
+</tr>
+</tbody>
+</table>
+<p>　　前两种可以用 <code>+/-m*2^e</code> 的形式来存储浮点数,m和e的值淫类型而异,<code>decimal</code>使用 <code>+/-m*10^e</code>形式;</p>
+<h3 id="文本和布尔类型"><a href="#文本和布尔类型" class="headerlink" title="文本和布尔类型:"></a>文本和布尔类型:</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">类 型</th>
+<th style="text-align:left">别 名</th>
+<th style="text-align:left">允许的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">char</td>
+<td style="text-align:left">System.Char</td>
+<td style="text-align:left">一个Unicode字符,存储0-65535之间的整数</td>
+</tr>
+<tr>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">System.Boolean</td>
+<td style="text-align:left">布尔值: true或false</td>
+</tr>
+<tr>
+<td style="text-align:left">string</td>
+<td style="text-align:left">System.String</td>
+<td style="text-align:left">一组字符</td>
+</tr>
+</tbody>
+</table>
 
       
 
@@ -202,7 +315,7 @@
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSharp/">CSharp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
 	</div>
 
       
@@ -255,7 +368,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/26/CSharp笔记-简单类型/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -269,18 +382,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/12/15/C++笔记-继承和动态内存分配/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++笔记-继承和动态内存分配
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/13/C++笔记-访问控制protected/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++笔记-访问控制protected</div>
+    <a href="/2017/06/25/随笔-笨蛋指挥官和不怎么笨的声望和..../" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">笨蛋指挥官和不怎么笨的声望和....</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -293,7 +397,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C++笔记-抽象基类(Abstract-Base-Class,ABC)" data-title="C++笔记-抽象基类(Abstract-Base-Class,ABC)" data-url="http://yoursite.com/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/"></div>
+	<div class="ds-thread" data-thread-key="CSharp笔记-简单类型" data-title="C#笔记-简单类型" data-url="http://yoursite.com/2017/08/26/CSharp笔记-简单类型/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
