@@ -143,6 +143,60 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C++笔记-私有继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/24/C++笔记-私有继承/">C++笔记-私有继承</a>
+    </h1>
+  
+
+        <a href="/2016/12/24/C++笔记-私有继承/" class="archive-article-date">
+  	<time datetime="2016-12-23T16:17:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-24</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://ww1.sinaimg.cn/small/ad4b340bjw8enanqlij6mj20u00u0tba.jpg" alt="然而沼跃鱼早已看穿了一切"><br>
+        <a class="article-more-a"  href="/2016/12/24/C++笔记-私有继承/#more">more >></a>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/24/C++笔记-私有继承/#more">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-C++笔记-包含类对象的成员" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -629,63 +683,9 @@
 
 
   
-    <article id="post-QT-QML与C++交互" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/05/QT-QML与C++交互/">QML与C++交互</a>
-    </h1>
-  
-
-        <a href="/2016/12/05/QT-QML与C++交互/" class="archive-article-date">
-  	<time datetime="2016-12-05T14:38:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-05</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ww2.sinaimg.cn/large/ad4b340bjw1fajr23avkpj21hc0u0n8y.jpg" alt="加加!"><br><em><a href="http://www.pixiv.net/whitecube/user/333556">图片作者为:Bison仓鼠</a></em><br>
-        <a class="article-more-a"  href="/2016/12/05/QT-QML与C++交互/#more">more >></a>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QML/">QML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/">Qt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/05/QT-QML与C++交互/#more">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 
@@ -742,6 +742,10 @@
           <ul class="article-tag-list" v-bind:class="{ show: showTags }">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">CPP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">笔记</a>
               </li>
              
@@ -750,15 +754,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">CPP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">QML</a>
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -766,7 +766,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">随笔</a>
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">QML</a>
               </li>
              
               <li class="article-tag-list-item">
