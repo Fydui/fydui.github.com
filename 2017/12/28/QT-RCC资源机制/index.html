@@ -6,14 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/10 | 果冻の随笔</title>
+  <title>Qt-RCC资源机制 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="果冻の随笔">
-<meta property="og:url" content="http://yoursite.com/archives/2017/10/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Qt-RCC资源机制">
+<meta property="og:url" content="http://yoursite.com/2017/12/28/QT-RCC资源机制/index.html">
 <meta property="og:site_name" content="果冻の随笔">
+<meta property="og:updated_time" content="2017-12-27T17:57:10.931Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="果冻の随笔">
+<meta name="twitter:title" content="Qt-RCC资源机制">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -141,54 +142,170 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-QT-RCC资源机制" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/胡德酱你快来解释一下啊/" class="archive-article-date">
-  	<time datetime="2017-10-31T15:55:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/胡德酱你快来解释一下啊/">胡德酱你快来解释一下啊</a>
+    <h1 class="article-title" itemprop="name">
+      Qt-RCC资源机制
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        <a href="/2017/12/28/QT-RCC资源机制/" class="archive-article-date">
+  	<time datetime="2017-12-27T17:47:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-28</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="Qt-RCC资源机制"><a href="#Qt-RCC资源机制" class="headerlink" title="Qt RCC资源机制"></a>Qt RCC资源机制</h1><p>　　其实这几个月一直在偷懒, 不学无术, 经常刷纪录片和某乎以及在B站刷科普视频,给自己造成了一种”我在学习的错觉”. 然而可啪的就在我明明已经意识到本菜鸡即将面临就业,这个时候应该写代码才对,但是还是各种偷懒. 终于最近两日如鲠在喉, 偷懒的时候莫名会想到未写完的代码…想到N个月没更新的小说,设定. 以及自己的gayhub…<br>　　<br>　　我决定开始对抗懒癌..祝自己坚挺一点.<br>　　<br>　　　　<em>我的大多数博客都是写给我自己怕我忘了的, 对没错, 这就是我文风傻逼的理由…本语言表达障碍人士尽力讲明白..</em></p>
+<p>　　于是我开始接着填坑, 说起来傻逼, 我用了这么长时间Qt,一直是属于瞎子摸象的境界. 是最近两天才知道QRC那玩意是编译在程序里头的. 其实Qt文档上写的清清楚楚,还有图. 奈何本傻逼压根就没去瞅, 也没咋仔细看文档….活该瞎</p>
+<p>　　填坑的时候因为需要完成一个需求才发现的…而且编译qrc奇吃内存,而且程序运行起来占用也大, 我测试了一下我的QRC中包含了50MB的图片..编译的时候我8G小内存分分钟爆了..于是我看了一眼我的qmake. 我已经在里面写了:<br>　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">system(rcc -no-compress -binary qrc.qrc -o qrc.rcc)</div></pre></td></tr></table></figure></p>
+<p>　<br>　　这段代码的作用是每次代码被编译的时候,根据<code>qrc.qrc</code>这个QRC文件编译(编译一词可能不准确,词穷了)一个Qt的RCC文件: <code>qrc.rcc</code>. 这样可以避免由删减QRC造成的与RCC文件不匹配的情况. (关于命令参数请务必查看:<a href="http://doc.qt.io/archives/qt-4.8/resources.html" target="_blank" rel="external">http://doc.qt.io/archives/qt-4.8/resources.html</a>)<br>　　<br>　　说一下RCC: <strong>以我羸弱的理解力来理解.RCC就像是把你放在QRC里头的东西打了一个包一样, 这样就方便你在各个平台上使用.</strong> 按照以上那种在Qmake里生成RCC的方法, 虽然避免了一个问题, 但是啊…如果QRC中文件过大的话…那还是会爆内存啊啊啊啊! 所以以上生成RCC方案请酌情服用.<br>　　<br>　　那么让我们谨慎一些: 先把QRC准备好, 然后用Qt的命令行工具打包好RCC. 然后过河拆桥RCC已经备好了QRC随便处置就好.吼开始行动, 首先<strong>准备好你的QRC</strong>, 我们要以它为基准, 该塞的文件都塞进去. 接着召唤Qt的命令行工具,在你配置好Qt的全局变量情况下,点开开始里的搜索/戳一下你的小娜直接搜Qt一般就能出来,你用的哪个编译器就用哪个版本的命令行工具这就不用我废话了. 接着CD到QRC存在目录, 输入:<code>rcc -no-compress -binary qrc.qrc -o qrc.rcc</code>, QRC和RCC文件名根据自己的改一下. 回车,然后你的目录里就会出现一个XXX.rcc的文件, 吼就是他. 接着把之前的QRC处理一下, 你是删除啊还是减少里头的文件啊总之别爆内存就好.<br>　　<br>　　对,机智又漂亮帅气的你一定马上就想到了一个问题<strong>:”只要我QRC里头的东西变了一点,想要使改变生效的话,一定就得重编译RCC啊!”</strong> 蛤,我也觉得你想的对! 关于RCC里头的文件如何调用:<br>　　<br>　　你想用哪个文件的时候, 就按照你文件在QRC里头的路径去调用就好.给自己举个栗子, 假设我们的QRC里有个文件,并且已经被编译进了RCC:<br>　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;file&gt;resources/image/Lexington.png&lt;/file&gt;</div></pre></td></tr></table></figure></p>
+<p>　　这个文件它在我们的代码目录里的resources文件夹里的Image文件夹下, 再形象一点就是: <em>X:/代码/我挖的第21648号坑/resoureces/image/Lexington.png</em> 这样的(无力吐槽,因为粗心的我经常在这种地方摔跟头,所以写的弱智一点).<br>　　<br>　　接着我们需要在代码中注册这个RCC,使用<a href="http://doc.qt.io/archives/qt-4.8/qresource.html" target="_blank" rel="external">QResource</a>类:　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">QResource res;</div><div class="line">res.registerResource(&quot;qrc.rcc&quot;); </div><div class="line">//注意路径RCC一般要放在工程目录/编译目录下的, 如果成功注册, 这个函数会返回true否则返回false</div></pre></td></tr></table></figure></p>
+<p>　　<br>　　注册之后我们有两种方式调用其内容:　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">QRC方式: &quot;:/resoureces/image/Lexington.png&quot;</div><div class="line">URL方式: &quot;///resoures/image/Lexington.png&quot;</div></pre></td></tr></table></figure></p>
+<p>　　当然如果你的QRC前缀是自定义的那么请务必查看: <a href="http://doc.qt.io/archives/qt-4.8/resources.html" target="_blank" rel="external">http://doc.qt.io/archives/qt-4.8/resources.html</a></p>
+<p>　　吼了,这样我们便能更优雅的写程序了.
+　</p>
+<hr>
+<p>　<br>　　　<strong>等等</strong><br>　　　<strong>安卓里咋整啊?</strong></p>
+<p>　　关于安卓, 道理是一样的, 只需把编译好的RCC文件丢到安卓编译目录即可. 详情请<a href="https://fydui.github.io/2017/12/11/Qt%E5%9C%A8%E5%AE%89%E5%8D%93%E4%B8%8A%E4%BD%BF%E7%94%A8sqlite/" target="_blank" rel="external">插我</a>的如何在安卓上使用数据库那篇水文.这里简单说一下.<br>　　<br>　　利用qmake, 把RCC文件挪到安卓编译目录下的assets文件下, 这里头的文件都会被打包到APK中.在qmak里写:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">INSTALLS += qcc</div><div class="line">qcc.files += qrc.rcc #注意这个路径是RCC文件所在地, 在这里是和qmak文件同级所以直接写就行</div><div class="line">qcc.path = /assets/</div></pre></td></tr></table></figure></p>
+<p>　　注册的路径也有所不同,在安卓assets目录下的文件都要通过前缀<code>assets:/</code>来访问:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">QResource res;</div><div class="line">res.registerResource(&quot;assets:/qrc.rcc&quot;);</div></pre></td></tr></table></figure></p>
+<p>　　完事儿, 谢谢观看, 如有错误, 恳请在博客的lssues上指正.</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/">Qt</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/28/QT-RCC资源机制/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/11/Qt在安卓上使用sqlite/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Qt在安卓上使用sqlite</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="QT-RCC资源机制" data-title="Qt-RCC资源机制" data-url="http://yoursite.com/2017/12/28/QT-RCC资源机制/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"fydui"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -212,8 +329,8 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

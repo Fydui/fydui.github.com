@@ -12,7 +12,7 @@
 <meta property="og:title" content="Qt在安卓上使用sqlite">
 <meta property="og:url" content="http://yoursite.com/2017/12/11/Qt在安卓上使用sqlite/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:updated_time" content="2017-12-11T12:56:12.590Z">
+<meta property="og:updated_time" content="2017-12-27T18:00:16.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Qt在安卓上使用sqlite">
   
@@ -160,7 +160,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>　　最近折腾上了用Qt写安卓, 恰好要在安卓上用sqlite, 一开始以为和桌面写法差不多,然而跨到了安卓之后死活打不开数据库,于是便开始了各种折腾, 首先要说一下, 我使用的是Qt自带的数据库操作库: 使用<code>QSqlDatabase</code>建立连接, 然后使用<code>QSqlQuery</code>操作sqlite. 还有一个要说明的是: 使用<code>QSqlDatabase</code>打开数据库吧,如果他发现没有这个数据库,他便会给你新建一个大小为0k的同名数据库….,这就会导致: <strong>数据库明明能打开却找不到表这种坑爹情况…</strong> 我一开始就忽略了这个问题坑了好久….<br>　<br>　　咳咳, 如果想通过qt在安卓上用sqlite据说有两种方法, 其一种是使用qrc,也就是qt那跨平台的资源机制,这东西我一直没搞懂怎么用, 一开始我照着qt使用在qrc里的qml文件一样去调用我在qrc里的db文件,然并卵,用它存些图片还好,但存上数据库我就….<br>　　<br>　　所以我用了另一种方法,大概思路是利用安卓的assets文件夹:<strong>把数据库丢到安卓构建目录下的<code>assets</code>文件夹下,这样在打包成APK时候Qt自己就会把数据库打包到APK里头.然后在程序运行的时候给他拷到安卓本地的目录里头,咱就能用辣~</strong><br>　　<br>　　开始我十分傻逼的直接database文件丢到了assets文件夹下,然后我发现每次编译这个文件夹都会被qt删掉重新整一个….(目瞪口呆.jpg) 所以我需要一个特别的方法把数据库整进去..<br>　　<br>　　查了一圈问了几个大佬之后,得知你需要在pro文件里头写点东西:<br>　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">INSTALLS += res</div><div class="line">res.files += qrc/SQL.db    #数据库文件所在的路径</div><div class="line">res.path = /assets/db      #assets目录</div></pre></td></tr></table></figure></p>
+        <h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>　　最近折腾上了用Qt写安卓, 恰好要在安卓上用sqlite, 一开始以为和桌面写法差不多,然而跨到了安卓之后死活打不开数据库,于是便开始了各种折腾, 首先要说一下, 我使用的是Qt自带的数据库操作库: 使用<code>QSqlDatabase</code>建立连接, 然后使用<code>QSqlQuery</code>操作sqlite. 还有一个要说明的是: 使用<code>QSqlDatabase</code>打开数据库吧,如果他发现没有这个数据库,他便会给你新建一个大小为0k的同名数据库….,这就会导致: <strong>数据库明明能打开却找不到表这种坑爹情况…</strong> 我一开始就忽略了这个问题坑了好久….<br>　<br>　　咳咳, 如果想通过qt在安卓上用sqlite据说有两种方法, 其一种是使用qrc,也就是qt那跨平台的资源机制,这东西我一直没搞懂怎么用, 一开始我照着qt使用在qrc里的qml文件一样去调用我在qrc里的db文件,然并卵,用它存些图片还好,但存上数据库我就….<br>　　<br>　　所以我用了另一种方法,大概思路是利用安卓的assets文件夹:<strong>把数据库丢到安卓构建目录下的<code>assets</code>文件夹下,这样在打包成APK时候Qt自己就会把数据库打包到APK里头.然后在程序运行的时候给他拷到安卓本地的目录里头,咱就能用辣~</strong><br>　　<br>　　开始我十分傻逼的直接database文件丢到了assets文件夹下,然后我发现每次编译这个文件夹都会被qt删掉重新整一个….(目瞪口呆.jpg) 所以我需要一个特别的方法把数据库整进去..<br>　　<br>　　查了一圈问了几个大佬之后,得知你需要在pro文件里头写点东西:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">INSTALLS += res</div><div class="line">res.files += qrc/SQL.db    #数据库文件所在的路径</div><div class="line">res.path = /assets/db      #assets目录</div></pre></td></tr></table></figure>
+<p>　　如果你已经手动或用Qt的生成工具生成了<code>AndroidManifest.xml</code>文件以及它的小伙伴们,<strong>如果没有自动生成</strong>QMake命令的话别忘了在.pro里写(详细请:<a href="http://doc.qt.io/qt-5/deployment-android.html" target="_blank" rel="external">http://doc.qt.io/qt-5/deployment-android.html</a>):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android</div><div class="line">DISTFILES += </div><div class="line">    #这里你净添啥文件了就写啥,一般是自动生成的不用管,举个栗子</div><div class="line">    android/AndroidManifest.xml \</div><div class="line">    android/res/values/libs.xml \</div><div class="line">    android/gradlew \</div><div class="line">    android/build.gradle \</div><div class="line">    android/gradlew.bat \</div></pre></td></tr></table></figure>
 <p>　　<strong>这样就会把你代码目录下的qrc目录下的SQL.db文件拷贝到安卓构建目录assets文件夹下的db文件夹下</strong> , 不知道我表述清楚没有, 我觉得这是一个能在编译的时候把你的文件当做成源文件的本身一部分的一种操作, 这样就会在变编译的时候帮你把你的文件复制到assets文件夹下.(但对于多个数据库来讲还有更好的方法吗?)</p>
 <p>　　然后就是给他拷到安卓本地目录里头:  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">QFile file(&quot;assets:/db/SQL.db&quot;);//在assets里的文件通过&quot;&quot;assets:&quot;&quot;访问</div><div class="line">if(file.exists())&#123;              //如果文件存在</div><div class="line">    file.copy(&quot;./SQL.db&quot;);      //拷到安卓本地目录</div><div class="line">    QFile::setPermissions(&quot;./&quot;+path,QFile::WriteOwner | QFile::ReadOwner); //以读写的方式进行拷贝</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -173,7 +176,7 @@
 <hr>
 <p>　　具体请参阅Qt文档与论坛 以及其他文献:<br>　　　　<a href="https://forum.qt.io/topic/36550/solved-qt-5-2-problem-deploying-sqlite-database-to-my-android-device" target="_blank" rel="external">Problem deploying sqlite database to my android device</a><br>　　    Platform and Compiler Notes-Android: <a href="http://doc.qt.io/qt-5/platform-notes-android.html" target="_blank" rel="external">http://doc.qt.io/qt-5/platform-notes-android.html</a><br>　　    QSqlQuery: <a href="http://doc.qt.io/qt-4.8/qsqlquery.html" target="_blank" rel="external">http://doc.qt.io/qt-4.8/qsqlquery.html</a><br>　　    QSQLDatabase: <a href="http://doc.qt.io/qt-5/qsqldatabase.html" target="_blank" rel="external">http://doc.qt.io/qt-5/qsqldatabase.html</a><br>　　    QSqlQueryModel: <a href="http://doc.qt.io/qt-5/qsqlquerymodel.html" target="_blank" rel="external">http://doc.qt.io/qt-5/qsqlquerymodel.html</a>
 　　    </p>
-<p>　　<strong>谢谢观看</strong> </p>
+<p>　　<strong>谢谢观看,如有错误以及建议以及不满以及吐槽以及勾搭以及撩我请在博客的lssues上指出</strong> </p>
 
       
 
@@ -272,6 +275,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2017/12/28/QT-RCC资源机制/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Qt-RCC资源机制
+        
+      </div>
+    </a>
+  
   
     <a href="/2017/10/31/胡德酱你快来解释一下啊/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">胡德酱你快来解释一下啊</div>
@@ -360,6 +372,14 @@
           <ul class="article-tag-list" v-bind:class="{ show: showTags }">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">Qt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">CPP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">笔记</a>
               </li>
              
@@ -368,15 +388,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">CPP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">CSharp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
