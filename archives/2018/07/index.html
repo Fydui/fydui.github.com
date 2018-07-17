@@ -6,17 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>C++笔记-抽象基类(Abstract-Base-Class,ABC) | 果冻の随笔</title>
+  <title>Archives: 2018/7 | 果冻の随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="C++笔记-抽象基类(Abstract-Base-Class,ABC)">
-<meta property="og:url" content="http://yoursite.com/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="果冻の随笔">
+<meta property="og:url" content="http://yoursite.com/archives/2018/07/index.html">
 <meta property="og:site_name" content="果冻の随笔">
-<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1farqqoy7hxj20w00i0jsq.jpg">
-<meta property="og:updated_time" content="2017-05-09T11:28:41.239Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++笔记-抽象基类(Abstract-Base-Class,ABC)">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/mw690/ad4b340bjw1farqqoy7hxj20w00i0jsq.jpg">
+<meta name="twitter:title" content="果冻の随笔">
   
     <link rel="alternative" href="/atom.xml" title="果冻の随笔" type="application/atom+xml">
   
@@ -144,174 +141,54 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C++笔记-抽象基类(Abstract-Base-Class,ABC)" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      C++笔记-抽象基类(Abstract-Base-Class,ABC)
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/07/18/我在澄海附中刷题的日子/" class="archive-article-date">
+  	<time datetime="2018-07-17T17:48:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-18</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/07/18/我在澄海附中刷题的日子/">我在澄海附中刷题的日子</a>
     </h1>
   
 
-        <a href="/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/" class="archive-article-date">
-  	<time datetime="2016-12-14T15:46:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-14</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://ww3.sinaimg.cn/mw690/ad4b340bjw1farqqoy7hxj20w00i0jsq.jpg" alt="抽象基类"><br><a id="more"></a></p>
-<h2 id="啥时候使用抽象基类"><a href="#啥时候使用抽象基类" class="headerlink" title="啥时候使用抽象基类?"></a>啥时候使用抽象基类?</h2><p>在下理解的是:<br>你有一个基类和一个该基类的派生类,但是基类里有一些你派生类根本用不上的方法,使用了派生类就会导致一些信息冗余.然而不继承基类单独写个类你发现效率也不高,而且你发现你的基类和你的派生类之前还是有共同点的..这个时候就要上抽象基类了….把其共同点放到抽象基类里,然后分别从抽象基类派生刚才的”基类”与”派生类”.</p>
-<h2 id="啥是抽象基类"><a href="#啥是抽象基类" class="headerlink" title="啥是抽象基类"></a>啥是抽象基类</h2><blockquote>
-<p>就是类里定义了纯虚函数的类………然而定义了纯虚函数就只能作为基类了.23333</p>
-</blockquote>
-<h2 id="纯虚函数"><a href="#纯虚函数" class="headerlink" title="纯虚函数"></a>纯虚函数</h2><p>纯虚函数:virtual 返回类型 函数名(形参) =0;<br>在虚函数声明后面加个 =0 就是纯虚函数了,当类声明中包含纯虚函数的时候,则不能创建该类对象.所以包含纯虚函数的类只能作为基类,在原型中使用 =0 指出类是一个抽象基类,在类中可以不定义该函数.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class player&#123;</div><div class="line">    private:</div><div class="line">        int age;</div><div class="line">        string name;</div><div class="line">    pbulic:</div><div class="line">        ...</div><div class="line">        virtual void show() = 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="总之"><a href="#总之" class="headerlink" title="总之:"></a>总之:</h3><blockquote>
-<p>ABC描述的是至少使用一个纯虚函数的接口,从ABC派生出的类将根据派生类的具体特征使用常规虚函数来实现这种接口.</p>
-</blockquote>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>到目前为止,您不必打赏什么<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPP/">CPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代码/">代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2016/12/15/C++笔记-继承和动态内存分配/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C++笔记-继承和动态内存分配
-        
-      </div>
-    </a>
   
   
-    <a href="/2016/12/13/C++笔记-访问控制protected/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++笔记-访问控制protected</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-
-
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="C++笔记-抽象基类(Abstract-Base-Class,ABC)" data-title="C++笔记-抽象基类(Abstract-Base-Class,ABC)" data-url="http://yoursite.com/2016/12/14/C++笔记-抽象基类(Abstract-Base-Class,ABC)/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"fydui"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
+    
 
 
           </div>
@@ -335,8 +212,8 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
